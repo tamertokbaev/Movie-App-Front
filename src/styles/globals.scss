@@ -1,6 +1,6 @@
 :root {
   --color-primary: #67B159;
-  --text-color: #fff;
+  --text-color: #231F20;
   --transition-timeout: 100ms;
 }
 
@@ -13,6 +13,6 @@ html, body, #root, .App {
   min-height: 100%;
   color: var(--text-color);
   font-family: 'Montserrat', sans-serif;
-  background: #011627;
+  background: #f5f5dc;
 }
 
