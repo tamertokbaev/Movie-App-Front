@@ -1,10 +1,10 @@
 import http from "../utils/http";
-const BASE_URL = `${process.env.REACT_APP_BASE_API_URL}/promotion/api/v1`
+const BASE_URL = `http://127.0.0.1:800/api/auth`
 
 export const signIn = () => {
-
+  return http.get()
 }
 
-export const PromotionService = {
+export const MainService = {
 
 }
