@@ -1,4 +1,5 @@
 import './styles/globals.scss';
+import 'react-toastify/dist/ReactToastify.css';
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom"
 import Header from './components/header/Header';
 import Home from './pages/home/home';
@@ -6,6 +7,7 @@ import MovieList from './components/movieList/movieList';
 import Movie from './pages/movieDetail/movie';
 import SignUp from "./pages/signUp/signUp";
 import {createTheme, ThemeProvider} from "@mui/material";
+import {ToastContainer} from "react-toastify";
 
 const MuiTheme = createTheme({
   palette: {
@@ -38,6 +40,7 @@ function App() {
             </Routes>
           </Router>
         </div>
+        <ToastContainer />
       </ThemeProvider>
     </>
   );

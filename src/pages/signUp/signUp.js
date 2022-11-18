@@ -8,6 +8,8 @@ import clsx from "clsx";
 import {SignUpCompleteRegistrationSchema} from "../../app/validation/userValidation";
 import FormHelperMessage from "../../components/Form/FormHelperMessage";
 import {Controller} from "react-hook-form";
+import {AuthService} from "../../app/services/AuthService";
+import {Toast} from "../../app/utils/toast";
 
 const SignUp = () => {
   const {formState, register, handleSubmit, control, setError, setValue, getValues} = useForm({
@@ -17,7 +19,13 @@ const SignUp = () => {
   const {errors, isSubmitting} = formState
 
   const onSubmit = async (data) => {
-
+    AuthService
+      .signUp(data)
+      .then(response => {
+        console.log("success")
+        Toast.displaySuccessMessage("Вы успешно зарегистрировались в системе!")
+      })
+      .catch(err => console.log(err))
   }
 
   return (

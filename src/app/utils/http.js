@@ -34,7 +34,7 @@ const onResponse = async (response) => {
   //     return response;
   //   }
   // }
-  // return response
+  return response
 }
 
 const onResponseError = async (error) => {
@@ -44,11 +44,10 @@ const onResponseError = async (error) => {
 const axiosInstance = axios.create({
   headers: {
     "Access-Control-Allow-Origin": "*",
-  },
-  paramsSerializer: (params) => qs.stringify(params, {arrayFormat: "repeat"})
+  }
 })
 
-axiosInstance.interceptors.request.use(onRequest, onRequestError)
-axiosInstance.interceptors.response.use(onResponse, onResponseError)
+// axiosInstance.interceptors.request.use(onRequest, onRequestError)
+// axiosInstance.interceptors.response.use(onResponse, onResponseError)
 
 export default axiosInstance
