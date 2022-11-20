@@ -10,7 +10,12 @@ export const signIn = (data) => {
   return http.post(`${BASE_URL}/login`, data)
 }
 
+export const getUserInfo = () => {
+  return http.get(`${BASE_URL}/status`)
+}
+
 export const AuthService = {
   signIn,
-  signUp
+  signUp,
+  getUserInfo
 }

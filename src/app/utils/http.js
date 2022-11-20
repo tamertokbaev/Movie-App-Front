@@ -1,9 +1,8 @@
-import axios, {AxiosError, AxiosRequestConfig, AxiosResponse} from "axios";
-import qs from "qs"
+import axios from "axios";
 
 
 const onRequest = (config) => {
-  const token = localStorage.getItem('access_token')
+  const token = localStorage.getItem('auth_token')
   if (config.headers && token && config.headers["Authorization"] === undefined) {
     config.headers["Authorization"] = `Bearer ${token}`
   }
@@ -47,7 +46,7 @@ const axiosInstance = axios.create({
   }
 })
 
-// axiosInstance.interceptors.request.use(onRequest, onRequestError)
+axiosInstance.interceptors.request.use(onRequest, onRequestError)
 // axiosInstance.interceptors.response.use(onResponse, onResponseError)
 
 export default axiosInstance
