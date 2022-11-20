@@ -12,6 +12,7 @@ import {AuthService} from "../../app/services/AuthService";
 import {Toast} from "../../app/utils/toast";
 import {useUserContext} from "../../app/context/userContext";
 import {useNavigate} from "react-router-dom";
+import Layout from "../../components/Layout/Layout";
 
 const SignUp = () => {
   const {formState, register, handleSubmit, control, setError, setValue, getValues} = useForm({
@@ -35,7 +36,7 @@ const SignUp = () => {
   }
 
   return (
-    <div className={s.layout}>
+    <Layout>
       <div className={clsx("container", s.main)}>
 
         <div className={s.form}>
@@ -128,7 +129,7 @@ const SignUp = () => {
           </form>
         </div>
       </div>
-    </div>
+    </Layout>
   )
 }
 

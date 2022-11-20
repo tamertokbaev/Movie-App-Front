@@ -1,10 +1,11 @@
 import React from "react"
 import s from "./Header.module.scss"
 import {Link} from "react-router-dom"
+import clsx from "clsx";
 
-const Header = () => {
+const Header = ({isSticky}) => {
   return (
-    <div className={s.header}>
+    <div className={clsx(s.header, {[s.sticky]: isSticky})}>
       <div className={s.left}>
         <Link to="/">
           <img className={s.logo} src="logo.png"/>

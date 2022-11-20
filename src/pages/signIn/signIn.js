@@ -11,6 +11,7 @@ import {Controller} from "react-hook-form";
 import {AuthService} from "../../app/services/AuthService";
 import {useUserContext} from "../../app/context/userContext";
 import { useNavigate } from "react-router-dom";
+import Layout from "../../components/Layout/Layout";
 
 const SignUp = () => {
   const {formState, handleSubmit, control} = useForm({
@@ -33,7 +34,7 @@ const SignUp = () => {
   }
 
   return (
-    <div className={s.layout}>
+    <Layout>
       <div className={clsx("container", s.main)}>
 
         <div className={s.form}>
@@ -87,7 +88,7 @@ const SignUp = () => {
           </form>
         </div>
       </div>
-    </div>
+    </Layout>
   )
 }
 

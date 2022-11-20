@@ -4,6 +4,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import { Link } from "react-router-dom";
 import MovieList from "../../components/movieList/movieList";
+import Layout from "../../components/Layout/Layout";
 
 const Home = () => {
 
@@ -16,7 +17,7 @@ const Home = () => {
     }, [])
 
     return (
-        <>
+        <Layout>
             <div className="poster">
                 <Carousel
                     showThumbs={false}
@@ -48,7 +49,7 @@ const Home = () => {
                 </Carousel>
                 <MovieList />
             </div>
-        </>
+        </Layout>
     )
 }
 

@@ -29,14 +29,12 @@ const MuiTheme = createTheme({
 function App() {
   const {userInfo, updateUserInfo} = useFetchUserInfo()
 
-  console.log("USER INFO:", userInfo)
   return (
     <>
       <UserContext.Provider value={{userInfo, updateUserInfo}}>
         <ThemeProvider theme={MuiTheme}>
           <div className="App">
             <Router>
-              <Header/>
               <Routes>
                 <Route index element={<Home/>}></Route>
                 <Route path="sign_in" element={<SignIn/>}/>

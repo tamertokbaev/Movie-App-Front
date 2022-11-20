@@ -4,6 +4,11 @@
   height: 90px;
   background: var(--color-primary);
   transition: ease-in var(--transition-timeout);
+  justify-content: space-between;
+
+  &.sticky {
+
+  }
 
   a {
     text-decoration: none;
@@ -32,5 +37,6 @@
 
   .right {
     justify-content: flex-end;
+    margin-right: 30px;
   }
 }
