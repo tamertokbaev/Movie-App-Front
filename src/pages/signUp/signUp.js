@@ -10,6 +10,8 @@ import FormHelperMessage from "../../components/Form/FormHelperMessage";
 import {Controller} from "react-hook-form";
 import {AuthService} from "../../app/services/AuthService";
 import {Toast} from "../../app/utils/toast";
+import {useUserContext} from "../../app/context/userContext";
+import {useNavigate} from "react-router-dom";
 
 const SignUp = () => {
   const {formState, register, handleSubmit, control, setError, setValue, getValues} = useForm({
@@ -17,13 +19,17 @@ const SignUp = () => {
     resolver: yupResolver(SignUpCompleteRegistrationSchema)
   })
   const {errors, isSubmitting} = formState
+  const {userInfo, updateUserInfo} = useUserContext()
+  const navigate = useNavigate()
 
   const onSubmit = async (data) => {
     AuthService
       .signUp(data)
       .then(response => {
-        console.log("success")
+        updateUserInfo(response.data.user)
+        localStorage.setItem(response.data.token.access_token)
         Toast.displaySuccessMessage("Вы успешно зарегистрировались в системе!")
+        navigate('/')
       })
       .catch(err => console.log(err))
   }
