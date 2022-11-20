@@ -4,7 +4,7 @@ import Header from "../header/Header";
 
 const Layout = (props) => {
   const {children, hasAppBar} = props
-  console.log(hasAppBar)
+
   return (
     <div>
       <Header/>
