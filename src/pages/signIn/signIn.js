@@ -1,5 +1,5 @@
-import React from "react";
-import {Button, TextField} from "@mui/material";
+import React, {useState} from "react";
+import {Alert, Button, TextField} from "@mui/material";
 import FormGroup from "../../components/Form/FormGroup";
 import {useForm} from "react-hook-form";
 import s from "./SignIn.module.scss"
@@ -20,6 +20,7 @@ const SignUp = () => {
   })
   const {errors, isSubmitting} = formState
   const {userInfo, updateUserInfo} = useUserContext()
+  const [errorText, setErrorText] = useState("")
   const navigate = useNavigate()
 
   const onSubmit = async (data) => {
@@ -30,7 +31,13 @@ const SignUp = () => {
         updateUserInfo(response.data.user)
         navigate('/')
       })
-      .catch(err => console.log(err))
+      .catch(err => {
+        if (err.response.status === 401) {
+          setErrorText("Неверное имя пользователя либо пароль!")
+        } else {
+          setErrorText("Ошибка на сервере!")
+        }
+      })
   }
 
   return (
@@ -79,6 +86,9 @@ const SignUp = () => {
               />
               <FormHelperMessage>{errors.password?.message}</FormHelperMessage>
             </FormGroup>
+            {errorText && (
+              <Alert sx={{marginY: "0.5rem"}} severity="error">{errorText}</Alert>
+            )}
             <Button
               disabled={isSubmitting}
               type="submit"

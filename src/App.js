@@ -11,6 +11,7 @@ import {ToastContainer} from "react-toastify";
 import SignIn from "./pages/signIn/signIn";
 import useFetchUserInfo from "./app/hooks/useFetchUserInfo";
 import {UserContext} from "./app/context/userContext";
+import {AddMovie} from "./pages/admin/addMovie/addMovie";
 
 const MuiTheme = createTheme({
   palette: {
@@ -37,10 +38,19 @@ function App() {
             <Router>
               <Routes>
                 <Route index element={<Home/>}></Route>
-                <Route path="sign_in" element={<SignIn/>}/>
-                <Route path="sign_up" element={<SignUp/>}/>
+                {!userInfo && (
+                  <>
+                    <Route path="sign_in" element={<SignIn/>}/>
+                    <Route path="sign_up" element={<SignUp/>}/>
+                  </>
+                )}
                 <Route path="movie/:id" element={<Movie/>}></Route>
                 <Route path="movies/:type" element={<MovieList/>}></Route>
+                {userInfo && (
+                  <>
+                    <Route path="admin/movie/add" element={<AddMovie/>}></Route>
+                  </>
+                )}
                 <Route path="/*" element={<h1>Error Page</h1>}></Route>
               </Routes>
             </Router>

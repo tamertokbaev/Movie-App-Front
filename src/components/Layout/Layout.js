@@ -3,12 +3,12 @@ import s from "./Layout.module.scss"
 import Header from "../header/Header";
 
 const Layout = (props) => {
-  const {children} = props
-
+  const {children, hasAppBar} = props
+  console.log(hasAppBar)
   return (
     <div>
       <Header/>
-      <main>
+      <main className="container">
         {children}
       </main>
     </div>
