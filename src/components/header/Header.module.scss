@@ -12,11 +12,11 @@
 
   a {
     text-decoration: none;
-    color: inherit;
     font-size: 18px;
     font-weight: 500;
     margin-left: 16px;
     transition: ease-in var(--transition-timeout);
+    color: #fff;
 
     &:hover {
       color: rgba(255, 255, 255, 0.6);
@@ -24,6 +24,9 @@
   }
 
   .left {
+    display: flex;
+    align-items: center;
+
     .logo {
       width: 80px;
       height: 80px;

@@ -15,12 +15,12 @@ import {UserContext} from "./app/context/userContext";
 const MuiTheme = createTheme({
   palette: {
     primary: {
-      main: "#67B159"
+      main: "#67B159",
     }
   },
   typography: {
     fontFamily: [
-      'Montserrat',
+      'Roboto',
       "sans-serif"
     ].join(",")
   }
