@@ -9,6 +9,8 @@ import {SignInCompleteSchema} from "../../app/validation/userValidation";
 import FormHelperMessage from "../../components/Form/FormHelperMessage";
 import {Controller} from "react-hook-form";
 import {AuthService} from "../../app/services/AuthService";
+import {useUserContext} from "../../app/context/userContext";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
   const {formState, handleSubmit, control} = useForm({
@@ -16,12 +18,16 @@ const SignUp = () => {
     resolver: yupResolver(SignInCompleteSchema)
   })
   const {errors, isSubmitting} = formState
+  const {userInfo, updateUserInfo} = useUserContext()
+  const navigate = useNavigate()
 
   const onSubmit = async (data) => {
     AuthService
       .signIn(data)
       .then(response => {
-        console.log("success", response.data)
+        localStorage.setItem('auth_token', response.data.token)
+        updateUserInfo(response.data.user)
+        navigate('/')
       })
       .catch(err => console.log(err))
   }
