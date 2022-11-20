@@ -9,6 +9,8 @@ import SignUp from "./pages/signUp/signUp";
 import {createTheme, ThemeProvider} from "@mui/material";
 import {ToastContainer} from "react-toastify";
 import SignIn from "./pages/signIn/signIn";
+import useFetchUserInfo from "./app/hooks/useFetchUserInfo";
+import {UserContext} from "./app/context/userContext";
 
 const MuiTheme = createTheme({
   palette: {
@@ -25,24 +27,29 @@ const MuiTheme = createTheme({
 })
 
 function App() {
+  const {userInfo, updateUserInfo} = useFetchUserInfo()
+
+  console.log("USER INFO:", userInfo)
   return (
     <>
-      <ThemeProvider theme={MuiTheme}>
-        <div className="App">
-          <Router>
-            <Header/>
-            <Routes>
-              <Route index element={<Home/>}></Route>
-              <Route path="sign_in" element={<SignIn/>}/>
-              <Route path="sign_up" element={<SignUp/>}/>
-              <Route path="movie/:id" element={<Movie/>}></Route>
-              <Route path="movies/:type" element={<MovieList/>}></Route>
-              <Route path="/*" element={<h1>Error Page</h1>}></Route>
-            </Routes>
-          </Router>
-        </div>
-        <ToastContainer />
-      </ThemeProvider>
+      <UserContext.Provider value={{userInfo, updateUserInfo}}>
+        <ThemeProvider theme={MuiTheme}>
+          <div className="App">
+            <Router>
+              <Header/>
+              <Routes>
+                <Route index element={<Home/>}></Route>
+                <Route path="sign_in" element={<SignIn/>}/>
+                <Route path="sign_up" element={<SignUp/>}/>
+                <Route path="movie/:id" element={<Movie/>}></Route>
+                <Route path="movies/:type" element={<MovieList/>}></Route>
+                <Route path="/*" element={<h1>Error Page</h1>}></Route>
+              </Routes>
+            </Router>
+          </div>
+          <ToastContainer />
+        </ThemeProvider>
+      </UserContext.Provider>
     </>
   );
 }

@@ -19,7 +19,7 @@ const useFetchUserInfo = () => {
     const authRequest = await AuthService
       .getUserInfo(authToken)
       .then(response => {
-        updateUserInfo(response)
+        updateUserInfo(response.data.user)
       })
       .catch(() => {
         localStorage.removeItem('auth_token')

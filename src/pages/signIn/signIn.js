@@ -25,7 +25,7 @@ const SignUp = () => {
     AuthService
       .signIn(data)
       .then(response => {
-        localStorage.setItem('auth_token', response.data.token)
+        localStorage.setItem('auth_token', response.data.token.access_token)
         updateUserInfo(response.data.user)
         navigate('/')
       })
