@@ -18,7 +18,7 @@ const Header = ({isSticky}) => {
     <div className={clsx(s.header, {[s.sticky]: isSticky})}>
       <div className={s.left}>
         <Link to="/">
-          <img className={s.logo} src="logo.png"/>
+          <img className={s.logo} src={"/logo.png"}/>
         </Link>
         <Link>
           Популярное
