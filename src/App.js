@@ -8,6 +8,7 @@ import Movie from './pages/movieDetail/movie';
 import SignUp from "./pages/signUp/signUp";
 import {createTheme, ThemeProvider} from "@mui/material";
 import {ToastContainer} from "react-toastify";
+import SignIn from "./pages/signIn/signIn";
 
 const MuiTheme = createTheme({
   palette: {
@@ -32,7 +33,7 @@ function App() {
             <Header/>
             <Routes>
               <Route index element={<Home/>}></Route>
-              <Route path="sign_in" element={<></>}/>
+              <Route path="sign_in" element={<SignIn/>}/>
               <Route path="sign_up" element={<SignUp/>}/>
               <Route path="movie/:id" element={<Movie/>}></Route>
               <Route path="movies/:type" element={<MovieList/>}></Route>
