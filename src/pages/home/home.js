@@ -17,7 +17,7 @@ const Home = () => {
     }, [])
 
     return (
-        <Layout>
+        <Layout disableContainerStyles headerFluid>
             <div className="poster">
                 <Carousel
                     showThumbs={false}

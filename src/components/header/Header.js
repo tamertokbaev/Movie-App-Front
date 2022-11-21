@@ -5,7 +5,7 @@ import clsx from "clsx";
 import {useUserContext} from "../../app/context/userContext";
 import {Avatar, Button, IconButton, Tooltip} from "@mui/material";
 
-const Header = ({isSticky}) => {
+const Header = ({fluid}) => {
   const {userInfo, updateUserInfo} = useUserContext()
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -15,7 +15,7 @@ const Header = ({isSticky}) => {
   }
 
   return (
-    <div className={clsx(s.header, {[s.sticky]: isSticky})}>
+    <div className={clsx(s.header, {[s.fluid]: fluid})}>
       <div className={s.left}>
         <Link to="/">
           <img className={s.logo} src={"/logo.png"}/>
@@ -37,8 +37,8 @@ const Header = ({isSticky}) => {
               <Button
                 onClick={handleClick}
                 size="small"
-                sx={{ml: 2, color: "#fff", fontSize: "18px", fontWeight: 500, textTransform: "capitalize"}}
-                color="success"
+                sx={{ml: 2, fontSize: "18px", fontWeight: 500, textTransform: "capitalize"}}
+                color="inherit"
               >
                 {userInfo.name}
               </Button>
