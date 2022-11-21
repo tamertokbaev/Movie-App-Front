@@ -48,7 +48,7 @@ const EditMovieForm = ({movie}) => {
 
   const onSubmit = async (data) => {
     AdminService
-      .updateMovie(data)
+      .updateMovie(data, movie.id)
       .then(response => {
         if (response.data.message === "success") {
           Toast.displaySuccessMessage("Ваши изменения сохранены!")

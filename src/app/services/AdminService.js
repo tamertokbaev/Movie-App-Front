@@ -6,8 +6,12 @@ const createMovie = (data) => {
   return http.post(`${BASE_URL}/movie/create`, data)
 }
 
-const updateMovie = (data) => {
-  return http.put(`${BASE_URL}/movie/update`, data)
+const updateMovie = (data, movieId) => {
+  return http.put(`${BASE_URL}/movie/update`, data, {
+    params: {
+      movie_id: movieId
+    }
+  })
 }
 
 const getMovies = () => {

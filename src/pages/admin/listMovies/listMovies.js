@@ -61,7 +61,7 @@ const AdminMoviesList = () => {
                 <TableCell align="center">{item.rating}</TableCell>
                 <TableCell>{new Date(item.release_date).toLocaleDateString()}</TableCell>
                 <TableCell align="right">
-                  <Link to={`/admin/movie/edit/${item.id}`}>
+                  <Link style={{textDecoration: "none"}} to={`/admin/movie/edit/${item.id}`}>
                     <Button
                       startIcon={<Edit/>}
                       color="info">
