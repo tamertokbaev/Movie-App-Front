@@ -6,7 +6,12 @@ const createMovie = (data) => {
 }
 
 const getMovies = () => {
-  return http.get(`${BASE_URL}/movie/list`)
+  return http.get(`${BASE_URL}/movie/list`, {
+    params: {
+      rows: 15,
+      page: 1
+    }
+  })
 }
 
 export const AdminService = {
