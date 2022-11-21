@@ -5,6 +5,11 @@ export const getFeaturedMovies = () => {
   return http.get(`${BASE_URL}/featured`)
 }
 
+export const getPopularMovies = () => {
+  return http.get(`${BASE_URL}/popular`)
+}
+
 export const MainService = {
-  getFeaturedMovies
+  getFeaturedMovies,
+  getPopularMovies
 }

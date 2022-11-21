@@ -19,7 +19,6 @@ const Home = () => {
     MainService
       .getFeaturedMovies()
       .then(response => {
-        console.log(response.data)
         if (response.data.message === "success") {
           setPopularMovies(response.data.movies)
         }
@@ -48,7 +47,7 @@ const Home = () => {
                 <div className="posterImage__overlay">
                   <div className="posterImage__title">{movie.tilte}</div>
                   <div className="posterImage__runtime">
-                    {movie.release_date}
+                    {new Date(movie.release_date).toLocaleDateString()}
                     <span className="posterImage__rating">
                                             {movie.rating}
                       <i className="fas fa-star"/>{" "}
