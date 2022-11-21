@@ -22,9 +22,11 @@ export default function AppBarLeft() {
           '& .MuiDrawer-paper': {
             width: drawerWidth,
             boxSizing: 'border-box',
-            top: "90px",
-            background: "#E5EBD0"
+            paddingTop: "90px",
+            background: "#272b35",
+            zIndex: 1
           },
+          zIndex: 1
         }}
         variant="permanent"
         anchor="left"
@@ -32,11 +34,11 @@ export default function AppBarLeft() {
         <div className={s.root}>
           <h3>Панель администратора</h3>
         </div>
-        <Divider />
+        <Divider sx={{background: "#fafafa"}}/>
         <List>
-          <ListItem disablePadding>
+          <ListItem sx={{color: "#fafafa"}} disablePadding>
             <ListItemButton component={Link} to="/admin/movie/add">
-              <ListItemIcon>
+              <ListItemIcon sx={{color: "#fafafa"}}>
                 <Add/>
               </ListItemIcon>
               <ListItemText>
@@ -45,9 +47,9 @@ export default function AppBarLeft() {
             </ListItemButton>
           </ListItem>
 
-          <ListItem disablePadding>
+          <ListItem sx={{color: "#fafafa"}} disablePadding>
             <ListItemButton component={Link} to="/admin/movie/list">
-              <ListItemIcon>
+              <ListItemIcon sx={{color: "#fafafa"}}>
                 <Movie/>
               </ListItemIcon>
               <ListItemText>

@@ -18,14 +18,41 @@ import {EditMovie} from "./pages/admin/editMovie/editMovie";
 const MuiTheme = createTheme({
   palette: {
     primary: {
-      main: "#67B159",
-    }
+      main: 'rgb(63, 81, 181)',
+      dark: 'rgb(0, 43, 112)',
+      contrastText: '#fff'
+    },
+    secondary: {main: '#1b6cf3'},
+    default: {main: '#fbfbfb'}
   },
   typography: {
-    fontFamily: [
-      'Roboto',
-      "sans-serif"
-    ].join(",")
+    h1: {
+      fontWeight: '900',
+      fontSize: '36px',
+    },
+    h2: {
+      color: '#111',
+      fontWeight: '900',
+      fontSize: '30px',
+    },
+    h5: {
+      color: '#111',
+      fontWeight: '700',
+    },
+    h6: {
+      fontWeight: '900',
+    }
+  },
+  spacing: 8,
+  overrides: {
+    MuiFilledInput: {
+      root: {
+        backgroundColor: '#F8F9FF',
+        '&:hover': {
+          backgroundColor: '#eee',
+        }
+      }
+    },
   }
 })
 

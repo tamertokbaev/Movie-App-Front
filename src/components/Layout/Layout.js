@@ -10,7 +10,7 @@ const Layout = (props) => {
     <div>
       <Header/>
       {hasAppBar ? <AppBarLeft/> : null}
-      <main className="container" style={hasAppBar ? {marginLeft: "260px"} : undefined}>
+      <main className="container" style={hasAppBar ? {marginLeft: "260px", marginTop: "100px"} : {marginTop: "100px"}}>
         {children}
       </main>
     </div>
