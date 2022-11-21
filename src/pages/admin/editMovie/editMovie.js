@@ -159,6 +159,27 @@ const EditMovieForm = ({movie}) => {
               <FormGroup>
                 <Controller
                   control={control}
+                  name="banner_url"
+                  render={({field: {onChange, value}}) => (
+                    <TextField
+                      required
+                      name="image_url"
+                      value={value}
+                      onChange={onChange}
+                      error={errors.banner_url?.message || false}
+                      variant="outlined"
+                      label="Ссылка на баннерное изображение"
+                    />
+                  )}
+                />
+                <FormHelperMessage>{errors.banner_url?.message}</FormHelperMessage>
+              </FormGroup>
+            </Grid>
+
+            <Grid item md={8}>
+              <FormGroup>
+                <Controller
+                  control={control}
                   name="imdb_url"
                   render={({field: {onChange, value}}) => (
                     <TextField
