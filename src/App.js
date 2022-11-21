@@ -12,6 +12,7 @@ import SignIn from "./pages/signIn/signIn";
 import useFetchUserInfo from "./app/hooks/useFetchUserInfo";
 import {UserContext} from "./app/context/userContext";
 import {AddMovie} from "./pages/admin/addMovie/addMovie";
+import AdminMoviesList from "./pages/admin/listMovies/listMovies";
 
 const MuiTheme = createTheme({
   palette: {
@@ -49,6 +50,7 @@ function App() {
                 {userInfo && (
                   <>
                     <Route path="admin/movie/add" element={<AddMovie/>}></Route>
+                    <Route path="admin/movie/list" element={<AdminMoviesList/>}></Route>
                   </>
                 )}
                 <Route path="/*" element={<h1>Error Page</h1>}></Route>

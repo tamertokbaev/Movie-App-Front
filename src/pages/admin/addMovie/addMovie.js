@@ -27,7 +27,7 @@ const AddMovie = () => {
         Toast.displayErrorMessage("Произошла ошибка при создании фильма!")
       })
   }
-  console.log(errors)
+
   return (
     <Layout hasAppBar>
       <div className={s.root}>

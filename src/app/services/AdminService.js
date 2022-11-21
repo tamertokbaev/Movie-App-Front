@@ -1,10 +1,15 @@
 import http from "../utils/http";
 const BASE_URL = `http://127.0.0.1:8000/api/admin`
 
-export const createMovie = (data) => {
+const createMovie = (data) => {
   return http.post(`${BASE_URL}/movie/create`, data)
 }
 
+const getMovies = () => {
+  return http.get(`${BASE_URL}/movie/list`)
+}
+
 export const AdminService = {
-  createMovie
+  createMovie,
+  getMovies
 }
