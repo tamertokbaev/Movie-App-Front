@@ -5,6 +5,7 @@ import {AdminService} from "../../../app/services/AdminService";
 import {Toast} from "../../../app/utils/toast";
 import {Button, Table, TableBody, TableCell, TableHead, TableRow} from "@mui/material";
 import {Delete, Edit} from "@mui/icons-material";
+import {Link} from "react-router-dom";
 
 const AdminMoviesList = () => {
   const [movies, setMovies] = useState([])
@@ -60,11 +61,13 @@ const AdminMoviesList = () => {
                 <TableCell align="center">{item.rating}</TableCell>
                 <TableCell>{new Date(item.release_date).toLocaleDateString()}</TableCell>
                 <TableCell align="right">
-                  <Button
-                    startIcon={<Edit/>}
-                    color="info">
-                    Редактировать
-                  </Button>
+                  <Link to={`/admin/movie/edit/${item.id}`}>
+                    <Button
+                      startIcon={<Edit/>}
+                      color="info">
+                      Редактировать
+                    </Button>
+                  </Link>
                   <Button
                     onClick={() => removeMovie(item.id)}
                     startIcon={<Delete/>}
