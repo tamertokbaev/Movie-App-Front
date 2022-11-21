@@ -21,6 +21,19 @@ const AdminMoviesList = () => {
       })
   }
 
+  const removeMovie = (movieId) => {
+    AdminService.deleteMovie(movieId)
+      .then(response => {
+        if (response.data.message === 'success') {
+          Toast.displaySuccessMessage("Фильм успешно удален!")
+          fetchMoviesList()
+        }
+      })
+      .catch(err => {
+        Toast.displayErrorMessage("Произошла ошибка при удалении фильма!")
+      })
+  }
+
   useEffect(() => {
     fetchMoviesList()
   }, [])
@@ -53,6 +66,7 @@ const AdminMoviesList = () => {
                     Редактировать
                   </Button>
                   <Button
+                    onClick={() => removeMovie(item.id)}
                     startIcon={<Delete/>}
                     color="error">
                     Удалить

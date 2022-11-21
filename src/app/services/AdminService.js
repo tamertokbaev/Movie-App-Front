@@ -1,4 +1,5 @@
 import http from "../utils/http";
+
 const BASE_URL = `http://127.0.0.1:8000/api/admin`
 
 const createMovie = (data) => {
@@ -14,7 +15,16 @@ const getMovies = () => {
   })
 }
 
+const deleteMovie = (movieId) => {
+  return http.delete(`${BASE_URL}/movie/delete`, {
+    params: {
+      movie_id: movieId
+    }
+  })
+}
+
 export const AdminService = {
   createMovie,
-  getMovies
+  getMovies,
+  deleteMovie
 }
