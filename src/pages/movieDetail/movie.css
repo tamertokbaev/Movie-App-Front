@@ -7,7 +7,7 @@
 }
 
 .movie__intro {
-    width: 80%;
+    width: 100%;
 }
 
 .movie__backdrop {
@@ -72,6 +72,7 @@
 .movie__detailRightBottom {
     margin: 2rem 0;
     flex: 0.8;
+    color: var(--text-color);
 }
 
 .synopsisText {
@@ -81,6 +82,8 @@
     display: flex;
     position: relative;
     align-items: center;
+    margin-top: 2rem;
+    color: var(--text-color);
 }
 .synopsisText > div:last-of-type {
     margin-left: auto;
@@ -112,7 +115,7 @@
 
 .movie__homeButton {
     background-color:rgb(255, 0, 0);
-    
+
 }
 
 .movie__imdbButton {
