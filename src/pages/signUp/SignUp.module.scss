@@ -9,16 +9,17 @@
   height: calc(100vh - 80px);
 
   .heading {
+    text-align: center;
     font-weight: 600;
     font-size: 28px;
     margin-bottom: 1rem;
   }
 
   .form {
-    min-width: 55%;
-    background: bottom;
+    min-width: 50%;
+    background: whitesmoke;
     padding: 16px;
-    border: 2px solid gainsboro;
+    border: 1px solid gainsboro;
     border-radius: 8px;
     box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px;
   }

@@ -41,61 +41,66 @@ const SignUp = () => {
   }
 
   return (
-    <Layout>
-      <div className={clsx("container", s.main)}>
+    <Layout disableContainerStyles>
+      <div
+        style={{background: "url('/auth_bg.jpeg')", backgroundSize: "cover"}}
+      >
+        <div
+          className={clsx("container", s.main)}>
 
-        <div className={s.form}>
-          <h1 className={s.heading}>Вход в систему</h1>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <FormGroup>
-              <Controller
-                control={control}
-                name="email"
-                render={({field: {onChange, value}}) => (
-                  <TextField
-                    required
-                    name="email"
-                    type="email"
-                    value={value}
-                    onChange={onChange}
-                    error={errors.email?.message || false}
-                    variant="outlined"
-                    label="Электронная почта"
-                  />
-                )}
-              />
-              <FormHelperMessage>{errors.email?.message}</FormHelperMessage>
-            </FormGroup>
+          <div className={s.form}>
+            <h1 className={s.heading}>Вход в систему</h1>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <FormGroup>
+                <Controller
+                  control={control}
+                  name="email"
+                  render={({field: {onChange, value}}) => (
+                    <TextField
+                      required
+                      name="email"
+                      type="email"
+                      value={value}
+                      onChange={onChange}
+                      error={errors.email?.message || false}
+                      variant="outlined"
+                      label="Электронная почта"
+                    />
+                  )}
+                />
+                <FormHelperMessage>{errors.email?.message}</FormHelperMessage>
+              </FormGroup>
 
-            <FormGroup>
-              <Controller
-                control={control}
-                name="password"
-                render={({field: {onChange, value}}) => (
-                  <TextField
-                    required
-                    name="password"
-                    type="password"
-                    value={value}
-                    onChange={onChange}
-                    error={errors.password?.message || false}
-                    variant="outlined"
-                    label="Пароль"
-                  />
-                )}
-              />
-              <FormHelperMessage>{errors.password?.message}</FormHelperMessage>
-            </FormGroup>
-            {errorText && (
-              <Alert sx={{marginY: "0.5rem"}} severity="error">{errorText}</Alert>
-            )}
-            <Button
-              disabled={isSubmitting}
-              type="submit"
-            >
-              Войти
-            </Button>
-          </form>
+              <FormGroup>
+                <Controller
+                  control={control}
+                  name="password"
+                  render={({field: {onChange, value}}) => (
+                    <TextField
+                      required
+                      name="password"
+                      type="password"
+                      value={value}
+                      onChange={onChange}
+                      error={errors.password?.message || false}
+                      variant="outlined"
+                      label="Пароль"
+                    />
+                  )}
+                />
+                <FormHelperMessage>{errors.password?.message}</FormHelperMessage>
+              </FormGroup>
+              {errorText && (
+                <Alert sx={{marginY: "0.5rem"}} severity="error">{errorText}</Alert>
+              )}
+              <Button
+                disabled={isSubmitting}
+                type="submit"
+              >
+                Войти
+              </Button>
+            </form>
+          </div>
         </div>
       </div>
     </Layout>

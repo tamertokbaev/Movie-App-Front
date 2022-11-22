@@ -15,7 +15,10 @@ const Header = ({fluid}) => {
   }
 
   const logOut = () => {
+    console.log("Log out")
     localStorage.removeItem('auth_token')
+    updateUserInfo(null)
+    setAnchorEl(null)
   }
 
   return (
@@ -86,11 +89,13 @@ const Header = ({fluid}) => {
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
         <MenuItem disabled onClick={() => setAnchorEl(null)}>Профиль</MenuItem>
-        <MenuItem onClick={() => setAnchorEl(null)}>
-          <Link style={{textDecoration: "none", color: "inherit"}} to="/admin/movie/add">
-            Админ панель
-          </Link>
-        </MenuItem>
+        {userInfo?.is_superuser && (
+          <MenuItem onClick={() => setAnchorEl(null)}>
+            <Link style={{textDecoration: "none", color: "inherit"}} to="/admin/movie/add">
+              Админ панель
+            </Link>
+          </MenuItem>
+        )}
         <MenuItem onClick={logOut}>Выйти</MenuItem>
       </Menu>
     </div>
