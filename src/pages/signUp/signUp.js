@@ -1,5 +1,5 @@
-import React from "react";
-import {Button, TextField} from "@mui/material";
+import React, {useState} from "react";
+import {Alert, Button, TextField} from "@mui/material";
 import FormGroup from "../../components/Form/FormGroup";
 import {useForm} from "react-hook-form";
 import s from "./SignUp.module.scss"
@@ -22,17 +22,22 @@ const SignUp = () => {
   const {errors, isSubmitting} = formState
   const {userInfo, updateUserInfo} = useUserContext()
   const navigate = useNavigate()
+  const [errorText, setErrorText] = useState("")
 
   const onSubmit = async (data) => {
     AuthService
       .signUp(data)
       .then(response => {
         updateUserInfo(response.data.user)
-        localStorage.setItem('auth_token',response.data.token.access_token)
+        localStorage.setItem('auth_token', response.data.token.access_token)
         Toast.displaySuccessMessage("Вы успешно зарегистрировались в системе!")
         navigate('/')
       })
-      .catch(err => console.log(err))
+      .catch(err => {
+        if (err.response.status === 401) {
+          setErrorText("Данный пользователь уже существует в системе!")
+        }
+      })
   }
 
   return (
@@ -123,7 +128,9 @@ const SignUp = () => {
                 />
                 <FormHelperMessage>{errors.confirmPassword?.message}</FormHelperMessage>
               </FormGroup>
-
+              {errorText && (
+                <Alert sx={{marginY: "0.5rem"}} severity="error">{errorText}</Alert>
+              )}
               <Button
                 disabled={isSubmitting}
                 type="submit"
