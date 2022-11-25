@@ -1,6 +1,6 @@
 import axios from "axios";
 import http from "../utils/http";
-const BASE_URL = `http://127.0.0.1:8000/api/auth`
+const BASE_URL = `http://138.68.67.253/api/auth`
 
 export const signUp = (data) => {
   return http.post(`${BASE_URL}/register`, data)

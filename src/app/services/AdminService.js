@@ -1,6 +1,6 @@
 import http from "../utils/http";
 
-const BASE_URL = `http://127.0.0.1:8000/api/admin`
+const BASE_URL = `http://138.68.67.253/api/admin`
 
 const createMovie = (data) => {
   return http.post(`${BASE_URL}/movie/create`, data)
