@@ -45,7 +45,7 @@ const Home = () => {
                   <img src={movie.banner_url}/>
                 </div>
                 <div className="posterImage__overlay">
-                  <div className="posterImage__title">{movie.tilte}</div>
+                  <div className="posterImage__title">{movie.title}</div>
                   <div className="posterImage__runtime">
                     {new Date(movie.release_date).toLocaleDateString()}
                     <span className="posterImage__rating">
