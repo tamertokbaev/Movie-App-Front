@@ -3,9 +3,11 @@ import "./movieList.css"
 import Cards from "../card/card"
 import {MainService} from "../../app/services/MainService";
 import {Toast} from "../../app/utils/toast";
+import useFavoriteMovies from "../../app/hooks/useFavoriteMovies";
 
 const MovieList = () => {
   const [movieList, setMovieList] = useState([])
+  const {favorites, setFavorites, checkIsMovieInFavorite} = useFavoriteMovies()
 
   useEffect(() => {
     getData()
@@ -17,7 +19,6 @@ const MovieList = () => {
       .getPopularMovies()
       .then(response => {
         if (response.data.message === "success") {
-          console.log(response.data)
           setMovieList(response.data.movies)
         }
       })
@@ -32,7 +33,11 @@ const MovieList = () => {
       <div className="list__cards">
         {
           movieList.map(movie => (
-            <Cards movie={movie}/>
+            <Cards
+              isInFavorite={checkIsMovieInFavorite(movie.id)}
+              key={movie.id}
+              movie={movie}
+            />
           ))
         }
       </div>

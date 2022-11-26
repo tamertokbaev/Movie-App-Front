@@ -17,8 +17,13 @@ const getMovieInfo = (movieId) => {
   })
 }
 
+const getFavoriteMovies = () => {
+  return http.get(`${BASE_URL}/favorites`)
+}
+
 export const MainService = {
   getFeaturedMovies,
   getPopularMovies,
-  getMovieInfo
+  getMovieInfo,
+  getFavoriteMovies
 }
