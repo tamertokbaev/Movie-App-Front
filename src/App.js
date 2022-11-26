@@ -14,6 +14,7 @@ import {UserContext} from "./app/context/userContext";
 import {AddMovie} from "./pages/admin/addMovie/addMovie";
 import AdminMoviesList from "./pages/admin/listMovies/listMovies";
 import {EditMovie} from "./pages/admin/editMovie/editMovie";
+import Profile from "./pages/profile/Profile";
 
 const MuiTheme = createTheme({
   palette: {
@@ -77,6 +78,7 @@ function App() {
                 <Route path="movies/:type" element={<MovieList/>}></Route>
                 {userInfo && (
                   <>
+                    <Route path="profile" element={<Profile/>}></Route>
                     <Route path="admin/movie/add" element={<AddMovie/>}></Route>
                     <Route path="admin/movie/list" element={<AdminMoviesList/>}></Route>
                     <Route path="admin/movie/edit/:movieId" element={<EditMovie/>}></Route>

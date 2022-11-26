@@ -1,0 +1,55 @@
+.root {
+  display: flex;
+
+  .content {
+    margin-top: 2rem;
+    width: 80%;
+  }
+}
+
+
+.sidebar {
+  margin: 40px 0;
+  height: 100%;
+  width: 20%;
+
+  .menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+    .item {
+      padding: 10px 20px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: ease-out 100ms;
+
+      &.active {
+        color: rgb(240, 150, 0);
+      }
+    }
+  }
+}
+
+.personalData {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+  width: 100%;
+
+  .item {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+    font-weight: 600;
+
+    span {
+      font-weight: 400;
+    }
+  }
+
+  .editButton {
+    margin-top: 1.2rem;
+    border-radius: 20px;
+  }
+}

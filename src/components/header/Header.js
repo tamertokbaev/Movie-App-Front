@@ -1,6 +1,6 @@
 import React from "react"
 import s from "./Header.module.scss"
-import {Link} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 import clsx from "clsx";
 import {useUserContext} from "../../app/context/userContext";
 import {Avatar, Button, IconButton, Menu, MenuItem, Tooltip} from "@mui/material";
@@ -9,13 +9,13 @@ const Header = ({fluid}) => {
   const {userInfo, updateUserInfo} = useUserContext()
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+  const navigate = useNavigate()
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   }
 
   const logOut = () => {
-    console.log("Log out")
     localStorage.removeItem('auth_token')
     updateUserInfo(null)
     setAnchorEl(null)
@@ -88,7 +88,10 @@ const Header = ({fluid}) => {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <MenuItem disabled onClick={() => setAnchorEl(null)}>Профиль</MenuItem>
+        <MenuItem onClick={() => {
+          navigate("/profile")
+          setAnchorEl(null)}
+        }>Профиль</MenuItem>
         {userInfo?.is_superuser && (
           <MenuItem onClick={() => setAnchorEl(null)}>
             <Link style={{textDecoration: "none", color: "inherit"}} to="/admin/movie/add">

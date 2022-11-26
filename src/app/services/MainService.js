@@ -1,5 +1,5 @@
 import http from "../utils/http";
-const BASE_URL = `http://138.68.67.253/api/movie`
+const BASE_URL = `http://localhost:8000/api/movie`
 
 const getFeaturedMovies = () => {
   return http.get(`${BASE_URL}/featured`)

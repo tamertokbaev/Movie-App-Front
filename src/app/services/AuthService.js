@@ -1,21 +1,25 @@
-import axios from "axios";
 import http from "../utils/http";
-const BASE_URL = `http://138.68.67.253/api/auth`
+const BASE_URL = `http://localhost:8000/api/auth`
 
-export const signUp = (data) => {
+const signUp = (data) => {
   return http.post(`${BASE_URL}/register`, data)
 }
 
-export const signIn = (data) => {
+const signIn = (data) => {
   return http.post(`${BASE_URL}/login`, data)
 }
 
-export const getUserInfo = () => {
+const getUserInfo = () => {
   return http.get(`${BASE_URL}/status`)
+}
+
+const changeUserInfo = (data) => {
+  return http.put(`${BASE_URL}/change-personal-data`, data)
 }
 
 export const AuthService = {
   signIn,
   signUp,
-  getUserInfo
+  getUserInfo,
+  changeUserInfo
 }
