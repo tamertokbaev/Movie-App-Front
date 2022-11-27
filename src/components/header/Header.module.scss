@@ -38,6 +38,46 @@
     }
   }
 
+  .search {
+    flex-grow: 1;
+    margin: 0 20px;
+
+    .inputContainer {
+      width: 80%;
+      margin-left: auto;
+      position: relative;
+
+      svg {
+        position: absolute;
+        left: 5px;
+        top: 50%;
+        transform: translateY(-50%);
+
+        path {
+          stroke: rgba(35, 31, 32, 0.6);
+        }
+      }
+    }
+
+    .searchInput {
+      width: 60%;
+      display: block;
+      border-radius: 4px;
+      border-color: rgba(35, 31, 32, 0.4);
+      border-width: 1px;
+      padding: 8px 16px;
+      background: whitesmoke;
+      outline: none;
+      transition: ease-in-out 100ms;
+      padding-left: 35px;
+
+      &:focus {
+        border-color: rgba(35, 31, 32, 0.8);
+        width: 70%;
+      }
+    }
+  }
+
   .right {
     justify-content: flex-end;
     margin-right: 30px;

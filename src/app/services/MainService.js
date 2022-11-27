@@ -27,10 +27,19 @@ const addOrRemoveFavorites = (movieId) => {
   })
 }
 
+const search = (slug) => {
+  return http.get(`${BASE_URL}/search`, {
+    params: {
+      slug: slug
+    }
+  })
+}
+
 export const MainService = {
   getFeaturedMovies,
   getPopularMovies,
   getMovieInfo,
   getFavoriteMovies,
-  addOrRemoveFavorites
+  addOrRemoveFavorites,
+  search
 }
