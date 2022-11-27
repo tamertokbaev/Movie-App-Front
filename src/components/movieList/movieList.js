@@ -7,7 +7,7 @@ import useFavoriteMovies from "../../app/hooks/useFavoriteMovies";
 
 const MovieList = () => {
   const [movieList, setMovieList] = useState([])
-  const {favorites, setFavorites, checkIsMovieInFavorite} = useFavoriteMovies()
+  const {favorites, setFavorites, checkIsMovieInFavorite, handleAddOrRemoveFavorites} = useFavoriteMovies()
 
   useEffect(() => {
     getData()
@@ -35,6 +35,7 @@ const MovieList = () => {
           movieList.map(movie => (
             <Cards
               isInFavorite={checkIsMovieInFavorite(movie.id)}
+              onFavoritesClick={handleAddOrRemoveFavorites}
               key={movie.id}
               movie={movie}
             />

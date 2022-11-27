@@ -74,7 +74,9 @@ const ProfileChangeProfileDataModal = ({isOpen, handleClose}) => {
       .changeUserInfo(data)
       .then(res => {
         if (res.data.message === "success") {
-          console.log(res.data)
+          updateUserInfo(res.data.user)
+          handleClose()
+          Toast.displaySuccessMessage("Вы успешно обновили личные данные!")
         }
       })
       .catch(err => {

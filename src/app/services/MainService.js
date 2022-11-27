@@ -21,9 +21,16 @@ const getFavoriteMovies = () => {
   return http.get(`${BASE_URL}/favorites`)
 }
 
+const addOrRemoveFavorites = (movieId) => {
+  return http.post(`${BASE_URL}/favorites`, {
+    movie_id: movieId
+  })
+}
+
 export const MainService = {
   getFeaturedMovies,
   getPopularMovies,
   getMovieInfo,
-  getFavoriteMovies
+  getFavoriteMovies,
+  addOrRemoveFavorites
 }

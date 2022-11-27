@@ -8,6 +8,16 @@ const useFavoriteMovies = () => {
     return !!favorites.find(item => item.id === movieId)
   }
 
+  const handleAddOrRemoveFavorites = (movieId) => {
+    MainService
+      .addOrRemoveFavorites(movieId)
+      .then(response => {
+        if (response.data.message === "success") {
+          setFavorites(response.data.favorites)
+        }
+      })
+  }
+
   useEffect(() => {
     MainService
       .getFavoriteMovies()
@@ -18,7 +28,7 @@ const useFavoriteMovies = () => {
       })
   }, [])
 
-  return {favorites, setFavorites, checkIsMovieInFavorite}
+  return {favorites, setFavorites, checkIsMovieInFavorite, handleAddOrRemoveFavorites}
 }
 
 export default useFavoriteMovies

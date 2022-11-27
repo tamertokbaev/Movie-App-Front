@@ -4,10 +4,11 @@ import "./card.css"
 import {Link} from "react-router-dom"
 import HeartIcon from "../../app/icons/HeartIcon";
 import clsx from "clsx";
+import {useUserContext} from "../../app/context/userContext";
 
-const Cards = ({movie, isInFavorite}) => {
-
+const Cards = ({movie, isInFavorite, onFavoritesClick}) => {
   const [isLoading, setIsLoading] = useState(true)
+  const {userInfo} = useUserContext()
 
   useEffect(() => {
     setTimeout(() => {
@@ -29,9 +30,14 @@ const Cards = ({movie, isInFavorite}) => {
           <div className="cards">
             <div className={clsx("cards__img", {["fav"]: isInFavorite})}>
               <img src={movie.image_url}/>
-              <button onClick={event => event.preventDefault()}>
-                <HeartIcon size={18}/>
-              </button>
+              {userInfo && (
+                <button onClick={event => {
+                  event.preventDefault()
+                  onFavoritesClick(movie.id)
+                }}>
+                  <HeartIcon size={18}/>
+                </button>
+              )}
             </div>
             <div className="cards__overlay">
               <div className="card__title">{movie.title}</div>
