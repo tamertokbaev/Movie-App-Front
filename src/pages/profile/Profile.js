@@ -3,6 +3,7 @@ import s from "./Profile.module.scss"
 import Layout from "../../components/Layout/Layout";
 import {ProfileSideBar} from "./ProfileSideBar";
 import ProfilePersonalData from "./ProfilePersonalData";
+import ProfileFavoritesData from "./ProfileFavoritesData";
 
 const Profile = () => {
   const [activeSection, setActiveSection] = useState(1)
@@ -20,6 +21,9 @@ const Profile = () => {
         />
         {activeSection === 1 && (
           <ProfilePersonalData/>
+        )}
+        {activeSection === 2 && (
+          <ProfileFavoritesData/>
         )}
       </div>
     </Layout>

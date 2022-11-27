@@ -4,6 +4,17 @@
   .content {
     margin-top: 2rem;
     width: 80%;
+
+    .empty {
+      min-height: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      h3 {
+        opacity: 0.6;
+        font-weight: 500;
+      }
+    }
   }
 }
 
@@ -52,4 +63,10 @@
     margin-top: 1.2rem;
     border-radius: 20px;
   }
+}
+
+.favoritesData {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
 }
