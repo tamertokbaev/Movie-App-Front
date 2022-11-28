@@ -1,11 +1,15 @@
 import React, {useEffect, useState} from "react"
-import "./movie.css"
+import s from "./Movie.module.scss"
 import {useParams} from "react-router-dom"
 import Layout from "../../components/Layout/Layout";
 import {MainService} from "../../app/services/MainService";
 import {Toast} from "../../app/utils/toast";
+import HeartIcon from "../../app/icons/HeartIcon";
+import clsx from "clsx";
+import useFavoriteMovies from "../../app/hooks/useFavoriteMovies";
 
 const Movie = () => {
+  const {checkIsMovieInFavorite, handleAddOrRemoveFavorites} = useFavoriteMovies()
   const [currentMovieDetail, setMovie] = useState()
   const {id} = useParams()
 
@@ -29,64 +33,59 @@ const Movie = () => {
 
   return (
     <Layout disableContainerStyles>
-      <div className="movie">
-        <div className="movie__intro">
-          <img className="movie__backdrop"
+      <div className={s.movie}>
+        <div className={s.movie__intro}>
+          <img className={s.movie__backdrop}
                src={currentMovieDetail?.banner_url}/>
         </div>
-        <div className="movie__detail">
-          <div className="movie__detailLeft">
-            <div className="movie__posterBox">
-              <img className="movie__poster"
+        <div className={s.movie__detail}>
+          <div className={s.movie__detailLeft}>
+            <div>
+              <img className={s.movie__poster}
                    src={currentMovieDetail?.image_url}/>
             </div>
           </div>
-          <div className="movie__detailRight">
-            <div className="movie__detailRightTop">
-              <div className="movie__name">{currentMovieDetail?.title}</div>
+          <div className={s.movie__detailRight}>
+            <div className={s.movie__detailRightTop}>
+              <div className={s.movie__name}>{currentMovieDetail?.title}</div>
               {/*<div className="movie__tagline">{currentMovieDetail}</div>*/}
-              <div className="movie__rating">
+              <div>
                 {currentMovieDetail ? currentMovieDetail.rating : ""} <i className="fas fa-star"/>
                 {/*<span*/}
                 {/*  className="movie__voteCount">{currentMovieDetail ? "(" + currentMovieDetail.vote_count + ") votes" : ""}</span>*/}
               </div>
               {/*<div className="movie__runtime">{currentMovieDetail ? currentMovieDetail.runtime + " mins" : ""}</div>*/}
-              <div
-                className="movie__releaseDate">{currentMovieDetail ? "Дата выпуска: " + currentMovieDetail.release_date : ""}</div>
-              <div className="movie__genres">
+              <div>{currentMovieDetail ? "Дата выпуска: " + currentMovieDetail.release_date : ""}</div>
+              <div className={s.movie__genres}>
                 {
                   currentMovieDetail && currentMovieDetail.genres
                     ?
                     currentMovieDetail.genres.map(genre => (
-                      <><span className="movie__genre" id={genre.id}>{genre.name}</span></>
+                      <><span className={s.movie__genre} id={genre.id}>{genre.name}</span></>
                     ))
                     :
                     ""
                 }
               </div>
             </div>
-            <div className="movie__detailRightBottom">
-              <div className="synopsisText">Описание</div>
+            <div className={clsx(s.addToFavs, {[s.added]: checkIsMovieInFavorite(currentMovieDetail?.id)})}>
+              <button onClick={() => handleAddOrRemoveFavorites(currentMovieDetail?.id)}>
+                <HeartIcon size={24}/>
+                {checkIsMovieInFavorite(currentMovieDetail?.id) ? "Удалить из избранного" : "Добавить в избранное"}
+              </button>
+            </div>
+            <div className={s.movie__detailRightBottom}>
+              <div className={s.synopsisText}>Описание</div>
               <div>{currentMovieDetail ? currentMovieDetail.description : ""}</div>
             </div>
 
+            <div className={s.details}>
+              <h4>Подробная информация</h4>
+
+
+            </div>
           </div>
         </div>
-        {/*<div className="movie__links">*/}
-        {/*  <div className="movie__heading">Useful Links</div>*/}
-        {/*  {*/}
-        {/*    currentMovieDetail && currentMovieDetail.homepage &&*/}
-        {/*    <a href={currentMovieDetail.homepage} target="_blank" style={{textDecoration: "none"}}><p><span*/}
-        {/*      className="movie__homeButton movie__Button">Homepage <i*/}
-        {/*      className="newTab fas fa-external-link-alt"></i></span></p></a>*/}
-        {/*  }*/}
-        {/*  {*/}
-        {/*    currentMovieDetail && currentMovieDetail.imdb_id &&*/}
-        {/*    <a href={"https://www.imdb.com/title/" + currentMovieDetail.imdb_id} target="_blank"*/}
-        {/*       style={{textDecoration: "none"}}><p><span className="movie__imdbButton movie__Button">IMDb<i*/}
-        {/*      className="newTab fas fa-external-link-alt"></i></span></p></a>*/}
-        {/*  }*/}
-        {/*</div>*/}
       </div>
 
     </Layout>
