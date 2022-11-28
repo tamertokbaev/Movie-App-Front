@@ -7,7 +7,7 @@ const Layout = (props) => {
   const {children, hasAppBar, disableContainerStyles, headerFluid} = props
 
   return (
-    <div>
+    <div className={s.root}>
       <Header/>
       {hasAppBar ? <AppBarLeft/> : null}
       <main

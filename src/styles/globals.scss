@@ -1,6 +1,6 @@
 :root {
-  --color-primary: #67B159;
-  --text-color: #231F20;
+  --color-primary: #051937;
+  --text-color: rgb(223, 223, 223);
   --transition-timeout: 100ms;
 }
 
@@ -9,10 +9,11 @@
   padding: 0;
 }
 
-html, body, #root, .App {
-  min-height: 100%;
-  color: var(--text-color);
+body {
+  color: var(--text-color) !important;
   font-family: 'Roboto', sans-serif;
-  background: #fafafa;
+  background-image: linear-gradient(to right top, #051937, #242a65, #58348e, #9933ae, #e117c1);
 }
+
+
 
