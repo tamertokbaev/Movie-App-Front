@@ -1,0 +1,33 @@
+.root {
+
+  .heading {
+    margin-top: 1rem;
+    font-size: 36px;
+  }
+
+  .results {
+    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .empty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.7;
+    min-height: 300px;
+
+    flex-direction: column;
+
+    p {
+      margin-bottom: 1.25rem;
+      font-size: 1.25rem;
+    }
+
+    img {
+      width: 200px;
+      height: 200px;
+    }
+  }
+}

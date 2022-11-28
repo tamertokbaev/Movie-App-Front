@@ -25,13 +25,7 @@ const Header = ({fluid}) => {
 
   const performSearch = (event) => {
     event.preventDefault()
-    MainService
-      .search(event.target.slug.value)
-      .then(response => {
-        if (response.data.message === "success") {
-          console.log(response.data)
-        }
-      })
+    navigate(`/search?slug=${event.target.slug.value}`)
   }
 
   return (
