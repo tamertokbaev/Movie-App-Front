@@ -7,9 +7,11 @@ import MovieList from "../../components/movieList/movieList";
 import Layout from "../../components/Layout/Layout";
 import {MainService} from "../../app/services/MainService";
 import {Toast} from "../../app/utils/toast";
+import Skeleton, {SkeletonTheme} from "react-loading-skeleton";
 
 const Home = () => {
   const [popularMovies, setPopularMovies] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     MainService
@@ -22,39 +24,50 @@ const Home = () => {
       .catch(err => {
         Toast.displayErrorMessage("Не удалось получить список фильмов!")
       })
+      .finally(() => {
+      })
+    setTimeout(() => {
+      setIsLoading(false)
+    }, 1000)
   }, [])
 
   return (
     <Layout disableContainerStyles headerFluid>
-      <div className="poster">
-        <Carousel
-          showThumbs={false}
-          autoPlay={true}
-          transitionTime={3}
-          infiniteLoop={true}
-          showStatus={false}
-        >
-          {
-            popularMovies.map(movie => (
-              <Link style={{textDecoration: "none", color: "white"}} to={`/movie/${movie.id}`}>
-                <div className="posterImage">
-                  <img src={movie.banner_url}/>
-                </div>
-                <div className="posterImage__overlay">
-                  <div className="posterImage__title">{movie.title}</div>
-                  <div className="posterImage__runtime">
-                    {new Date(movie.release_date).toLocaleDateString()}
-                    <span className="posterImage__rating">
-                                            {movie.rating}
-                      <i className="fas fa-star"/>{" "}
-                                        </span>
+      <div className="poster" style={{marginTop: "-5px"}}>
+        {isLoading ? <div style={{height: 600}}>
+          <SkeletonTheme color="#202020" highlightColor="#444">
+            <Skeleton height={600} duration={2}/>
+          </SkeletonTheme>
+        </div> : (
+          <Carousel
+            showThumbs={false}
+            autoPlay={true}
+            transitionTime={3}
+            infiniteLoop={true}
+            showStatus={false}
+          >
+            {
+              popularMovies.map(movie => (
+                <Link style={{textDecoration: "none", color: "white"}} to={`/movie/${movie.id}`}>
+                  <div className="posterImage">
+                    <img src={movie.banner_url}/>
                   </div>
-                  <div className="posterImage__description">{movie.description}</div>
-                </div>
-              </Link>
-            ))
-          }
-        </Carousel>
+                  <div className="posterImage__overlay">
+                    <div className="posterImage__title">{movie.title}</div>
+                    <div className="posterImage__runtime">
+                      {new Date(movie.release_date).toLocaleDateString()}
+                      <span className="posterImage__rating">
+                                            {movie.rating}
+                        <i className="fas fa-star"/>{" "}
+                                        </span>
+                    </div>
+                    <div className="posterImage__description">{movie.description}</div>
+                  </div>
+                </Link>
+              ))
+            }
+          </Carousel>
+        )}
         <MovieList/>
       </div>
     </Layout>
