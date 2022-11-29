@@ -23,6 +23,10 @@ const getMovies = () => {
   })
 }
 
+const getAllMovies = () => {
+  return http.get(`${BASE_URL}/movie/all`)
+}
+
 const getMovie = (movieId) => {
   return http.get(`${BASE_URL}/movie`, {
     params: {
@@ -76,10 +80,15 @@ const deleteGenre = (movieId) => {
   })
 }
 
+const attachMovieToGenre = (data) => {
+  return http.post(`${BASE_URL}/genre/toggle`, data)
+}
+
 export const AdminService = {
   createMovie,
   updateMovie,
   getMovies,
+  getAllMovies,
   getMovie,
   deleteMovie,
 
@@ -87,5 +96,6 @@ export const AdminService = {
   updateGenre,
   getGenres,
   getGenre,
-  deleteGenre
+  deleteGenre,
+  attachMovieToGenre
 }

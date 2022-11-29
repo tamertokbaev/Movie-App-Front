@@ -4,11 +4,24 @@ import s from './AdminGenresList.module.scss'
 import {AdminService} from "../../../app/services/AdminService";
 import {Toast} from "../../../app/utils/toast";
 import {Button, Table, TableBody, TableCell, TableHead, TableRow} from "@mui/material";
-import {Delete, Edit} from "@mui/icons-material";
+import {Attachment, Delete, Edit} from "@mui/icons-material";
 import {Link} from "react-router-dom";
+import AttachMovie from "./AttachMovie";
 
 const AdminGenresList = () => {
   const [genres, setGenres] = useState([])
+  const [attachModalOpen, setAttachModalOpen] = useState(false)
+  const [selectedGenre, setSelectedGenre] = useState(null)
+
+  const openModal = (genre) => {
+    setAttachModalOpen(true)
+    setSelectedGenre(genre)
+  }
+
+  const closeModal = () => {
+    setSelectedGenre(null)
+    setAttachModalOpen(false)
+  }
 
   const fetchMoviesList = async () => {
     AdminService.getGenres()
@@ -48,6 +61,7 @@ const AdminGenresList = () => {
             <TableRow>
               <TableCell>#</TableCell>
               <TableCell>Название жанра</TableCell>
+              <TableCell>Прикрепить фильм</TableCell>
               <TableCell></TableCell>
             </TableRow>
           </TableHead>
@@ -56,6 +70,16 @@ const AdminGenresList = () => {
               <TableRow key={index}>
                 <TableCell>{index + 1}</TableCell>
                 <TableCell>{item.genre_name}</TableCell>
+                <TableCell>
+                  <Button
+                    onClick={() => openModal(item)}
+                    size="small"
+                    variant="outlined"
+                    startIcon={<Attachment/>}
+                    color="info">
+                    Прикрепить фильм
+                  </Button>
+                </TableCell>
                 <TableCell align="right">
                   <Link style={{textDecoration: "none"}} to={`/admin/genre/edit/${item.id}`}>
                     <Button
@@ -75,6 +99,11 @@ const AdminGenresList = () => {
             ))}
           </TableBody>
         </Table>
+        <AttachMovie
+          isOpen={attachModalOpen}
+          genre={selectedGenre}
+          handleClose={closeModal}
+        />
       </div>
     </Layout>
   )

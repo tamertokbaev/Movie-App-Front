@@ -3,3 +3,26 @@
     padding: 20px 0;
   }
 }
+
+.emptyAttached {
+  min-height: 200px;
+  opacity: 0.7;
+  color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.attachedMovies {
+  display: flex;
+  flex-direction: column;
+
+  .item {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    padding-bottom: 0.25rem;
+    color: var(--color-primary);
+    border-bottom: 1px dashed var(--color-primary);
+  }
+}
