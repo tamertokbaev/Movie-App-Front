@@ -21,6 +21,10 @@ const getFavoriteMovies = () => {
   return http.get(`${BASE_URL}/favorites`)
 }
 
+const getSimilarMovies = () => {
+  return http.get(`${BASE_URL}/similar`)
+}
+
 const addOrRemoveFavorites = (movieId) => {
   return http.post(`${BASE_URL}/favorites`, {
     movie_id: movieId
@@ -38,6 +42,7 @@ const search = (slug) => {
 export const MainService = {
   getFeaturedMovies,
   getPopularMovies,
+  getSimilarMovies,
   getMovieInfo,
   getFavoriteMovies,
   addOrRemoveFavorites,

@@ -7,15 +7,18 @@ import {Toast} from "../../app/utils/toast";
 import HeartIcon from "../../app/icons/HeartIcon";
 import clsx from "clsx";
 import useFavoriteMovies from "../../app/hooks/useFavoriteMovies";
+import useSimilar from "../../app/hooks/useSimilar";
+import Card from "../../components/card/card";
 
 const Movie = () => {
   const {checkIsMovieInFavorite, handleAddOrRemoveFavorites} = useFavoriteMovies()
+  const {similarMovies} = useSimilar()
   const [currentMovieDetail, setMovie] = useState()
   const {id} = useParams()
 
   useEffect(() => {
     getData()
-    window.scrollTo(0, 0)
+    // window.scrollTo(0, 0)
   }, [])
 
   const getData = () => {
@@ -82,9 +85,50 @@ const Movie = () => {
             <div className={s.details}>
               <h4>Подробная информация</h4>
 
-
+              <div className={s.item}>
+                Страна: <span>США</span>
+              </div>
+              <div className={s.item}>
+                Жанр: <span>драма, фэнтези, криминал</span>
+              </div>
+              <div className={s.item}>
+                Режиссер: <span>Квентин Тарантино</span>
+              </div>
+              <div className={s.item}>
+                Возраст: <span>16+</span>
+              </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      <div className={clsx("container", s.similar)}>
+        <h4>Вам также может понравиться</h4>
+        <div className={s.list}>
+          {similarMovies.map((item, index) => (
+            <Card
+              key={item.id}
+              movie={item}
+              onFavoritesClick={handleAddOrRemoveFavorites}
+              isInFavorite={() => checkIsMovieInFavorite(item.id)}
+            />
+          ))}
+          {similarMovies.map((item, index) => (
+            <Card
+              key={item.id}
+              movie={item}
+              onFavoritesClick={handleAddOrRemoveFavorites}
+              isInFavorite={() => checkIsMovieInFavorite(item.id)}
+            />
+          ))}
+          {similarMovies.map((item, index) => (
+            <Card
+              key={item.id}
+              movie={item}
+              onFavoritesClick={handleAddOrRemoveFavorites}
+              isInFavorite={() => checkIsMovieInFavorite(item.id)}
+            />
+          ))}
         </div>
       </div>
 
