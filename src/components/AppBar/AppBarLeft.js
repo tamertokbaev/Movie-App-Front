@@ -7,7 +7,7 @@ import Divider from '@mui/material/Divider';
 import s from "./AppBar.module.scss"
 import {Link} from "react-router-dom";
 import {ListItem, ListItemButton, ListItemIcon, ListItemText} from "@mui/material";
-import {Add, Movie} from "@mui/icons-material";
+import {Add, FormatAlignLeft, Movie} from "@mui/icons-material";
 
 const drawerWidth = 260;
 
@@ -54,6 +54,28 @@ export default function AppBarLeft() {
               </ListItemIcon>
               <ListItemText>
                 Список фильмов
+              </ListItemText>
+            </ListItemButton>
+          </ListItem>
+
+          <ListItem sx={{color: "#fafafa"}} disablePadding>
+            <ListItemButton component={Link} to="/admin/genre/add">
+              <ListItemIcon sx={{color: "#fafafa"}}>
+                <Add/>
+              </ListItemIcon>
+              <ListItemText>
+                Добавить жанр
+              </ListItemText>
+            </ListItemButton>
+          </ListItem>
+
+          <ListItem sx={{color: "#fafafa"}} disablePadding>
+            <ListItemButton component={Link} to="/admin/genre/list">
+              <ListItemIcon sx={{color: "#fafafa"}}>
+                <FormatAlignLeft/>
+              </ListItemIcon>
+              <ListItemText>
+                Список жанров
               </ListItemText>
             </ListItemButton>
           </ListItem>

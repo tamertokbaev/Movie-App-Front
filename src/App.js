@@ -17,6 +17,9 @@ import {EditMovie} from "./pages/admin/editMovie/editMovie";
 import Profile from "./pages/profile/Profile";
 import {Search} from "./pages/search/Search";
 import CssBaseline from "@mui/material/CssBaseline";
+import {AddGenre} from "./pages/admin/addGenre/AddGenre";
+import AdminGenresList from "./pages/admin/listGenres/listGenres";
+import {EditGenre} from "./pages/admin/editGenre/editGenre";
 
 const MuiTheme = createTheme({
   palette: {
@@ -60,6 +63,9 @@ function App() {
                   <Route path="admin/movie/add" element={<AddMovie/>}></Route>
                   <Route path="admin/movie/list" element={<AdminMoviesList/>}></Route>
                   <Route path="admin/movie/edit/:movieId" element={<EditMovie/>}></Route>
+                  <Route path="admin/genre/add" element={<AddGenre/>}></Route>
+                  <Route path="admin/genre/list" element={<AdminGenresList/>}></Route>
+                  <Route path="admin/genre/edit/:genreId" element={<EditGenre/>}></Route>
                 </>
               )}
               <Route path="/*" element={<h1>Error Page</h1>}></Route>

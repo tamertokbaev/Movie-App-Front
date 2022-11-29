@@ -39,10 +39,53 @@ const deleteMovie = (movieId) => {
   })
 }
 
+const createGenre = (data) => {
+  return http.post(`${BASE_URL}/genre/create`, data)
+}
+
+const updateGenre = (data, movieId) => {
+  return http.put(`${BASE_URL}/genre/update`, data, {
+    params: {
+      genre_id: movieId
+    }
+  })
+}
+
+const getGenres = () => {
+  return http.get(`${BASE_URL}/genre/list`, {
+    params: {
+      rows: 15,
+      page: 1
+    }
+  })
+}
+
+const getGenre = (movieId) => {
+  return http.get(`${BASE_URL}/genre`, {
+    params: {
+      genre_id: movieId
+    }
+  })
+}
+
+const deleteGenre = (movieId) => {
+  return http.delete(`${BASE_URL}/genre/delete`, {
+    params: {
+      genre_id: movieId
+    }
+  })
+}
+
 export const AdminService = {
   createMovie,
   updateMovie,
   getMovies,
   getMovie,
-  deleteMovie
+  deleteMovie,
+
+  createGenre,
+  updateGenre,
+  getGenres,
+  getGenre,
+  deleteGenre
 }
