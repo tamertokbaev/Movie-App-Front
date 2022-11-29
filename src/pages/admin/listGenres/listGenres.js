@@ -99,11 +99,14 @@ const AdminGenresList = () => {
             ))}
           </TableBody>
         </Table>
-        <AttachMovie
-          isOpen={attachModalOpen}
-          genre={selectedGenre}
-          handleClose={closeModal}
-        />
+        {attachModalOpen && selectedGenre && (
+          <AttachMovie
+            isOpen={attachModalOpen}
+            genre={selectedGenre}
+            handleClose={closeModal}
+            fetchInfoAgain={fetchMoviesList}
+          />
+        )}
       </div>
     </Layout>
   )

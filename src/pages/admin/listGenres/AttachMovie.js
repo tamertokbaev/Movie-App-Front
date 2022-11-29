@@ -8,7 +8,7 @@ import {AddOutlined, Delete} from "@mui/icons-material";
 import {Toast} from "../../../app/utils/toast";
 import s from "./AdminGenresList.module.scss"
 
-const AttachMovie = ({isOpen, handleClose, genre}) => {
+const AttachMovie = ({isOpen, handleClose, genre, fetchInfoAgain}) => {
   const {formState, handleSubmit, control} = useForm({
     mode: "onSubmit"
   })
@@ -31,6 +31,7 @@ const AttachMovie = ({isOpen, handleClose, genre}) => {
     AdminService.attachMovieToGenre({...data, genre_id: genre.id})
       .then(response => {
         setAttachedMovies(response.data.movies)
+        fetchInfoAgain()
       })
       .catch(err => {
         Toast.displayErrorMessage("Произошла ошибка при добавлении фильма к жанру!")
@@ -42,6 +43,7 @@ const AttachMovie = ({isOpen, handleClose, genre}) => {
       .then(response => {
         console.log(response.data)
         setAttachedMovies(response.data.movies)
+        fetchInfoAgain()
       })
       .catch(err => {
         Toast.displayErrorMessage("Произошла ошибка при добавлении фильма к жанру!")
