@@ -21,14 +21,15 @@
   }
 
   .form {
-    background: var(--color-primary);
     min-width: 50%;
-    background: #53ACB8;
+    //background: #53ACB8;
+    background: #f2f3f4;
     padding: 16px;
     padding-top: 25px;
     border: 1px solid #86C4CD;
     border-radius: 8px;
     box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px;
+    color: var(--color-primary);
   }
 
 }

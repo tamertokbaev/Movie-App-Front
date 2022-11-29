@@ -48,6 +48,7 @@ const SignUp = () => {
 
           <div className={s.form}>
             <h1 className={s.heading}>Вход в систему</h1>
+            <img className={s.logo} src="momari.svg" alt=""/>
             <form onSubmit={handleSubmit(onSubmit)}>
               <FormGroup>
                 <Controller
