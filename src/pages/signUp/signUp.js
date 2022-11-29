@@ -41,14 +41,12 @@ const SignUp = () => {
   }
 
   return (
-    <Layout disableContainerStyles>
-      <div
-        style={{background: "url('/auth_bg.jpeg')", backgroundSize: "cover"}}
-      >
+    <Layout hasAuthBg disableContainerStyles>
+      <div>
         <div className={clsx("container", s.main)}>
-
           <div className={s.form}>
             <h1 className={s.heading}>Регистрация</h1>
+            <img className={s.logo} src="momari.svg" alt=""/>
             <form onSubmit={handleSubmit(onSubmit)}>
               <FormGroup>
                 <Controller

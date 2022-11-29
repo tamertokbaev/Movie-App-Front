@@ -41,10 +41,8 @@ const SignUp = () => {
   }
 
   return (
-    <Layout disableContainerStyles>
-      <div
-        style={{background: "url('/auth_bg.jpeg')", backgroundSize: "cover"}}
-      >
+    <Layout hasAuthBg disableContainerStyles>
+      <div>
         <div
           className={clsx("container", s.main)}>
 

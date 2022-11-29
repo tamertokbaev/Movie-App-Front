@@ -21,7 +21,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 const MuiTheme = createTheme({
   palette: {
     primary: {
-      main: 'rgb(223, 223, 223)',
+      main: '#051937',
       contrastText: '#fff'
     },
   },
