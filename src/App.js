@@ -20,6 +20,8 @@ import CssBaseline from "@mui/material/CssBaseline";
 import {AddGenre} from "./pages/admin/addGenre/AddGenre";
 import AdminGenresList from "./pages/admin/listGenres/listGenres";
 import {EditGenre} from "./pages/admin/editGenre/editGenre";
+import LastReleasedMovies from "./pages/lastReleased/LastReleasedMovies";
+import PopularMovies from "./pages/popularMovies/PopularMovies";
 
 const MuiTheme = createTheme({
   palette: {
@@ -55,7 +57,8 @@ function App() {
                 </>
               )}
               <Route path="movie/:id" element={<Movie/>}></Route>
-              <Route path="movies/:type" element={<MovieList/>}></Route>
+              <Route path="last-released" element={<LastReleasedMovies/>}></Route>
+              <Route path="popular" element={<PopularMovies/>}></Route>
               <Route path="search" element={<Search/>}></Route>
               {userInfo && (
                 <>

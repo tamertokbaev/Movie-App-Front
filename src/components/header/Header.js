@@ -34,8 +34,11 @@ const Header = ({fluid}) => {
         <Link to="/">
           <img className={s.logo} src={"/logo.png"}/>
         </Link>
-        <Link>
+        <Link to="/popular">
           Популярное
+        </Link>
+        <Link to="/last-released">
+          Новинки
         </Link>
       </div>
 

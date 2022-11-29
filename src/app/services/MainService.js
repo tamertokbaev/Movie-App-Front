@@ -9,6 +9,10 @@ const getPopularMovies = () => {
   return http.get(`${BASE_URL}/popular`)
 }
 
+const getLastReleasedMovies = () => {
+  return http.get(`${BASE_URL}/last-released`)
+}
+
 const getMovieInfo = (movieId) => {
   return http.get(`${BASE_URL}/info`, {
     params: {
@@ -42,6 +46,7 @@ const search = (slug) => {
 export const MainService = {
   getFeaturedMovies,
   getPopularMovies,
+  getLastReleasedMovies,
   getSimilarMovies,
   getMovieInfo,
   getFavoriteMovies,
