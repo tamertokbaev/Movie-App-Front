@@ -2,12 +2,13 @@ import React from "react";
 import s from "./Layout.module.scss"
 import Header from "../header/Header";
 import AppBarLeft from "../AppBar/AppBarLeft";
+import clsx from "clsx";
 
 const Layout = (props) => {
   const {children, hasAppBar, disableContainerStyles, headerFluid, hasAuthBg} = props
 
   return (
-    <div className={s.root} style={hasAuthBg ? {background: "url('/auth_bg.jpeg')", backgroundSize: "cover"} : undefined}>
+    <div className={clsx(s.root, {[s.adminBackground]: hasAppBar})} style={hasAuthBg ? {background: "url('/auth_bg.jpeg')", backgroundSize: "cover"} : undefined}>
       <Header/>
       {hasAppBar ? <AppBarLeft/> : null}
       <main

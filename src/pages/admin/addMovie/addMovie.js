@@ -2,7 +2,7 @@ import React from "react";
 import Layout from "../../../components/Layout/Layout";
 import s from './AddMovie.module.scss'
 import {Controller, useForm} from "react-hook-form";
-import {Button, Grid, TextField} from "@mui/material";
+import {Button, Grid, Paper, TextField} from "@mui/material";
 import FormHelperMessage from "../../../components/Form/FormHelperMessage";
 import FormGroup from "../../../components/Form/FormGroup";
 import AddIcon from '@mui/icons-material/Add';
@@ -32,8 +32,8 @@ const AddMovie = () => {
     <Layout hasAppBar>
       <div className={s.root}>
         <h2 className={s.title}>Добавить новый фильм</h2>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <Grid container>
+        <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
+          <Grid spacing={1} container>
             <Grid item md={8}>
               <FormGroup>
                 <Controller
