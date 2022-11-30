@@ -17,9 +17,10 @@ const Movie = () => {
   const {id} = useParams()
 
   useEffect(() => {
+    window.scrollTo({top: 0, behavior: 'smooth'});
     getData()
     // window.scrollTo(0, 0)
-  }, [])
+  }, [id])
 
   const getData = () => {
     MainService.getMovieInfo(id)
@@ -102,25 +103,19 @@ const Movie = () => {
         </div>
       </div>
 
+      {currentMovieDetail?.preview_url && (
+        <div className={clsx("container", s.preview)}>
+          <h4>Трейлер</h4>
+          <iframe
+            id="ytplayer" type="text/html" width="100%" height="460"
+            src={currentMovieDetail.preview_url}
+            frameBorder="0"/>
+        </div>
+      )}
+
       <div className={clsx("container", s.similar)}>
         <h4>Вам также может понравиться</h4>
         <div className={s.list}>
-          {similarMovies.map((item, index) => (
-            <Card
-              key={item.id}
-              movie={item}
-              onFavoritesClick={handleAddOrRemoveFavorites}
-              isInFavorite={() => checkIsMovieInFavorite(item.id)}
-            />
-          ))}
-          {similarMovies.map((item, index) => (
-            <Card
-              key={item.id}
-              movie={item}
-              onFavoritesClick={handleAddOrRemoveFavorites}
-              isInFavorite={() => checkIsMovieInFavorite(item.id)}
-            />
-          ))}
           {similarMovies.map((item, index) => (
             <Card
               key={item.id}

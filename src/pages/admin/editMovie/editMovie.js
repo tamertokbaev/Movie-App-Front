@@ -180,6 +180,27 @@ const EditMovieForm = ({movie}) => {
               <FormGroup>
                 <Controller
                   control={control}
+                  name="preview_url"
+                  render={({field: {onChange, value}}) => (
+                    <TextField
+                      name="preview_url"
+                      required
+                      value={value}
+                      onChange={onChange}
+                      error={errors.preview_url?.message || false}
+                      variant="outlined"
+                      label="Ссылка на трейлер"
+                    />
+                  )}
+                />
+                <FormHelperMessage>{errors.preview_url?.message}</FormHelperMessage>
+              </FormGroup>
+            </Grid>
+
+            <Grid item md={8}>
+              <FormGroup>
+                <Controller
+                  control={control}
                   name="imdb_url"
                   render={({field: {onChange, value}}) => (
                     <TextField
