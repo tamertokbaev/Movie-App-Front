@@ -40,6 +40,9 @@ const Header = ({fluid}) => {
         <Link to="/last-released">
           Новинки
         </Link>
+        <Link to="/playlists">
+          Плейлисты
+        </Link>
       </div>
 
       <div className={s.search}>

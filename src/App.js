@@ -22,6 +22,7 @@ import AdminGenresList from "./pages/admin/listGenres/listGenres";
 import {EditGenre} from "./pages/admin/editGenre/editGenre";
 import LastReleasedMovies from "./pages/lastReleased/LastReleasedMovies";
 import PopularMovies from "./pages/popularMovies/PopularMovies";
+import PlayListsPage from "./pages/playLists/playLists";
 
 const MuiTheme = createTheme({
   palette: {
@@ -60,6 +61,7 @@ function App() {
               <Route path="last-released" element={<LastReleasedMovies/>}></Route>
               <Route path="popular" element={<PopularMovies/>}></Route>
               <Route path="search" element={<Search/>}></Route>
+              <Route path="playlists" element={<PlayListsPage/>}></Route>
               {userInfo && (
                 <>
                   <Route path="profile" element={<Profile/>}></Route>

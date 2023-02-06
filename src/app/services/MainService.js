@@ -1,5 +1,5 @@
 import http from "../utils/http";
-const BASE_URL = `http://138.68.67.253/api/movie`
+const BASE_URL = `http://localhost:8000/api/movie`
 
 const getFeaturedMovies = () => {
   return http.get(`${BASE_URL}/featured`)
@@ -43,6 +43,10 @@ const search = (slug) => {
   })
 }
 
+export const getListOfPlaylists = () => {
+  return http.get(`${BASE_URL}/playlists`)
+}
+
 export const MainService = {
   getFeaturedMovies,
   getPopularMovies,
@@ -51,5 +55,6 @@ export const MainService = {
   getMovieInfo,
   getFavoriteMovies,
   addOrRemoveFavorites,
-  search
+  search,
+  getListOfPlaylists
 }
