@@ -1,11 +1,16 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import s from "./Playlists.module.scss"
 import Layout from "../../components/Layout/Layout";
 import {useUserContext} from "../../app/context/userContext";
 import clsx from "clsx";
+import PlaylistModal from "./PlaylistModal";
 
 const PlayListsPage = () => {
   const {userInfo} = useUserContext()
+  const [isOpen, setIsOpen] = useState(false)
+
+  const openModal = () => setIsOpen(true)
+  const closeModal = () => setIsOpen(false)
 
   useEffect(() => {
 
@@ -24,7 +29,7 @@ const PlayListsPage = () => {
               <p className={s.description}>Вы можете подписаться на других авторов либо же создать свою подборку</p>
 
               <div className={s.actions}>
-                <button className={s.subscribe}>Создать плейлист</button>
+                <button onClick={openModal} className={s.subscribe}>Создать плейлист</button>
                 <button className={s.subscribe}>Посмотреть популярные плейлисты</button>
               </div>
             </div>
@@ -35,6 +40,8 @@ const PlayListsPage = () => {
           </div>
         </div>
       </main>
+
+      <PlaylistModal isOpen={isOpen} handleClose={closeModal}/>
     </Layout>
   )
 }

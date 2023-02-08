@@ -40,6 +40,7 @@ const MuiTheme = createTheme({
   }
 })
 
+
 function App() {
   const {userInfo, updateUserInfo} = useFetchUserInfo()
 

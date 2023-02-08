@@ -43,10 +43,6 @@ const search = (slug) => {
   })
 }
 
-export const getListOfPlaylists = () => {
-  return http.get(`${BASE_URL}/playlists`)
-}
-
 export const MainService = {
   getFeaturedMovies,
   getPopularMovies,
@@ -55,6 +51,5 @@ export const MainService = {
   getMovieInfo,
   getFavoriteMovies,
   addOrRemoveFavorites,
-  search,
-  getListOfPlaylists
+  search
 }
