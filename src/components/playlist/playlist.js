@@ -26,17 +26,10 @@ const PlaylistCard = ({playlist}) => {
           </SkeletonTheme>
         </div>
         :
-        <Link to={`/playlist/${playlist.id}`} style={{textDecoration: "none", color: "white"}}>
+        <Link to={`/playlists/${playlist.id}`} style={{textDecoration: "none", color: "white"}}>
           <div className="cards">
             <div className={clsx("cards__img")}>
               <img src={playlist.preview_url}/>
-              {userInfo && (
-                <button onClick={event => {
-                  event.preventDefault()
-                }}>
-                  <HeartIcon size={18}/>
-                </button>
-              )}
             </div>
             <div className="cards__overlay">
               <div className="card__title">{playlist.playlist_name}</div>

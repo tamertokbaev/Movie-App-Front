@@ -44,6 +44,14 @@ const getPopularPlaylists = () => {
   return http.get(`${BASE_URL}/featured`)
 }
 
+const getPlaylistDetails = (playlist_id) => {
+  return http.get(`${BASE_URL}/item`, {
+    params: {
+      playlist_id
+    }
+  })
+}
+
 export const PlaylistService = {
   getListOfPlaylists,
   createPlaylist,
@@ -51,5 +59,6 @@ export const PlaylistService = {
   deletePlaylist,
   toggleMovieOnPlaylist,
   getAddedMoviesInPlaylist,
-  getPopularPlaylists
+  getPopularPlaylists,
+  getPlaylistDetails
 }

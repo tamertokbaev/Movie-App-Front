@@ -23,6 +23,7 @@ import {EditGenre} from "./pages/admin/editGenre/editGenre";
 import LastReleasedMovies from "./pages/lastReleased/LastReleasedMovies";
 import PopularMovies from "./pages/popularMovies/PopularMovies";
 import PlayListsPage from "./pages/playLists/playLists";
+import {PlaylistPage} from "./pages/playLists/playlistPage";
 
 const MuiTheme = createTheme({
   palette: {
@@ -63,6 +64,7 @@ function App() {
               <Route path="popular" element={<PopularMovies/>}></Route>
               <Route path="search" element={<Search/>}></Route>
               <Route path="playlists" element={<PlayListsPage/>}></Route>
+              <Route path="playlists/:id" element={<PlaylistPage/>}></Route>
               {userInfo && (
                 <>
                   <Route path="profile" element={<Profile/>}></Route>
