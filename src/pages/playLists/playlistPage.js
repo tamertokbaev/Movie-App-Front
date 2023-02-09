@@ -4,20 +4,36 @@ import Layout from "../../components/Layout/Layout";
 import s from "./PlaylistPage.module.scss"
 import {PlaylistService} from "../../app/services/PlaylistService";
 import {Toast} from "../../app/utils/toast";
-import {StarOutline} from "@mui/icons-material";
+import {Add, Remove, StarOutline} from "@mui/icons-material";
+import {Button} from "@mui/material";
+import {useUserContext} from "../../app/context/userContext";
 
 const PlaylistPage = () => {
   const {id} = useParams()
   const [playlist, setPlaylist] = useState(null)
+  const {userInfo} = useUserContext()
 
   useEffect(() => {
+    getPlaylistDetails()
+  }, [])
+
+  const getPlaylistDetails = () => {
     PlaylistService
       .getPlaylistDetails(id)
       .then(response => {
         setPlaylist(response.data.playlist)
       })
       .catch(err => Toast.displayErrorMessage("Произошла ошибка при получении информации о плейлисте!"))
-  }, [])
+  }
+
+  const togglePlaylist = () => {
+    PlaylistService.togglePlaylistSubscription(id)
+      .then(response => {
+        Toast.displaySuccessMessage("Плейлист успешно добавлен/удален из подписок")
+        getPlaylistDetails()
+      })
+      .catch(err => Toast.displayErrorMessage("Произошла ошибка при добавлении/удалении из подписок"))
+  }
 
   return (
     <Layout>
@@ -35,7 +51,30 @@ const PlaylistPage = () => {
               Автор: {playlist?.author?.name}
             </p>
 
-            <span>{playlist?.subscribers || 0} подписчиков</span>
+            <span>{playlist?.subscribers.length || 0} подписчиков</span>
+
+            <div className={s.actions}>
+              <Button
+                variant="text"
+                size="medium"
+                sx={{
+                  color: "#7CFC00"
+                }}
+                startIcon=
+                  {playlist?.subscribers.find(subscriber => subscriber.email === userInfo?.email) ?
+                    <Remove/> : <Add/>
+                  }
+                color=
+                  {playlist?.subscribers.find(subscriber => subscriber.email === userInfo?.email) ?
+                    "warning": "success"
+                  }
+                onClick={togglePlaylist}
+              >
+                {playlist?.subscribers.find(subscriber => subscriber.email === userInfo?.email) ?
+                  "Удалить из сохраненных": "Добавить к себе"
+                }
+              </Button>
+            </div>
           </div>
         </div>
 

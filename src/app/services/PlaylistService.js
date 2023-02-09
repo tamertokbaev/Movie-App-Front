@@ -52,6 +52,10 @@ const getPlaylistDetails = (playlist_id) => {
   })
 }
 
+const togglePlaylistSubscription = (playlist_id) => {
+  return http.post(`${BASE_URL}/subscribe`, {playlist_id})
+}
+
 export const PlaylistService = {
   getListOfPlaylists,
   createPlaylist,
@@ -60,5 +64,6 @@ export const PlaylistService = {
   toggleMovieOnPlaylist,
   getAddedMoviesInPlaylist,
   getPopularPlaylists,
-  getPlaylistDetails
+  getPlaylistDetails,
+  togglePlaylistSubscription
 }
