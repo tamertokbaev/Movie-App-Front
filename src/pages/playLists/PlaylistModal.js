@@ -72,7 +72,7 @@ const PlaylistModal = ({isOpen, handleClose}) => {
 
   return (
     <Modal
-      open={true}
+      open={isOpen}
       onClose={handleClose}
     >
       <div className={s.modal}>
@@ -80,7 +80,7 @@ const PlaylistModal = ({isOpen, handleClose}) => {
         <div className={s.top}>
           <h3>{playlistId ? "Изменить плейлист" : "Создать плейлист"}</h3>
 
-          <IconButton color="inherit" size="small">
+          <IconButton onClick={handleClose} color="inherit" size="small">
             <Close fontSize="medium"/>
           </IconButton>
         </div>

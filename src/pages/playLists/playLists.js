@@ -4,16 +4,22 @@ import Layout from "../../components/Layout/Layout";
 import {useUserContext} from "../../app/context/userContext";
 import clsx from "clsx";
 import PlaylistModal from "./PlaylistModal";
+import {PlaylistService} from "../../app/services/PlaylistService";
+import PlaylistCard from "../../components/playlist/playlist";
 
 const PlayListsPage = () => {
   const {userInfo} = useUserContext()
   const [isOpen, setIsOpen] = useState(false)
+  const [popularPlaylists, setPopularPlaylists] = useState([])
 
   const openModal = () => setIsOpen(true)
   const closeModal = () => setIsOpen(false)
 
   useEffect(() => {
-
+    PlaylistService.getPopularPlaylists()
+      .then(response => {
+        setPopularPlaylists(response.data.playlists)
+      })
   }, [])
 
 
@@ -39,8 +45,24 @@ const PlayListsPage = () => {
             </div>
           </div>
         </div>
-      </main>
 
+        <section className="container">
+          <div className={s.popular}>
+            <h2>Популярные плейлисты</h2>
+
+            <div>
+              {popularPlaylists.map((item => (
+                <PlaylistCard
+                  key={item.id}
+                  playlist={item}
+                />
+              )))}
+            </div>
+          </div>
+
+
+        </section>
+      </main>
       <PlaylistModal isOpen={isOpen} handleClose={closeModal}/>
     </Layout>
   )

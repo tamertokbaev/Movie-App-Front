@@ -40,11 +40,16 @@ const getAddedMoviesInPlaylist = (playlistId) => {
   })
 }
 
+const getPopularPlaylists = () => {
+  return http.get(`${BASE_URL}/featured`)
+}
+
 export const PlaylistService = {
   getListOfPlaylists,
   createPlaylist,
   updatePlaylist,
   deletePlaylist,
   toggleMovieOnPlaylist,
-  getAddedMoviesInPlaylist
+  getAddedMoviesInPlaylist,
+  getPopularPlaylists
 }
