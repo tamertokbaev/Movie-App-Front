@@ -13,6 +13,7 @@ import {Toast} from "../../app/utils/toast";
 import {useUserContext} from "../../app/context/userContext";
 import {Link, useNavigate} from "react-router-dom";
 import Layout from "../../components/Layout/Layout";
+import {MdOutlineWorkspacePremium, MdOutlineFamilyRestroom, MdOutlineMovie} from "react-icons/md";
 
 const SignUp = () => {
   const {formState, register, handleSubmit, control, setError, setValue, getValues} = useForm({
@@ -41,7 +42,7 @@ const SignUp = () => {
   }
 
   return (
-    <Layout hasAuthBg disableContainerStyles>
+    <Layout disableHeader hasAuthBg disableContainerStyles>
       <div>
         <div className={clsx("container", s.main)}>
           <div className={s.form}>
@@ -126,6 +127,41 @@ const SignUp = () => {
                   {errors.confirmPassword?.message}
                 </Form.Control.Feedback>
               </Form.Group>
+
+              <Form.Group className="mb-3">
+                <h6>Выберите подписку</h6>
+
+                <div className={clsx(s.subscriptionItem, s.active)}>
+                  <div>
+                    <MdOutlineMovie size={48}/>
+                  </div>
+                  <div className={s.content}>
+                    Бесплатная
+                    <small>Премиум фильмы и плейлисты будут недоступны</small>
+                  </div>
+                </div>
+
+                <div className={s.subscriptionItem}>
+                  <div>
+                    <MdOutlineWorkspacePremium size={48}/>
+                  </div>
+                  <div className={s.content}>
+                    Личная
+                    <small>Доступ ко всем платным функциям</small>
+                  </div>
+                </div>
+
+                <div className={s.subscriptionItem}>
+                  <div>
+                    <MdOutlineFamilyRestroom size={48}/>
+                  </div>
+                  <div className={s.content}>
+                    Семейная
+                    <small>Можете подключить до 5-ти человек в подписку</small>
+                  </div>
+                </div>
+              </Form.Group>
+
               {errorText && (
                 <Alert sx={{marginY: "0.5rem"}} severity="error">{errorText}</Alert>
               )}

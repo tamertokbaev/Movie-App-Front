@@ -24,7 +24,6 @@ import LastReleasedMovies from "./pages/lastReleased/LastReleasedMovies";
 import PopularMovies from "./pages/popularMovies/PopularMovies";
 import PlayListsPage from "./pages/playLists/playLists";
 import {PlaylistPage} from "./pages/playLists/playlistPage";
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 const MuiTheme = createTheme({
   palette: {
@@ -54,7 +53,6 @@ function App() {
           <CssBaseline/>
           <Router>
             <Routes>
-              <Route index element={<Home/>}></Route>
               {!userInfo && (
                 <>
                   <Route path="sign_in" element={<SignIn/>}/>
@@ -63,6 +61,7 @@ function App() {
               )}
               {userInfo && (
                 <>
+                  <Route index element={<Home/>}></Route>
                   <Route path="movie/:id" element={<Movie/>}></Route>
                   <Route path="last-released" element={<LastReleasedMovies/>}></Route>
                   <Route path="popular" element={<PopularMovies/>}></Route>
