@@ -16,6 +16,7 @@ const PlaylistModal = ({isOpen, handleClose}) => {
   const [movies, setMovies] = useState([])
   const [addedMovies, setAddedMovies] = useState([])
   const [playlistId, setPlaylistId] = useState()
+  const [uploadedImage, setUploadedImage] = useState(null)
 
   const onSubmit = (data) => {
     if (playlistId) {
@@ -70,6 +71,13 @@ const PlaylistModal = ({isOpen, handleClose}) => {
       .catch(err => Toast.displayErrorMessage("Не удалось добавить/удалить фильм в плейлист"))
   }
 
+  const onFileUpload = (event) => {
+    const [...image] = event.target.files
+    if(image.length > 0){
+      setUploadedImage(image[0])
+    }
+  }
+
   return (
     <Modal
       open={isOpen}
@@ -87,11 +95,15 @@ const PlaylistModal = ({isOpen, handleClose}) => {
 
         <form onSubmit={handleSubmit(onSubmit)} className={clsx(s.form, "row")}>
 
-          <div className="col-md-6">
-
+          <div className="col-md-4">
+            <input {...register('preview_image')} onChange={onFileUpload} id="preview_upload" accept="image/*" type="file"/>
+            <label className={s.fileUpload} htmlFor="preview_upload">
+              {uploadedImage && <img src={URL.createObjectURL(uploadedImage)} alt=""/>}
+              {!uploadedImage && <p>Загрузите изображение плейлиста</p>}
+            </label>
           </div>
 
-          <div className="col-md-6">
+          <div className="col-md-8">
             <input
               {...register('playlist_name')}
               type="text"

@@ -3,8 +3,10 @@
   align-items: center;
   height: 90px;
   color: var(--text-color);
-  background: var(--color-primary);
-  border-bottom: 0.5px solid rgba(#051937, 0.1);
+  //background: var(--color-primary);
+  //background: #000;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--text-color);
   transition: ease-in var(--transition-timeout);
   justify-content: space-between;
   z-index: 2;

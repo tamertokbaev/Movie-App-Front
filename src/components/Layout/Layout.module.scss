@@ -1,6 +1,7 @@
 .root {
   min-height: 100vh;
-  background-image: linear-gradient(to right top, #051937, #242a65, #58348e, #9933ae, #e117c1);
+  //background-image: linear-gradient(to right top, #051937, #242a65, #58348e, #9933ae, #e117c1);
+  background: #000;
 
   &.adminBackground {
     background: #fff;
