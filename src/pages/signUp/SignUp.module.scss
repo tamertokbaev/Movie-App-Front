@@ -54,7 +54,7 @@
       border: 1px solid rgba(0, 0, 0, 0.1);
       margin-bottom: 0.5rem;
       border-radius: 0.5rem;
-      transition: var(--transition-timeout);
+      transition: 300ms;
       cursor: pointer;
 
       .content {

@@ -24,10 +24,11 @@ const SignUp = () => {
   const {userInfo, updateUserInfo} = useUserContext()
   const navigate = useNavigate()
   const [errorText, setErrorText] = useState("")
+  const [activeSubscription, setActiveSubscription] = useState(1)
 
   const onSubmit = async (data) => {
     AuthService
-      .signUp(data)
+      .signUp({...data, subscription: activeSubscription})
       .then(response => {
         updateUserInfo(response.data.user)
         localStorage.setItem('auth_token', response.data.token.access_token)
@@ -131,7 +132,7 @@ const SignUp = () => {
               <Form.Group className="mb-3">
                 <h6>Выберите подписку</h6>
 
-                <div className={clsx(s.subscriptionItem, s.active)}>
+                <div className={clsx(s.subscriptionItem, {[s.active]: activeSubscription === 1})} onClick={() => setActiveSubscription(1)}>
                   <div>
                     <MdOutlineMovie size={48}/>
                   </div>
@@ -141,7 +142,7 @@ const SignUp = () => {
                   </div>
                 </div>
 
-                <div className={s.subscriptionItem}>
+                <div className={clsx(s.subscriptionItem, {[s.active]: activeSubscription === 2})} onClick={() => setActiveSubscription(2)}>
                   <div>
                     <MdOutlineWorkspacePremium size={48}/>
                   </div>
@@ -151,7 +152,7 @@ const SignUp = () => {
                   </div>
                 </div>
 
-                <div className={s.subscriptionItem}>
+                <div className={clsx(s.subscriptionItem, {[s.active]: activeSubscription === 3})} onClick={() => setActiveSubscription(3)}>
                   <div>
                     <MdOutlineFamilyRestroom size={48}/>
                   </div>
