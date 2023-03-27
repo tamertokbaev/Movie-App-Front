@@ -1,6 +1,4 @@
 import React, {useState} from "react";
-import {Alert, Button, TextField} from "@mui/material";
-import FormGroup from "../../components/Form/FormGroup";
 import {useForm} from "react-hook-form";
 import s from "./SignIn.module.scss"
 import {yupResolver} from "@hookform/resolvers/yup";
@@ -10,8 +8,9 @@ import FormHelperMessage from "../../components/Form/FormHelperMessage";
 import {Controller} from "react-hook-form";
 import {AuthService} from "../../app/services/AuthService";
 import {useUserContext} from "../../app/context/userContext";
-import { useNavigate } from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import Layout from "../../components/Layout/Layout";
+import {Alert, Button, Form} from "react-bootstrap";
 
 const SignUp = () => {
   const {formState, handleSubmit, control} = useForm({
@@ -41,63 +40,72 @@ const SignUp = () => {
   }
 
   return (
-    <Layout hasAuthBg disableContainerStyles>
+    <Layout disableHeader hasAuthBg disableContainerStyles>
       <div>
         <div
           className={clsx("container", s.main)}>
 
           <div className={s.form}>
-            <h1 className={s.heading}>Вход в систему</h1>
             <img className={s.logo} src="momari.svg" alt=""/>
+            <h1 className={s.heading}>Войдите или зарегистрируйтесь</h1>
             <form onSubmit={handleSubmit(onSubmit)}>
-              <FormGroup>
+              <Form.Group className="mb-3">
                 <Controller
                   control={control}
                   name="email"
                   render={({field: {onChange, value}}) => (
-                    <TextField
-                      required
-                      name="email"
+                    <Form.Control
                       type="email"
+                      placeholder="Электронная почта"
                       value={value}
                       onChange={onChange}
-                      error={errors.email?.message || false}
-                      variant="outlined"
-                      label="Электронная почта"
+                      required
                     />
                   )}
                 />
-                <FormHelperMessage>{errors.email?.message}</FormHelperMessage>
-              </FormGroup>
+                <Form.Control.Feedback type="invalid">
+                  {errors?.email?.message}
+                </Form.Control.Feedback>
+              </Form.Group>
 
-              <FormGroup>
+              <Form.Group className="mb-3">
                 <Controller
                   control={control}
                   name="password"
                   render={({field: {onChange, value}}) => (
-                    <TextField
-                      required
-                      name="password"
+                    <Form.Control
                       type="password"
+                      placeholder="Пароль"
                       value={value}
                       onChange={onChange}
-                      error={errors.password?.message || false}
-                      variant="outlined"
-                      label="Пароль"
+                      required
                     />
                   )}
                 />
-                <FormHelperMessage>{errors.password?.message}</FormHelperMessage>
-              </FormGroup>
-              {errorText && (
-                <Alert sx={{marginY: "0.5rem"}} severity="error">{errorText}</Alert>
-              )}
-              <Button
-                disabled={isSubmitting}
-                type="submit"
-              >
-                Войти
-              </Button>
+                <Form.Control.Feedback type="invalid">
+                  {errors?.password?.message}
+                </Form.Control.Feedback>
+              </Form.Group>
+
+              <Alert show={!!errorText} className="mt-2" variant="danger">{errorText}</Alert>
+              <div className="d-grid gap-2">
+                <Button
+                  variant="warning"
+                  disabled={isSubmitting}
+                  type="submit"
+                >
+                  {isSubmitting ? "Загрузка..." : "Войти"}
+                </Button>
+                <Link className="w-100" to='/sign_up'>
+                  <Button
+                    className="w-100"
+                    variant="outline-secondary"
+                    disabled={isSubmitting}
+                  >
+                    Зарегистрироваться
+                  </Button>
+                </Link>
+              </div>
             </form>
           </div>
         </div>

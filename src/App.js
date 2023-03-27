@@ -1,6 +1,6 @@
 import './styles/globals.scss';
 import 'react-toastify/dist/ReactToastify.css';
-import {BrowserRouter as Router, Routes, Route} from "react-router-dom"
+import {BrowserRouter as Router, Routes, Route, Navigate} from "react-router-dom"
 import Header from './components/header/Header';
 import Home from './pages/home/home';
 import MovieList from './components/movieList/movieList';
@@ -24,6 +24,7 @@ import LastReleasedMovies from "./pages/lastReleased/LastReleasedMovies";
 import PopularMovies from "./pages/popularMovies/PopularMovies";
 import PlayListsPage from "./pages/playLists/playLists";
 import {PlaylistPage} from "./pages/playLists/playlistPage";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const MuiTheme = createTheme({
   palette: {
@@ -44,6 +45,7 @@ const MuiTheme = createTheme({
 
 function App() {
   const {userInfo, updateUserInfo} = useFetchUserInfo()
+  const isAdmin = userInfo?.is_superuser
 
   return (
     <>
@@ -59,13 +61,17 @@ function App() {
                   <Route path="sign_up" element={<SignUp/>}/>
                 </>
               )}
-              <Route path="movie/:id" element={<Movie/>}></Route>
-              <Route path="last-released" element={<LastReleasedMovies/>}></Route>
-              <Route path="popular" element={<PopularMovies/>}></Route>
-              <Route path="search" element={<Search/>}></Route>
-              <Route path="playlists" element={<PlayListsPage/>}></Route>
-              <Route path="playlists/:id" element={<PlaylistPage/>}></Route>
               {userInfo && (
+                <>
+                  <Route path="movie/:id" element={<Movie/>}></Route>
+                  <Route path="last-released" element={<LastReleasedMovies/>}></Route>
+                  <Route path="popular" element={<PopularMovies/>}></Route>
+                  <Route path="search" element={<Search/>}></Route>
+                  <Route path="playlists" element={<PlayListsPage/>}></Route>
+                  <Route path="playlists/:id" element={<PlaylistPage/>}></Route>
+                </>
+              )}
+              {userInfo && isAdmin && (
                 <>
                   <Route path="profile" element={<Profile/>}></Route>
                   <Route path="admin/movie/add" element={<AddMovie/>}></Route>
@@ -76,7 +82,7 @@ function App() {
                   <Route path="admin/genre/edit/:genreId" element={<EditGenre/>}></Route>
                 </>
               )}
-              <Route path="/*" element={<h1>Error Page</h1>}></Route>
+              <Route path="/*" element={<Navigate to="/sign_in" replace />}></Route>
             </Routes>
           </Router>
           <ToastContainer/>

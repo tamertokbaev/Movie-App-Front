@@ -2,6 +2,7 @@
   --color-primary: #051937;
   --text-color: #e117c1;
   --transition-timeout: 100ms;
+  font-family: 'Montserrat', sans-serif;
 }
 
 * {
@@ -12,7 +13,7 @@
 
 body {
   color: var(--text-color) !important;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Open Sans', sans-serif !important;
 }
 
 .Toastify__toast-body {
