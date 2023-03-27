@@ -1,7 +1,7 @@
 import React, {useState} from "react";
-import {Alert, Button, TextField} from "@mui/material";
-import FormGroup from "../../components/Form/FormGroup";
+import {Alert} from "@mui/material";
 import {useForm} from "react-hook-form";
+import {Button, Form} from "react-bootstrap";
 import s from "./SignUp.module.scss"
 import {yupResolver} from "@hookform/resolvers/yup";
 import clsx from "clsx";
@@ -11,7 +11,7 @@ import {Controller} from "react-hook-form";
 import {AuthService} from "../../app/services/AuthService";
 import {Toast} from "../../app/utils/toast";
 import {useUserContext} from "../../app/context/userContext";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import Layout from "../../components/Layout/Layout";
 
 const SignUp = () => {
@@ -45,95 +45,108 @@ const SignUp = () => {
       <div>
         <div className={clsx("container", s.main)}>
           <div className={s.form}>
-            <h1 className={s.heading}>Регистрация</h1>
             <img className={s.logo} src="momari.svg" alt=""/>
+            <h1 className={s.heading}>Регистрация</h1>
             <form onSubmit={handleSubmit(onSubmit)}>
-              <FormGroup>
+              <Form.Group className="mb-3">
                 <Controller
                   control={control}
                   name="name"
                   render={({field: {onChange, value}}) => (
-                    <TextField
+                    <Form.Control
                       required
                       name="name"
                       value={value}
                       onChange={onChange}
-                      error={errors.name?.message || false}
-                      variant="outlined"
-                      label="Полное имя"
+                      placeholder="Полное имя"
                     />
                   )}
                 />
-                <FormHelperMessage>{errors.name?.message}</FormHelperMessage>
-              </FormGroup>
+                <Form.Control.Feedback type="invalid">
+                  {errors.name?.message}
+                </Form.Control.Feedback>
+              </Form.Group>
 
-              <FormGroup>
+              <Form.Group className="mb-3">
                 <Controller
                   control={control}
                   name="email"
                   render={({field: {onChange, value}}) => (
-                    <TextField
+                    <Form.Control
                       required
                       name="email"
                       type="email"
                       value={value}
                       onChange={onChange}
-                      error={errors.email?.message || false}
-                      variant="outlined"
-                      label="Электронная почта"
+                      placeholder="Электронная почта"
                     />
                   )}
                 />
-                <FormHelperMessage>{errors.email?.message}</FormHelperMessage>
-              </FormGroup>
+                <Form.Control.Feedback type="invalid">
+                  {errors.email?.message}
+                </Form.Control.Feedback>
+              </Form.Group>
 
-              <FormGroup>
+              <Form.Group className="mb-3">
                 <Controller
                   control={control}
                   name="password"
                   render={({field: {onChange, value}}) => (
-                    <TextField
+                    <Form.Control
                       required
-                      name="password"
                       type="password"
+                      name="password"
                       value={value}
                       onChange={onChange}
-                      error={errors.password?.message || false}
-                      variant="outlined"
-                      label="Пароль"
+                      placeholder="Пароль"
                     />
                   )}
                 />
-                <FormHelperMessage>{errors.password?.message}</FormHelperMessage>
-              </FormGroup>
+                <Form.Control.Feedback type="invalid">
+                  {errors.password?.message}
+                </Form.Control.Feedback>
+              </Form.Group>
 
-              <FormGroup>
+              <Form.Group className="mb-3">
                 <Controller
                   control={control}
                   name="confirmPassword"
                   render={({field: {onChange, value}}) => (
-                    <TextField
+                    <Form.Control
                       required
-                      name="confirmPassword"
                       type="password"
+                      name="confirmPassword"
                       value={value}
                       onChange={onChange}
-                      error={errors.confirmPassword?.message || false}
-                      variant="outlined"
-                      label="Подтверждение пароля"
+                      placeholder="Подтверждение пароля"
                     />
                   )}
                 />
-                <FormHelperMessage>{errors.confirmPassword?.message}</FormHelperMessage>
-              </FormGroup>
+                <Form.Control.Feedback type="invalid">
+                  {errors.confirmPassword?.message}
+                </Form.Control.Feedback>
+              </Form.Group>
               {errorText && (
                 <Alert sx={{marginY: "0.5rem"}} severity="error">{errorText}</Alert>
               )}
-              <Button
-                disabled={isSubmitting}
-                type="submit"
-              >Зарегистрироваться
-              </Button>
+              <div className="d-grid gap-2">
+                <Button
+                  variant="warning"
+                  disabled={isSubmitting}
+                  type="submit"
+                >Зарегистрироваться
+                </Button>
+                <Link className="w-100" to='/sign_in'>
+                  <Button
+                    className="w-100"
+                    variant="outline-secondary"
+                    disabled={isSubmitting}
+                  >
+                    Войти в аккаунт
+                  </Button>
+                </Link>
+              </div>
+
             </form>
           </div>
         </div>

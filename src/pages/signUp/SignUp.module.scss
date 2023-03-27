@@ -9,10 +9,13 @@
   height: calc(100vh - 80px);
 
   .heading {
-    text-align: center;
+    color: rgba(0,0,0,.9);font-size: 18px;
     font-weight: 600;
-    font-size: 28px;
-    margin-bottom: 0.25rem;
+    line-height: 22px;
+    margin: 0;
+    overflow-wrap: break-word;
+    text-align: center;
+    margin-bottom: 20px;
   }
 
   .logo {
@@ -21,15 +24,14 @@
   }
 
   .form {
-    min-width: 50%;
-    //background: #53ACB8;
-    background: #f2f3f4;
-    padding: 16px;
-    padding-top: 25px;
-    border: 1px solid #86C4CD;
-    border-radius: 8px;
-    box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px;
     color: var(--color-primary);
+    min-width: 360px;
+    min-height: 40vh;
+    background: #fff;
+    padding: 22px;
+    padding-top: 25px;
+    border: 1px solid gainsboro;
+    border-radius: 16px;
+    box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px;
   }
-
 }
