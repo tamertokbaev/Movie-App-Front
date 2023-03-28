@@ -13,6 +13,7 @@ import PlaylistPageAddMoviesModal from "./PlaylistPageAddMoviesModal";
 const PlaylistPage = () => {
   const {id} = useParams()
   const [playlist, setPlaylist] = useState(null)
+  const [subscribers, setSubscribers] = useState(0)
   const [isMine, setIsMine] = useState(false)
   const {userInfo} = useUserContext()
   const [openAddModal, setOpenAddModal] = useState(false)
@@ -29,6 +30,7 @@ const PlaylistPage = () => {
       .getPlaylistDetails(id)
       .then(response => {
         setPlaylist(response.data.playlist)
+        setSubscribers(response.data.subscribers)
       })
       .catch(err => Toast.displayErrorMessage("Произошла ошибка при получении информации о плейлисте!"))
   }
@@ -65,7 +67,7 @@ const PlaylistPage = () => {
               Автор: {playlist?.author?.name}
             </p>
 
-            <span>{playlist?.subscribers.length || 0} подписчиков</span>
+            <span>{subscribers} подписчиков</span>
 
             <div className={s.actions}>
               <Button

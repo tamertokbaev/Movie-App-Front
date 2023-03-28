@@ -54,49 +54,51 @@ const PlaylistPageAddMoviesModal = ({isOpen, handleClose, playlistId}) => {
             <Close fontSize="medium"/>
           </IconButton>
         </div>
-        <div className={s.movies}>
-          {movies.map((item, index) => (
-            <div className={s.movie}>
+        <div className={s.add}>
+          <div className={s.movies}>
+            {movies.map((item, index) => (
+              <div className={s.movie}>
 
-              <div
-                className={s.img}
-              >
-                <img
-                  src={item.image_url}
-                  alt=""
-                />
-              </div>
-
-
-              <div className={s.content}>
-                <h4 className={s.name}>{item.title}</h4>
-                <div className={s.rating}>
-                  Рейтинг: <Rating
-                  readOnly
-                  size="small"
-                  value={item.rating}
-                  defaultValue={item.rating}
-                  precision={0.1}
-                  max={10}
-                />
-                </div>
-                <div className={s.releaseDate}>
-                  Дата выпуска: {item.release_date}
-                </div>
-
-                <Button
-                  onClick={() => toggleMovie(item.id)}
-                  color={addedMovies.find(added => added.id === item.id) ? "error" : "warning"}
-                  size="small"
-                  sx={{
-                    fontSize: "10px"
-                  }}
+                <div
+                  className={s.img}
                 >
-                  {addedMovies.find(added => added.id === item.id) ? "Удалить" : "Добавить"}
-                </Button>
+                  <img
+                    src={item.image_url}
+                    alt=""
+                  />
+                </div>
+
+
+                <div className={s.content}>
+                  <h4 className={s.name}>{item.title}</h4>
+                  <div className={s.rating}>
+                    Рейтинг: <Rating
+                    readOnly
+                    size="small"
+                    value={item.rating}
+                    defaultValue={item.rating}
+                    precision={0.1}
+                    max={10}
+                  />
+                  </div>
+                  <div className={s.releaseDate}>
+                    Дата выпуска: {item.release_date}
+                  </div>
+
+                  <Button
+                    onClick={() => toggleMovie(item.id)}
+                    color={addedMovies.find(added => added.id === item.id) ? "error" : "warning"}
+                    size="small"
+                    sx={{
+                      fontSize: "10px"
+                    }}
+                  >
+                    {addedMovies.find(added => added.id === item.id) ? "Удалить" : "Добавить"}
+                  </Button>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </Modal>
