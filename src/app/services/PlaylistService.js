@@ -56,6 +56,14 @@ const togglePlaylistSubscription = (playlist_id) => {
   return http.post(`${BASE_URL}/subscribe`, {playlist_id})
 }
 
+const checkIfPlaylistIsMine = (playlistId) => {
+  return http.get(`${BASE_URL}/check_mine`, {
+    params: {
+      playlist_id: playlistId
+    }
+  })
+}
+
 export const PlaylistService = {
   getListOfPlaylists,
   createPlaylist,
@@ -65,5 +73,6 @@ export const PlaylistService = {
   getAddedMoviesInPlaylist,
   getPopularPlaylists,
   getPlaylistDetails,
-  togglePlaylistSubscription
+  togglePlaylistSubscription,
+  checkIfPlaylistIsMine
 }

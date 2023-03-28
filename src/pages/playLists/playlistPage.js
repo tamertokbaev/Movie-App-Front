@@ -7,17 +7,24 @@ import {Toast} from "../../app/utils/toast";
 import {Add, Remove, StarOutline} from "@mui/icons-material";
 import {Button} from "@mui/material";
 import {useUserContext} from "../../app/context/userContext";
+import {Button as BootstrapButton} from "react-bootstrap"
+import PlaylistPageAddMoviesModal from "./PlaylistPageAddMoviesModal";
 
 const PlaylistPage = () => {
   const {id} = useParams()
   const [playlist, setPlaylist] = useState(null)
+  const [isMine, setIsMine] = useState(false)
   const {userInfo} = useUserContext()
+  const [openAddModal, setOpenAddModal] = useState(false)
 
   useEffect(() => {
-    getPlaylistDetails()
+    Promise.all([
+      getPlaylistDetails(),
+      checkIfPlaylistIsMine()
+    ])
   }, [])
 
-  const getPlaylistDetails = () => {
+  const getPlaylistDetails = async () => {
     PlaylistService
       .getPlaylistDetails(id)
       .then(response => {
@@ -33,6 +40,13 @@ const PlaylistPage = () => {
         getPlaylistDetails()
       })
       .catch(err => Toast.displayErrorMessage("Произошла ошибка при добавлении/удалении из подписок"))
+  }
+
+  const checkIfPlaylistIsMine = async () => {
+    PlaylistService.checkIfPlaylistIsMine(id)
+      .then(response => {
+        if (response.data.result) setIsMine(response.data.result)
+      })
   }
 
   return (
@@ -66,17 +80,29 @@ const PlaylistPage = () => {
                   }
                 color=
                   {playlist?.subscribers.find(subscriber => subscriber.email === userInfo?.email) ?
-                    "warning": "success"
+                    "warning" : "success"
                   }
                 onClick={togglePlaylist}
               >
                 {playlist?.subscribers.find(subscriber => subscriber.email === userInfo?.email) ?
-                  "Удалить из сохраненных": "Добавить к себе"
+                  "Удалить из сохраненных" : "Добавить к себе"
                 }
               </Button>
             </div>
           </div>
         </div>
+
+        {isMine && (
+          <div className="mt-2">
+            <BootstrapButton
+              size="large"
+              variant="secondary"
+              onClick={() => setOpenAddModal(true)}
+            >
+              Добавить фильм
+            </BootstrapButton>
+          </div>
+        )}
 
         <div className={s.content}>
           <h4>Список фильмов</h4>
@@ -93,8 +119,20 @@ const PlaylistPage = () => {
               </a>
             ))}
           </div>
+
+          {playlist?.get_related_movies?.length === 0 && (
+            <div className={s.emptyMovies}>
+              Фильмов в плейлисте нет!
+            </div>
+          )}
         </div>
       </div>
+
+      <PlaylistPageAddMoviesModal
+        isOpen={openAddModal}
+        handleClose={() => setOpenAddModal(false)}
+        playlistId={id}
+      />
     </Layout>
   )
 }

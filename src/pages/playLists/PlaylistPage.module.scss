@@ -40,6 +40,16 @@
       font-size: 24px;
     }
 
+    .emptyMovies {
+      width: 100%;
+      min-height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 500;
+      opacity: 0.7;
+    }
+
     .movieList {
       margin-top: 0.5rem;
       display: flex;

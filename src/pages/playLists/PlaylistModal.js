@@ -28,7 +28,11 @@ const PlaylistModal = ({isOpen, handleClose}) => {
           Toast.displayErrorMessage("Произошла ошибка при создании плейлиста!")
         })
     } else {
-      PlaylistService.createPlaylist(data)
+      const formData = new FormData()
+      formData.append('preview_image', uploadedImage)
+      formData.append('playlist_name', data.playlist_name)
+      formData.append('description', data.description)
+      PlaylistService.createPlaylist(formData)
         .then(response => {
           setPlaylistId(response.data.playlist.id)
           Toast.displaySuccessMessage("Новый плейлист успешно создан")
