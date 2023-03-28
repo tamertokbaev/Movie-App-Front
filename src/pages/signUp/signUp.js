@@ -41,7 +41,7 @@ const SignUp = () => {
         }
       })
   }
-
+  console.log(errors)
   return (
     <Layout disableHeader hasAuthBg disableContainerStyles>
       <div>
@@ -50,13 +50,13 @@ const SignUp = () => {
             <img className={s.logo} src="momari.svg" alt=""/>
             <h1 className={s.heading}>Регистрация</h1>
             <form onSubmit={handleSubmit(onSubmit)}>
-              <Form.Group className="mb-3">
+              <Form.Group controlId="controlName" className="mb-3">
                 <Controller
                   control={control}
                   name="name"
                   render={({field: {onChange, value}}) => (
                     <Form.Control
-                      required
+                      isInvalid={errors.name?.message}
                       name="name"
                       value={value}
                       onChange={onChange}
@@ -69,18 +69,18 @@ const SignUp = () => {
                 </Form.Control.Feedback>
               </Form.Group>
 
-              <Form.Group className="mb-3">
+              <Form.Group controlId="controlEmail" className="mb-3">
                 <Controller
                   control={control}
                   name="email"
                   render={({field: {onChange, value}}) => (
                     <Form.Control
-                      required
                       name="email"
                       type="email"
                       value={value}
                       onChange={onChange}
                       placeholder="Электронная почта"
+                      isInvalid={errors.email?.message}
                     />
                   )}
                 />
@@ -89,18 +89,18 @@ const SignUp = () => {
                 </Form.Control.Feedback>
               </Form.Group>
 
-              <Form.Group className="mb-3">
+              <Form.Group controlId="controlPassword" className="mb-3">
                 <Controller
                   control={control}
                   name="password"
                   render={({field: {onChange, value}}) => (
                     <Form.Control
-                      required
                       type="password"
                       name="password"
                       value={value}
                       onChange={onChange}
                       placeholder="Пароль"
+                      isInvalid={errors.password?.message}
                     />
                   )}
                 />
@@ -109,18 +109,18 @@ const SignUp = () => {
                 </Form.Control.Feedback>
               </Form.Group>
 
-              <Form.Group className="mb-3">
+              <Form.Group controlId="controlPassword" className="mb-3">
                 <Controller
                   control={control}
                   name="confirmPassword"
                   render={({field: {onChange, value}}) => (
                     <Form.Control
-                      required
                       type="password"
                       name="confirmPassword"
                       value={value}
                       onChange={onChange}
                       placeholder="Подтверждение пароля"
+                      isInvalid={errors.confirmPassword?.message}
                     />
                   )}
                 />

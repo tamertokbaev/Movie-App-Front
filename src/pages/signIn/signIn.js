@@ -49,7 +49,7 @@ const SignUp = () => {
             <img className={s.logo} src="momari.svg" alt=""/>
             <h1 className={s.heading}>Войдите или зарегистрируйтесь</h1>
             <form onSubmit={handleSubmit(onSubmit)}>
-              <Form.Group className="mb-3">
+              <Form.Group controlId="controlEmail" className="mb-3">
                 <Controller
                   control={control}
                   name="email"
@@ -59,7 +59,7 @@ const SignUp = () => {
                       placeholder="Электронная почта"
                       value={value}
                       onChange={onChange}
-                      required
+                      isInvalid={errors?.email?.message}
                     />
                   )}
                 />
@@ -68,7 +68,7 @@ const SignUp = () => {
                 </Form.Control.Feedback>
               </Form.Group>
 
-              <Form.Group className="mb-3">
+              <Form.Group controlId="controlPassword" className="mb-3">
                 <Controller
                   control={control}
                   name="password"
@@ -78,7 +78,7 @@ const SignUp = () => {
                       placeholder="Пароль"
                       value={value}
                       onChange={onChange}
-                      required
+                      isInvalid={errors?.password?.message}
                     />
                   )}
                 />

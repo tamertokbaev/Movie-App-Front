@@ -12,7 +12,7 @@ const useFetchUserInfo = () => {
     const accessToken = localStorage.getItem('auth_token')
     if (accessToken) {
       fetchUserInfo()
-    }
+    } else setUser(null)
   }, [])
 
   const fetchUserInfo = async (authToken) => {
