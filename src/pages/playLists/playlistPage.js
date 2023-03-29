@@ -26,6 +26,10 @@ const PlaylistPage = () => {
       checkIfPlaylistIsMine(),
       getPersonalizedPlaylists()
     ])
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    })
   }, [id])
 
   const getPlaylistDetails = async () => {
