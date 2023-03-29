@@ -45,7 +45,7 @@ const MuiTheme = createTheme({
 function App() {
   const {userInfo, updateUserInfo} = useFetchUserInfo()
   const isAdmin = userInfo?.is_superuser
-
+  console.log(userInfo)
   if (userInfo === undefined) return false
   return (
     <>
@@ -58,6 +58,7 @@ function App() {
                 <>
                   <Route path="sign_in" element={<SignIn/>}/>
                   <Route path="sign_up" element={<SignUp/>}/>
+                  <Route path="/*" element={<Navigate to="/sign_in" replace />}></Route>
                 </>
               )}
               {userInfo && (
@@ -82,7 +83,6 @@ function App() {
                   <Route path="admin/genre/edit/:genreId" element={<EditGenre/>}></Route>
                 </>
               )}
-              <Route path="/*" element={<Navigate to="/sign_in" replace />}></Route>
             </Routes>
           </Router>
           <ToastContainer/>

@@ -9,6 +9,7 @@ import {Button} from "@mui/material";
 import {useUserContext} from "../../app/context/userContext";
 import {Button as BootstrapButton} from "react-bootstrap"
 import PlaylistPageAddMoviesModal from "./PlaylistPageAddMoviesModal";
+import PlaylistCard from "../../components/playlist/playlist";
 
 const PlaylistPage = () => {
   const {id} = useParams()
@@ -17,11 +18,13 @@ const PlaylistPage = () => {
   const [isMine, setIsMine] = useState(false)
   const {userInfo} = useUserContext()
   const [openAddModal, setOpenAddModal] = useState(false)
+  const [popularPlaylists, setPopularPlaylists] = useState([])
 
   useEffect(() => {
     Promise.all([
       getPlaylistDetails(),
-      checkIfPlaylistIsMine()
+      checkIfPlaylistIsMine(),
+      getPersonalizedPlaylists()
     ])
   }, [])
 
@@ -51,6 +54,13 @@ const PlaylistPage = () => {
       })
   }
 
+  const getPersonalizedPlaylists = async () => {
+    PlaylistService.getPersonalizedPlaylists()
+      .then(response => {
+        setPopularPlaylists(response.data.result)
+      })
+  }
+
   return (
     <Layout>
       <div className={s.playlistPage}>
@@ -69,28 +79,30 @@ const PlaylistPage = () => {
 
             <span>{subscribers} подписчиков</span>
 
-            <div className={s.actions}>
-              <Button
-                variant="text"
-                size="medium"
-                sx={{
-                  color: "#7CFC00"
-                }}
-                startIcon=
+            {!isMine && (
+              <div className={s.actions}>
+                <Button
+                  variant="text"
+                  size="medium"
+                  sx={{
+                    color: "#7CFC00"
+                  }}
+                  startIcon=
+                    {playlist?.subscribers.find(subscriber => subscriber.email === userInfo?.email) ?
+                      <Remove/> : <Add/>
+                    }
+                  color=
+                    {playlist?.subscribers.find(subscriber => subscriber.email === userInfo?.email) ?
+                      "warning" : "success"
+                    }
+                  onClick={togglePlaylist}
+                >
                   {playlist?.subscribers.find(subscriber => subscriber.email === userInfo?.email) ?
-                    <Remove/> : <Add/>
+                    "Удалить из сохраненных" : "Добавить к себе"
                   }
-                color=
-                  {playlist?.subscribers.find(subscriber => subscriber.email === userInfo?.email) ?
-                    "warning" : "success"
-                  }
-                onClick={togglePlaylist}
-              >
-                {playlist?.subscribers.find(subscriber => subscriber.email === userInfo?.email) ?
-                  "Удалить из сохраненных" : "Добавить к себе"
-                }
-              </Button>
-            </div>
+                </Button>
+              </div>
+            )}
           </div>
         </div>
 
@@ -127,6 +139,17 @@ const PlaylistPage = () => {
               Фильмов в плейлисте нет!
             </div>
           )}
+
+          <h4 style={{marginTop: "1rem"}}>Вам также может понравится</h4>
+
+          <div className={s.recommendationList}>
+            {popularPlaylists.map(item => (
+              <PlaylistCard
+                key={item.id}
+                playlist={item}
+              />
+            ))}
+          </div>
         </div>
       </div>
 

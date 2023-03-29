@@ -64,6 +64,10 @@ const checkIfPlaylistIsMine = (playlistId) => {
   })
 }
 
+const getPersonalizedPlaylists = () => {
+  return http.get(`${BASE_URL}/get_personalized_playlists`)
+}
+
 export const PlaylistService = {
   getListOfPlaylists,
   createPlaylist,
@@ -74,5 +78,6 @@ export const PlaylistService = {
   getPopularPlaylists,
   getPlaylistDetails,
   togglePlaylistSubscription,
-  checkIfPlaylistIsMine
+  checkIfPlaylistIsMine,
+  getPersonalizedPlaylists
 }
