@@ -17,6 +17,11 @@ const ProfileSideBar = ({activeItemIndex, changeActiveSection}) => {
           className={clsx(s.item, {[s.active]: activeItemIndex === 2})}>
           Избранное
         </li>
+        <li
+          onClick={() => changeActiveSection(3)}
+          className={clsx(s.item, {[s.active]: activeItemIndex === 3})}>
+          Сохраненные плейлисты
+        </li>
       </ul>
     </div>
   )

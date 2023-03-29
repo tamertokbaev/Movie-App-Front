@@ -26,7 +26,7 @@ const PlaylistPage = () => {
       checkIfPlaylistIsMine(),
       getPersonalizedPlaylists()
     ])
-  }, [])
+  }, [id])
 
   const getPlaylistDetails = async () => {
     PlaylistService

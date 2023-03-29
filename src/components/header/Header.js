@@ -120,13 +120,13 @@ const Header = ({fluid}) => {
           setAnchorEl(null)
         }
         }>Профиль</MenuItem>
-        {userInfo?.is_superuser && (
+        {userInfo?.is_superuser ? (
           <MenuItem onClick={() => setAnchorEl(null)}>
             <Link style={{textDecoration: "none", color: "inherit"}} to="/admin/movie/add">
               Админ панель
             </Link>
           </MenuItem>
-        )}
+        ) : null}
         <MenuItem onClick={logOut}>Выйти</MenuItem>
       </Menu>
     </div>
