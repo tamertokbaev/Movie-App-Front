@@ -16,6 +16,11 @@ const ProfilePlaylistsData = () => {
   return (
     <div className={s.content}>
       <h2>Добавленные плейлисты</h2>
+      {playlists.length === 0 && (
+        <div className={s.empty}>
+          <h3>Пока еще не добавлен ни один фильм в избранное!</h3>
+        </div>
+      )}
       {playlists.map(item => (
         <PlaylistCard
           key={item.id}
