@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import s from "./Playlists.module.scss"
 import Layout from "../../components/Layout/Layout";
 import {useUserContext} from "../../app/context/userContext";
@@ -11,6 +11,7 @@ const PlayListsPage = () => {
   const {userInfo} = useUserContext()
   const [isOpen, setIsOpen] = useState(false)
   const [popularPlaylists, setPopularPlaylists] = useState([])
+  const ref = useRef()
 
   const openModal = () => setIsOpen(true)
   const closeModal = () => setIsOpen(false)
@@ -36,7 +37,9 @@ const PlayListsPage = () => {
 
               <div className={s.actions}>
                 <button onClick={openModal} className={s.subscribe}>Создать плейлист</button>
-                <button className={s.subscribe}>Посмотреть популярные плейлисты</button>
+                <button onClick={() => {
+                  ref.current.scrollIntoView()
+                }} className={s.subscribe}>Посмотреть популярные плейлисты</button>
               </div>
             </div>
 
@@ -48,7 +51,7 @@ const PlayListsPage = () => {
 
         <section className="container">
           <div className={s.popular}>
-            <h2>Популярные плейлисты</h2>
+            <h2 ref={ref}>Популярные плейлисты</h2>
 
             <div>
               {popularPlaylists.map((item => (

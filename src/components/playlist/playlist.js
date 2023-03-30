@@ -32,10 +32,14 @@ const PlaylistCard = ({playlist}) => {
               <img src={playlist.preview_url}/>
             </div>
             <div className="cards__overlay">
+              {playlist.is_premium ? (
+                <span className="card__rating"
+                      style={{fontSize: "12px", display: "flex", gap: "4px", alignItems: "center", color: "gold"}}>
+                Премиум<i className="fas fa-star"/></span>
+              ) : null}
               <div className="card__title">{playlist.playlist_name}</div>
               <div className="card__runtime">
                 {playlist.subscribers} подписчиков
-                <span className="card__rating">{playlist.rating}<i className="fas fa-star"/></span>
               </div>
               <div className="card__description">{playlist ? playlist.description.slice(0, 118) + "..." : ""}</div>
             </div>
