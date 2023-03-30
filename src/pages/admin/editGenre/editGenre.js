@@ -10,6 +10,7 @@ import {AdminService} from "../../../app/services/AdminService";
 import {Toast} from "../../../app/utils/toast";
 import {useParams} from "react-router-dom";
 import {Edit} from "@mui/icons-material";
+import {Form} from "react-bootstrap";
 
 const EditGenre = () => {
   const {genreId} = useParams()
@@ -66,24 +67,24 @@ const EditGenreForm = ({genre}) => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <Grid container>
             <Grid item md={8}>
-              <FormGroup>
+              <Form.Group controlId="controlGenreName" className="mb-3">
                 <Controller
                   control={control}
                   name="genre_name"
                   render={({field: {onChange, value}}) => (
-                    <TextField
-                      required
+                    <Form.Control
                       name="genre_name"
                       value={value}
                       onChange={onChange}
-                      error={errors.genre_name?.message || false}
-                      variant="outlined"
-                      label="Название жанра"
+                      isInvalid={errors.genre_name?.message}
+                      placeholder="Название жанра"
                     />
                   )}
                 />
-                <FormHelperMessage>{errors.genre_name?.message}</FormHelperMessage>
-              </FormGroup>
+                <Form.Control.Feedback type="invalid">
+                  {errors?.genre_name?.message}
+                </Form.Control.Feedback>
+              </Form.Group>
             </Grid>
           </Grid>
           <Button

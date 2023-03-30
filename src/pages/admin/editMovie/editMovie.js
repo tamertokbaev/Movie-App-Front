@@ -10,6 +10,7 @@ import {AdminService} from "../../../app/services/AdminService";
 import {Toast} from "../../../app/utils/toast";
 import {useParams} from "react-router-dom";
 import {Edit} from "@mui/icons-material";
+import {Form} from "react-bootstrap";
 
 const EditMovie = () => {
   const {movieId} = useParams()
@@ -66,47 +67,45 @@ const EditMovieForm = ({movie}) => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <Grid container>
             <Grid item md={8}>
-              <FormGroup>
+              <Form.Group controlId="controlTitle" className="mb-3">
                 <Controller
                   control={control}
                   name="title"
                   render={({field: {onChange, value}}) => (
-                    <TextField
-                      required
+                    <Form.Control
                       name="title"
                       value={value}
                       onChange={onChange}
-                      error={errors.title?.message || false}
-                      variant="outlined"
-                      label="Название фильма"
+                      isInvalid={errors.title?.message}
+                      placeholder="Название фильма"
                     />
                   )}
                 />
-                <FormHelperMessage>{errors.title?.message}</FormHelperMessage>
-              </FormGroup>
+                <Form.Control.Feedback type="invalid">
+                  {errors?.title?.message}
+                </Form.Control.Feedback>
+              </Form.Group>
             </Grid>
 
             <Grid item md={8}>
-              <FormGroup>
+              <Form.Group controlId="controlDescription" className="mb-3">
                 <Controller
                   control={control}
                   name="description"
                   render={({field: {onChange, value}}) => (
-                    <TextField
-                      required
-                      multiline
-                      rows={3}
+                    <Form.Control
                       name="description"
                       value={value}
                       onChange={onChange}
-                      error={errors.description?.message || false}
-                      variant="outlined"
-                      label="Описание фильма"
+                      isInvalid={errors.description?.message}
+                      placeholder="Описание фильма"
                     />
                   )}
                 />
-                <FormHelperMessage>{errors.description?.message}</FormHelperMessage>
-              </FormGroup>
+                <Form.Control.Feedback type="invalid">
+                  {errors?.description?.message}
+                </Form.Control.Feedback>
+              </Form.Group>
             </Grid>
 
             <Grid item md={8}>
@@ -135,86 +134,87 @@ const EditMovieForm = ({movie}) => {
             </Grid>
 
             <Grid item md={8}>
-              <FormGroup>
+              <Form.Group controlId="controlImageUrl" className="mb-3">
                 <Controller
                   control={control}
                   name="image_url"
                   render={({field: {onChange, value}}) => (
-                    <TextField
-                      required
+                    <Form.Control
                       name="image_url"
                       value={value}
                       onChange={onChange}
-                      error={errors.image_url?.message || false}
-                      variant="outlined"
-                      label="Ссылка на изображение"
+                      isInvalid={errors.image_url?.message}
+                      placeholder="Ссылка на изображение"
                     />
                   )}
                 />
-                <FormHelperMessage>{errors.image_url?.message}</FormHelperMessage>
-              </FormGroup>
+                <Form.Control.Feedback type="invalid">
+                  {errors?.image_url?.message}
+                </Form.Control.Feedback>
+              </Form.Group>
             </Grid>
 
             <Grid item md={8}>
-              <FormGroup>
+              <Form.Group controlId="controlBannerUrl" className="mb-3">
                 <Controller
                   control={control}
                   name="banner_url"
                   render={({field: {onChange, value}}) => (
-                    <TextField
-                      required
-                      name="image_url"
+                    <Form.Control
+                      name="banner_url"
                       value={value}
                       onChange={onChange}
-                      error={errors.banner_url?.message || false}
-                      variant="outlined"
-                      label="Ссылка на баннерное изображение"
+                      isInvalid={errors.banner_url?.message}
+                      placeholder="Ссылка на баннерное изображение"
                     />
                   )}
                 />
-                <FormHelperMessage>{errors.banner_url?.message}</FormHelperMessage>
-              </FormGroup>
+                <Form.Control.Feedback type="invalid">
+                  {errors?.banner_url?.message}
+                </Form.Control.Feedback>
+              </Form.Group>
             </Grid>
 
             <Grid item md={8}>
-              <FormGroup>
+              <Form.Group controlId="controlPreviewUrl" className="mb-3">
                 <Controller
                   control={control}
                   name="preview_url"
                   render={({field: {onChange, value}}) => (
-                    <TextField
+                    <Form.Control
                       name="preview_url"
-                      required
                       value={value}
                       onChange={onChange}
-                      error={errors.preview_url?.message || false}
-                      variant="outlined"
-                      label="Ссылка на трейлер"
+                      isInvalid={errors.preview_url?.message}
+                      placeholder="Ссылка на трейлер"
                     />
                   )}
                 />
-                <FormHelperMessage>{errors.preview_url?.message}</FormHelperMessage>
-              </FormGroup>
+                <Form.Control.Feedback type="invalid">
+                  {errors?.preview_url?.message}
+                </Form.Control.Feedback>
+              </Form.Group>
             </Grid>
 
             <Grid item md={8}>
-              <FormGroup>
+              <Form.Group controlId="controlImdbUrl" className="mb-3">
                 <Controller
                   control={control}
                   name="imdb_url"
                   render={({field: {onChange, value}}) => (
-                    <TextField
+                    <Form.Control
                       name="imdb_url"
                       value={value}
                       onChange={onChange}
-                      error={errors.imdb_url?.message || false}
-                      variant="outlined"
-                      label="Ссылка на фильм в рейтинге IMDB"
+                      isInvalid={errors.imdb_url?.message}
+                      placeholder="Ссылка на фильм в рейтинге IMDB"
                     />
                   )}
                 />
-                <FormHelperMessage>{errors.imdb_url?.message}</FormHelperMessage>
-              </FormGroup>
+                <Form.Control.Feedback type="invalid">
+                  {errors?.imdb_url?.message}
+                </Form.Control.Feedback>
+              </Form.Group>
             </Grid>
           </Grid>
           <Button

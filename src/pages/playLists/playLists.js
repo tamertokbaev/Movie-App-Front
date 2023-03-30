@@ -38,7 +38,11 @@ const PlayListsPage = () => {
               <div className={s.actions}>
                 <button onClick={openModal} className={s.subscribe}>Создать плейлист</button>
                 <button onClick={() => {
-                  ref.current.scrollIntoView()
+                  ref.current.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center",
+                    align: "center"
+                  })
                 }} className={s.subscribe}>Посмотреть популярные плейлисты</button>
               </div>
             </div>

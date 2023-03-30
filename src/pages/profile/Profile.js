@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import s from "./Profile.module.scss"
 import Layout from "../../components/Layout/Layout";
 import {ProfileSideBar} from "./ProfileSideBar";
@@ -8,6 +8,10 @@ import ProfilePlaylistsData from "./ProfilePlaylistsData";
 
 const Profile = () => {
   const [activeSection, setActiveSection] = useState(1)
+
+  useEffect(() => {
+
+  }, [])
 
   const changeActiveSection = (newIndex) => {
     setActiveSection(newIndex)

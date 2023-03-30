@@ -21,6 +21,7 @@ import {AuthService} from "../../app/services/AuthService";
 import {Toast} from "../../app/utils/toast";
 import FormHelperMessage from "../../components/Form/FormHelperMessage";
 import FormGroup from "../../components/Form/FormGroup";
+import {Form} from "react-bootstrap";
 
 const ProfilePersonalData = () => {
   const {userInfo} = useUserContext()
@@ -39,6 +40,9 @@ const ProfilePersonalData = () => {
         </div>
         <div className={s.item}>
           Электронная почта: <span>{userInfo.email}</span>
+        </div>
+        <div className={s.item}>
+          Подписка: <span>{userInfo.subscription === 1 ? "Бесплатная" : userInfo.subscription === 2 ? "Личная" : "Семейная"}</span>
         </div>
         <div>
           <Button
@@ -96,84 +100,82 @@ const ProfileChangeProfileDataModal = ({isOpen, handleClose}) => {
       </DialogTitle>
       <form style={{marginTop: "1rem"}} onSubmit={handleSubmit(onSubmit)}>
         <DialogContent>
-          <FormGroup>
+          <Form.Group controlId="controlName" className="mb-3">
             <Controller
               control={control}
               name="name"
               render={({field: {onChange, value}}) => (
-                <TextField
-                  required
-                  name="name"
+                <Form.Control
+                  placeholder="Полное имя"
                   value={value}
                   onChange={onChange}
-                  error={errors.name?.message || false}
-                  variant="outlined"
-                  label="Полное имя"
+                  isInvalid={errors?.name?.message}
                 />
               )}
             />
-            <FormHelperMessage>{errors.name?.message}</FormHelperMessage>
-          </FormGroup>
+            <Form.Control.Feedback type="invalid">
+              {errors?.name?.message}
+            </Form.Control.Feedback>
+          </Form.Group>
 
-          <FormGroup>
+
+          <Form.Group controlId="controlEmail" className="mb-3">
             <Controller
               control={control}
               name="email"
               render={({field: {onChange, value}}) => (
-                <TextField
-                  required
-                  name="email"
-                  type="email"
+                <Form.Control
+                  placeholder="Электронная почта"
                   value={value}
                   onChange={onChange}
-                  error={errors.email?.message || false}
-                  variant="outlined"
-                  label="Электронная почта"
+                  isInvalid={errors?.email?.message}
                 />
               )}
             />
-            <FormHelperMessage>{errors.email?.message}</FormHelperMessage>
-          </FormGroup>
+            <Form.Control.Feedback type="invalid">
+              {errors?.email?.message}
+            </Form.Control.Feedback>
+          </Form.Group>
 
-          <FormGroup>
+          <Form.Group controlId="controlPassword" className="mb-3">
             <Controller
               control={control}
               name="password"
               render={({field: {onChange, value}}) => (
-                <TextField
-                  required
-                  name="password"
+                <Form.Control
                   type="password"
+                  placeholder="Пароль"
                   value={value}
                   onChange={onChange}
-                  error={errors.password?.message || false}
-                  variant="outlined"
-                  label="Пароль"
+                  isInvalid={errors?.password?.message}
                 />
               )}
             />
-            <FormHelperMessage>{errors.password?.message}</FormHelperMessage>
-          </FormGroup>
+            <Form.Control.Feedback type="invalid">
+              {errors?.password?.message}
+            </Form.Control.Feedback>
+          </Form.Group>
 
-          <FormGroup>
+          <Form.Group controlId="controlPassword" className="mb-3">
             <Controller
               control={control}
               name="confirmPassword"
               render={({field: {onChange, value}}) => (
-                <TextField
-                  required
-                  name="confirmPassword"
+                <Form.Control
                   type="password"
+                  name="confirmPassword"
                   value={value}
                   onChange={onChange}
-                  error={errors.confirmPassword?.message || false}
-                  variant="outlined"
-                  label="Подтверждение пароля"
+                  placeholder="Подтверждение пароля"
+                  isInvalid={errors.confirmPassword?.message}
                 />
               )}
             />
-            <FormHelperMessage>{errors.confirmPassword?.message}</FormHelperMessage>
-          </FormGroup>
+            <Form.Control.Feedback type="invalid">
+              {errors.confirmPassword?.message}
+            </Form.Control.Feedback>
+          </Form.Group>
+
           {errorText && (
             <Alert sx={{marginY: "0.5rem"}} severity="error">{errorText}</Alert>
           )}
