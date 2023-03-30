@@ -10,6 +10,8 @@ import {useUserContext} from "../../app/context/userContext";
 import {Button as BootstrapButton} from "react-bootstrap"
 import PlaylistPageAddMoviesModal from "./PlaylistPageAddMoviesModal";
 import PlaylistCard from "../../components/playlist/playlist";
+import {TbPremiumRights} from "react-icons/tb"
+import PremiumOnly from "../../components/PremiumOnly/PremiumOnly";
 
 const PlaylistPage = () => {
   const {id} = useParams()
@@ -74,6 +76,10 @@ const PlaylistPage = () => {
           </div>
           <div className={s.content}>
             <h3 className={s.title}>{playlist?.playlist_name}</h3>
+
+            {playlist?.is_premium ? (
+              <PremiumOnly/>
+            ) : null}
 
             <p className={s.description}>{playlist?.description}</p>
 
