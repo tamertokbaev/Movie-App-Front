@@ -40,6 +40,11 @@ const Cards = ({movie, isInFavorite, onFavoritesClick}) => {
               )}
             </div>
             <div className="cards__overlay">
+              {movie.is_premium ? (
+                <span className="card__rating"
+                      style={{fontSize: "12px", display: "flex", gap: "4px", alignItems: "center", color: "gold"}}>
+                Премиум<i className="fas fa-star"/></span>
+              ) : null}
               <div className="card__title">{movie.title}</div>
               <div className="card__runtime">
                 {new Date(movie.release_date).toLocaleDateString()}

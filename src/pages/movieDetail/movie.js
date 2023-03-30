@@ -9,6 +9,7 @@ import clsx from "clsx";
 import useFavoriteMovies from "../../app/hooks/useFavoriteMovies";
 import useSimilar from "../../app/hooks/useSimilar";
 import Card from "../../components/card/card";
+import PremiumOnly from "../../components/PremiumOnly/PremiumOnly";
 
 const Movie = () => {
   const {checkIsMovieInFavorite, handleAddOrRemoveFavorites} = useFavoriteMovies()
@@ -77,6 +78,11 @@ const Movie = () => {
                 <HeartIcon size={24}/>
                 {checkIsMovieInFavorite(currentMovieDetail?.id) ? "Удалить из избранного" : "Добавить в избранное"}
               </button>
+              <div style={{width: "520px", marginTop: "0.5rem"}}>
+                {currentMovieDetail?.is_premium ? (
+                  <PremiumOnly/>
+                ) : null}
+              </div>
             </div>
             <div className={s.movie__detailRightBottom}>
               <div className={s.synopsisText}>Описание</div>
