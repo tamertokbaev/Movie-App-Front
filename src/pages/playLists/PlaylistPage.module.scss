@@ -59,7 +59,7 @@
       transition: var(--transition-timeout);
 
       .movie {
-        background: #6F3899;
+        background: #6c757d;
         border: 1px solid #21275B;
         border-radius: 0.25rem;
         display: flex;
@@ -95,9 +95,9 @@
             gap: 4px;
           }
         }
-
+        transition: var(--transition-timeout);
         &:hover {
-          background: rgba(#6F3899, 0.8);
+          background: lighten(#6c757d, 2);
         }
       }
     }
