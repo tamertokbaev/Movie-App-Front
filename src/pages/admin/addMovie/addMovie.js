@@ -183,6 +183,27 @@ const AddMovie = () => {
                 </Form.Control.Feedback>
               </Form.Group>
             </Grid>
+
+            <Grid item md={8}>
+              <Form.Group controlId="controlImdbUrl" className="mb-3">
+                <Controller
+                  control={control}
+                  name="is_premium"
+                  render={({field: {onChange, value}}) => (
+                    <Form.Check
+                      name="is_premium"
+                      value={value}
+                      onChange={onChange}
+                      isInvalid={errors.imdb_url?.message}
+                      label="Премиум фильм"
+                    />
+                  )}
+                />
+                <Form.Control.Feedback type="invalid">
+                  {errors?.is_premium?.message}
+                </Form.Control.Feedback>
+              </Form.Group>
+            </Grid>
           </Grid>
           <Button
             startIcon={<AddIcon/>}
