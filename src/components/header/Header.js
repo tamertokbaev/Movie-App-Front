@@ -32,7 +32,7 @@ const Header = ({fluid}) => {
     <div className={clsx(s.header, {[s.fluid]: fluid})}>
       <div className={s.left}>
         <Link to="/">
-          <img className={s.logo} src={"/momari.svg"}/>
+          <img className={s.logo} src={"/var1.svg"}/>
         </Link>
         <Link to="/popular">
           Популярное

@@ -46,7 +46,7 @@ const SignUp = () => {
           className={clsx("container", s.main)}>
 
           <div className={s.form}>
-            <img className={s.logo} src="momari.svg" alt=""/>
+            <img className={s.logo} src="/var1.svg" alt=""/>
             <h1 className={s.heading}>Войдите или зарегистрируйтесь</h1>
             <form onSubmit={handleSubmit(onSubmit)}>
               <Form.Group controlId="controlEmail" className="mb-3">
