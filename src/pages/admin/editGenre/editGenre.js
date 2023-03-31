@@ -26,7 +26,7 @@ const EditGenre = () => {
           }
         })
         .catch(err => {
-          Toast.displayErrorMessage("Не удалось получить данные жанра!")
+          Toast.displayErrorMessage("Error during fetching genre!")
         })
     }
   }, [])
@@ -52,18 +52,18 @@ const EditGenreForm = ({genre}) => {
       .updateGenre(data, genre.id)
       .then(response => {
         if (response.data.message === "success") {
-          Toast.displaySuccessMessage("Ваши изменения сохранены!")
+          Toast.displaySuccessMessage("Your changes applied!")
         }
       })
       .catch(err => {
-        Toast.displayErrorMessage("Произошла ошибка при редактировании жанра!")
+        Toast.displayErrorMessage("Error during updating genre!")
       })
   }
 
   return (
     <div>
       <div className={s.root}>
-        <h2 className={s.title}>Редактирование существующего жанра</h2>
+        <h2 className={s.title}>Updating existing genre</h2>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Grid container>
             <Grid item md={8}>
@@ -77,7 +77,7 @@ const EditGenreForm = ({genre}) => {
                       value={value}
                       onChange={onChange}
                       isInvalid={errors.genre_name?.message}
-                      placeholder="Название жанра"
+                      placeholder="Genre name"
                     />
                   )}
                 />
@@ -94,7 +94,7 @@ const EditGenreForm = ({genre}) => {
             disabled={isSubmitting}
             type="submit"
           >
-            Изменить данные
+            Update
           </Button>
         </form>
       </div>

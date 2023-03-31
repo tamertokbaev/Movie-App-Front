@@ -22,10 +22,10 @@ const PlaylistModal = ({isOpen, handleClose}) => {
     if (playlistId) {
       PlaylistService.updatePlaylist(data, playlistId)
         .then(response => {
-          Toast.displaySuccessMessage("Новый плейлист успешно создан")
+          Toast.displaySuccessMessage("New playlist successfully created")
         })
         .catch(err => {
-          Toast.displayErrorMessage("Произошла ошибка при создании плейлиста!")
+          Toast.displayErrorMessage("Error during creating playlist!")
         })
     } else {
       const formData = new FormData()
@@ -35,10 +35,10 @@ const PlaylistModal = ({isOpen, handleClose}) => {
       PlaylistService.createPlaylist(formData)
         .then(response => {
           setPlaylistId(response.data.playlist.id)
-          Toast.displaySuccessMessage("Новый плейлист успешно создан")
+          Toast.displaySuccessMessage("New playlist successfully created")
         })
         .catch(err => {
-          Toast.displayErrorMessage("Произошла ошибка при создании плейлиста!")
+          Toast.displayErrorMessage("Error during creating playlist!")
         })
     }
   }
@@ -48,7 +48,7 @@ const PlaylistModal = ({isOpen, handleClose}) => {
       .then(res => {
         setMovies(res.data.movies)
       })
-      .catch(err => Toast.displayErrorMessage("Произошла ошибка при выводе фильмов"))
+      .catch(err => Toast.displayErrorMessage("Error during fetching movie"))
   }, [])
 
   useEffect(() => {
@@ -63,16 +63,16 @@ const PlaylistModal = ({isOpen, handleClose}) => {
       .then(response => {
         setAddedMovies(response.data.movies)
       })
-      .catch(err => Toast.displayErrorMessage("Произошла ошибка при получении фильмов"))
+      .catch(err => Toast.displayErrorMessage("Error during fetching movie information"))
   }
 
   const toggleMovie = (movieId) => {
     PlaylistService.toggleMovieOnPlaylist(playlistId, movieId)
       .then(response => {
-        Toast.displaySuccessMessage("Фильм был успешно добавлен/удален из плейлиста")
+        Toast.displaySuccessMessage("Movie has been successfully created/deleted from playlist")
         getMovies()
       })
-      .catch(err => Toast.displayErrorMessage("Не удалось добавить/удалить фильм в плейлист"))
+      .catch(err => Toast.displayErrorMessage("Failed creating/deleting playlist"))
   }
 
   const onFileUpload = (event) => {
@@ -90,7 +90,7 @@ const PlaylistModal = ({isOpen, handleClose}) => {
       <div className={s.modal}>
 
         <div className={s.top}>
-          <h3>{playlistId ? "Изменить плейлист" : "Создать плейлист"}</h3>
+          <h3>{playlistId ? "Updating playlist" : "Create playlist"}</h3>
 
           <IconButton onClick={handleClose} color="inherit" size="small">
             <Close fontSize="medium"/>
@@ -103,7 +103,7 @@ const PlaylistModal = ({isOpen, handleClose}) => {
             <input {...register('preview_image')} onChange={onFileUpload} id="preview_upload" accept="image/*" type="file"/>
             <label className={s.fileUpload} htmlFor="preview_upload">
               {uploadedImage && <img src={URL.createObjectURL(uploadedImage)} alt=""/>}
-              {!uploadedImage && <p>Загрузите изображение плейлиста</p>}
+              {!uploadedImage && <p>Upload image of playlist</p>}
             </label>
           </div>
 
@@ -111,14 +111,14 @@ const PlaylistModal = ({isOpen, handleClose}) => {
             <input
               {...register('playlist_name')}
               type="text"
-              placeholder="Название плейлиста"
+              placeholder="Playlist name"
               className={s.input}
             />
 
             <textarea
               {...register('description')}
               rows={3}
-              placeholder="Описание плейлиста"
+              placeholder="Playlist description"
               className={s.input}
             />
           </div>
@@ -127,7 +127,7 @@ const PlaylistModal = ({isOpen, handleClose}) => {
             className={s.submit}
             disabled={isSubmitting}
             type="submit">
-            {playlistId ? "Изменить" : "Создать"}
+            {playlistId ? "Update" : "Create"}
           </button>
         </form>
 
@@ -137,7 +137,7 @@ const PlaylistModal = ({isOpen, handleClose}) => {
             <Divider color="#f0cdff" sx={{marginTop: "1rem"}}/>
 
             <div className={s.add}>
-              <h3>Добавьте фильмы к вашему плейлисту</h3>
+              <h3>Add movie into your playlist</h3>
 
               <div className={s.movies}>
 
@@ -167,7 +167,7 @@ const PlaylistModal = ({isOpen, handleClose}) => {
                       />
                       </div>
                       <div className={s.releaseDate}>
-                        Дата выпуска: {item.release_date}
+                        Release date: {item.release_date}
                       </div>
 
                       <Button
@@ -178,7 +178,7 @@ const PlaylistModal = ({isOpen, handleClose}) => {
                           fontSize: "10px"
                         }}
                       >
-                        {addedMovies.find(added => added.id === item.id) ? "Удалить" : "Добавить"}
+                        {addedMovies.find(added => added.id === item.id) ? "Remove" : "Add"}
                       </Button>
                     </div>
                   </div>

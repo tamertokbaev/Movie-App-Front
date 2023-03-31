@@ -21,18 +21,18 @@ const AddMovie = () => {
       .createMovie(data)
       .then(response => {
         if (response.data.message === "success") {
-          Toast.displaySuccessMessage("Новый фильм успешно добавлен!")
+          Toast.displaySuccessMessage("New movie successfully created!")
         }
       })
       .catch(err => {
-        Toast.displayErrorMessage("Произошла ошибка при создании фильма!")
+        Toast.displayErrorMessage("Error during creating movies!")
       })
   }
 
   return (
     <Layout hasAppBar>
       <div className={s.root}>
-        <h2 className={s.title}>Добавить новый фильм</h2>
+        <h2 className={s.title}>Add new movie</h2>
         <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
           <Grid spacing={1} container>
             <Grid item md={8}>
@@ -46,7 +46,7 @@ const AddMovie = () => {
                       value={value}
                       onChange={onChange}
                       isInvalid={errors.title?.message}
-                      placeholder="Название фильма"
+                      placeholder="Movie name"
                     />
                   )}
                 />
@@ -65,7 +65,7 @@ const AddMovie = () => {
                       value={value}
                       onChange={onChange}
                       isInvalid={errors.description?.message}
-                      placeholder="Описание фильма"
+                      placeholder="Movie description"
                     />
                   )}
                 />
@@ -92,7 +92,7 @@ const AddMovie = () => {
                       InputLabelProps={{
                         shrink: true
                       }}
-                      label="Дата выхода фильма"
+                      label="Release date"
                     />
                   )}
                 />
@@ -111,7 +111,7 @@ const AddMovie = () => {
                       value={value}
                       onChange={onChange}
                       isInvalid={errors.image_url?.message}
-                      placeholder="Ссылка на изображение"
+                      placeholder="Preview image URL"
                     />
                   )}
                 />
@@ -132,7 +132,7 @@ const AddMovie = () => {
                       value={value}
                       onChange={onChange}
                       isInvalid={errors.banner_url?.message}
-                      placeholder="Ссылка на баннерное изображение"
+                      placeholder="Banner image URL"
                     />
                   )}
                 />
@@ -153,7 +153,7 @@ const AddMovie = () => {
                       value={value}
                       onChange={onChange}
                       isInvalid={errors.preview_url?.message}
-                      placeholder="Ссылка на трейлер"
+                      placeholder="Trailer URL"
                     />
                   )}
                 />
@@ -174,7 +174,7 @@ const AddMovie = () => {
                       value={value}
                       onChange={onChange}
                       isInvalid={errors.imdb_url?.message}
-                      placeholder="Ссылка на фильм в рейтинге IMDB"
+                      placeholder="IMDB link"
                     />
                   )}
                 />
@@ -195,7 +195,7 @@ const AddMovie = () => {
                       value={value}
                       onChange={onChange}
                       isInvalid={errors.imdb_url?.message}
-                      label="Премиум фильм"
+                      label="Premium"
                     />
                   )}
                 />
@@ -212,7 +212,7 @@ const AddMovie = () => {
             disabled={isSubmitting}
             type="submit"
           >
-            Добавить новый фильм
+            Add new movie
           </Button>
         </form>
       </div>

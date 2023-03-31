@@ -18,7 +18,7 @@ const AdminMoviesList = () => {
         }
       })
       .catch(err => {
-        Toast.displayErrorMessage("Произошла ошибка при загрузке списка фильмов!")
+        Toast.displayErrorMessage("Error during fetching movies!")
       })
   }
 
@@ -26,12 +26,12 @@ const AdminMoviesList = () => {
     AdminService.deleteMovie(movieId)
       .then(response => {
         if (response.data.message === 'success') {
-          Toast.displaySuccessMessage("Фильм успешно удален!")
+          Toast.displaySuccessMessage("Movie is deleted!")
           fetchMoviesList()
         }
       })
       .catch(err => {
-        Toast.displayErrorMessage("Произошла ошибка при удалении фильма!")
+        Toast.displayErrorMessage("Error during removing movies!")
       })
   }
 
@@ -42,14 +42,14 @@ const AdminMoviesList = () => {
   return (
     <Layout hasAppBar>
       <div className={s.root}>
-        <h2 className={s.title}>Список фильмов</h2>
+        <h2 className={s.title}>List of movies</h2>
         <Table>
           <TableHead>
             <TableRow>
               <TableCell>#</TableCell>
-              <TableCell>Название фильма</TableCell>
-              <TableCell>Рейтинг</TableCell>
-              <TableCell>Дата выпуска</TableCell>
+              <TableCell>Movie name</TableCell>
+              <TableCell>Ratingг</TableCell>
+              <TableCell>Release date</TableCell>
               <TableCell></TableCell>
             </TableRow>
           </TableHead>
@@ -65,14 +65,14 @@ const AdminMoviesList = () => {
                     <Button
                       startIcon={<Edit/>}
                       color="info">
-                      Редактировать
+                      Update
                     </Button>
                   </Link>
                   <Button
                     onClick={() => removeMovie(item.id)}
                     startIcon={<Delete/>}
                     color="error">
-                    Удалить
+                    Delete
                   </Button>
                 </TableCell>
               </TableRow>

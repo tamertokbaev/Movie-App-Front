@@ -25,12 +25,12 @@ const PopularMovies = () => {
       <div className={s.root}>
         <Breadcrumbs sx={{paddingTop: "2rem", color: "rgb(223, 223, 223)"}} aria-label="breadcrumb">
           <Link underline="hover" color="inherit" href="/">
-            Домой
+            Home
           </Link>
-          <Typography sx={{color: "rgb(223, 223, 223)"}} color="text.primary">Популярные фильмы</Typography>
+          <Typography sx={{color: "rgb(223, 223, 223)"}} color="text.primary">Popular movies</Typography>
         </Breadcrumbs>
 
-        <h2 className={s.heading}>Популярные фильмы</h2>
+        <h2 className={s.heading}>Popular movies</h2>
 
         <div className={s.results}>
           {movies?.map((item, index) => (

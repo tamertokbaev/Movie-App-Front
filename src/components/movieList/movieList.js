@@ -23,13 +23,13 @@ const MovieList = () => {
         }
       })
       .catch(err => {
-        Toast.displayErrorMessage("Не удалось получить список фильмов!")
+        Toast.displayErrorMessage("Error during fetching movies!")
       })
   }
 
   return (
     <div className="movie__list">
-      <h2 className="list__title">Популярные фильмы</h2>
+      <h2 className="list__title">Popular movies</h2>
       <div className="list__cards">
         {
           movieList.map(movie => (

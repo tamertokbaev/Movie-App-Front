@@ -39,7 +39,7 @@ const PlaylistCard = ({playlist}) => {
               ) : null}
               <div className="card__title">{playlist.playlist_name}</div>
               <div className="card__runtime">
-                {playlist.subscribers} подписчиков
+                {playlist.subscribers} subscribers
               </div>
               <div className="card__description">{playlist ? playlist.description.slice(0, 118) + "..." : ""}</div>
             </div>

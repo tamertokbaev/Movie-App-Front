@@ -36,10 +36,10 @@ const Search = () => {
           <Link underline="hover" color="inherit" href="/">
             Домой
           </Link>
-          <Typography sx={{color: "rgb(223, 223, 223)"}} color="text.primary">Поиск по ключевому слову "{searchParams.get('slug')}"</Typography>
+          <Typography sx={{color: "rgb(223, 223, 223)"}} color="text.primary">Search results by keyword "{searchParams.get('slug')}"</Typography>
         </Breadcrumbs>
 
-        <h2 className={s.heading}>Результаты поиска по запросу {searchParams.get('slug')}</h2>
+        <h2 className={s.heading}>Search results by keyword {searchParams.get('slug')}</h2>
 
         <div className={s.results}>
           {movieList.length > 0 &&
@@ -56,7 +56,7 @@ const Search = () => {
 
         {movieList.length === 0 && (
           <div className={s.empty}>
-            <p>По вашему запросу ничего не найдено</p>
+            <p>No results found</p>
             <img src="https://cdn-icons-png.flaticon.com/512/6134/6134065.png" alt=""/>
           </div>
         )}

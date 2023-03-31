@@ -19,7 +19,7 @@ const PlaylistPageAddMoviesModal = ({isOpen, handleClose, playlistId}) => {
       .then(res => {
         setMovies(res.data.movies)
       })
-      .catch(err => Toast.displayErrorMessage("Произошла ошибка при выводе фильмов"))
+      .catch(err => Toast.displayErrorMessage("Error during fetching information about movie"))
   }, [])
 
   const getMovies = () => {
@@ -28,16 +28,16 @@ const PlaylistPageAddMoviesModal = ({isOpen, handleClose, playlistId}) => {
       .then(response => {
         setAddedMovies(response.data.movies)
       })
-      .catch(err => Toast.displayErrorMessage("Произошла ошибка при получении фильмов"))
+      .catch(err => Toast.displayErrorMessage("Error during fetching movie"))
   }
 
   const toggleMovie = (movieId) => {
     PlaylistService.toggleMovieOnPlaylist(playlistId, movieId)
       .then(response => {
-        Toast.displaySuccessMessage("Фильм был успешно добавлен/удален из плейлиста")
+        Toast.displaySuccessMessage("Movie has been added/removed from playlist")
         getMovies()
       })
-      .catch(err => Toast.displayErrorMessage("Не удалось добавить/удалить фильм в плейлист"))
+      .catch(err => Toast.displayErrorMessage("Error during adding/removing movie from playlist"))
   }
 
   return (
@@ -48,7 +48,7 @@ const PlaylistPageAddMoviesModal = ({isOpen, handleClose, playlistId}) => {
       <div className={s.modal}>
 
         <div className={s.top}>
-          <h3>Добавьте фильмы к вашему плейлисту</h3>
+          <h3>Add movie in playlist</h3>
 
           <IconButton onClick={handleClose} color="inherit" size="small">
             <Close fontSize="medium"/>
@@ -93,7 +93,7 @@ const PlaylistPageAddMoviesModal = ({isOpen, handleClose, playlistId}) => {
                       fontSize: "10px"
                     }}
                   >
-                    {addedMovies.find(added => added.id === item.id) ? "Удалить" : "Добавить"}
+                    {addedMovies.find(added => added.id === item.id) ? "Remove" : "Add"}
                   </Button>
                 </div>
               </div>

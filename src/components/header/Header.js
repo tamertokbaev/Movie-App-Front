@@ -35,13 +35,13 @@ const Header = ({fluid}) => {
           <img className={s.logo} src={"/var1.svg"}/>
         </Link>
         <Link to="/popular">
-          Популярное
+          Popular
         </Link>
         <Link to="/last-released">
-          Новинки
+          New movies
         </Link>
         <Link to="/playlists">
-          Плейлисты
+          Playlists
         </Link>
       </div>
 
@@ -52,7 +52,7 @@ const Header = ({fluid}) => {
               name="slug"
               className={s.searchInput}
               type="text"
-              placeholder="Поиск по названию фильма..."
+              placeholder="Search by movie name..."
             />
             <SearchIcon/>
           </form>
@@ -62,8 +62,8 @@ const Header = ({fluid}) => {
       <div className={s.right}>
         {!userInfo ? (
             <>
-              <Link to="/sign_in">Войти</Link>
-              <Link to="/sign_up">Зарегистрироваться</Link>
+              <Link to="/sign_in">Sign in</Link>
+              <Link to="/sign_up">Sign up</Link>
             </>
           ) :
           (
@@ -119,15 +119,15 @@ const Header = ({fluid}) => {
           navigate("/profile")
           setAnchorEl(null)
         }
-        }>Профиль</MenuItem>
+        }>Profile</MenuItem>
         {userInfo?.is_superuser ? (
           <MenuItem onClick={() => setAnchorEl(null)}>
             <Link style={{textDecoration: "none", color: "inherit"}} to="/admin/movie/add">
-              Админ панель
+              Admin panel
             </Link>
           </MenuItem>
         ) : null}
-        <MenuItem onClick={logOut}>Выйти</MenuItem>
+        <MenuItem onClick={logOut}>Log out</MenuItem>
       </Menu>
     </div>
   )

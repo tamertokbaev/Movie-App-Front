@@ -52,18 +52,18 @@ const EditMovieForm = ({movie}) => {
       .updateMovie(data, movie.id)
       .then(response => {
         if (response.data.message === "success") {
-          Toast.displaySuccessMessage("Ваши изменения сохранены!")
+          Toast.displaySuccessMessage("Your changes applied!")
         }
       })
       .catch(err => {
-        Toast.displayErrorMessage("Произошла ошибка при редактировании фильма!")
+        Toast.displayErrorMessage("Error during updating movie!")
       })
   }
 
   return (
     <div>
       <div className={s.root}>
-        <h2 className={s.title}>Редактирование существующего фильма</h2>
+        <h2 className={s.title}>Updating existing movie</h2>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Grid container>
             <Grid item md={8}>
@@ -77,7 +77,7 @@ const EditMovieForm = ({movie}) => {
                       value={value}
                       onChange={onChange}
                       isInvalid={errors.title?.message}
-                      placeholder="Название фильма"
+                      placeholder="Movie name"
                     />
                   )}
                 />
@@ -98,7 +98,7 @@ const EditMovieForm = ({movie}) => {
                       value={value}
                       onChange={onChange}
                       isInvalid={errors.description?.message}
-                      placeholder="Описание фильма"
+                      placeholder="Movie description"
                     />
                   )}
                 />
@@ -125,7 +125,7 @@ const EditMovieForm = ({movie}) => {
                       InputLabelProps={{
                         shrink: true
                       }}
-                      label="Дата выхода фильма"
+                      label="Release date"
                     />
                   )}
                 />
@@ -144,7 +144,7 @@ const EditMovieForm = ({movie}) => {
                       value={value}
                       onChange={onChange}
                       isInvalid={errors.image_url?.message}
-                      placeholder="Ссылка на изображение"
+                      placeholder="Preview image URL"
                     />
                   )}
                 />
@@ -165,7 +165,7 @@ const EditMovieForm = ({movie}) => {
                       value={value}
                       onChange={onChange}
                       isInvalid={errors.banner_url?.message}
-                      placeholder="Ссылка на баннерное изображение"
+                      placeholder="Banner image URL"
                     />
                   )}
                 />
@@ -186,7 +186,7 @@ const EditMovieForm = ({movie}) => {
                       value={value}
                       onChange={onChange}
                       isInvalid={errors.preview_url?.message}
-                      placeholder="Ссылка на трейлер"
+                      placeholder="Trailer URL"
                     />
                   )}
                 />
@@ -207,7 +207,7 @@ const EditMovieForm = ({movie}) => {
                       value={value}
                       onChange={onChange}
                       isInvalid={errors.imdb_url?.message}
-                      placeholder="Ссылка на фильм в рейтинге IMDB"
+                      placeholder="IMDB link URL"
                     />
                   )}
                 />
@@ -229,7 +229,7 @@ const EditMovieForm = ({movie}) => {
                       checked={value}
                       onChange={onChange}
                       isInvalid={errors.imdb_url?.message}
-                      label="Премиум фильм"
+                      label="Premium"
                     />
                   )}
                 />
@@ -246,7 +246,7 @@ const EditMovieForm = ({movie}) => {
             disabled={isSubmitting}
             type="submit"
           >
-            Изменить данные
+            Update
           </Button>
         </form>
       </div>

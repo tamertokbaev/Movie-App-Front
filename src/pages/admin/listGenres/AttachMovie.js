@@ -34,7 +34,7 @@ const AttachMovie = ({isOpen, handleClose, genre, fetchInfoAgain}) => {
         fetchInfoAgain()
       })
       .catch(err => {
-        Toast.displayErrorMessage("Произошла ошибка при добавлении фильма к жанру!")
+        Toast.displayErrorMessage("Error during adding movie to genre!")
       })
   }
 
@@ -46,7 +46,7 @@ const AttachMovie = ({isOpen, handleClose, genre, fetchInfoAgain}) => {
         fetchInfoAgain()
       })
       .catch(err => {
-        Toast.displayErrorMessage("Произошла ошибка при добавлении фильма к жанру!")
+        Toast.displayErrorMessage("Error during adding movie to genre!")
       })
   }
 
@@ -58,7 +58,7 @@ const AttachMovie = ({isOpen, handleClose, genre, fetchInfoAgain}) => {
       maxWidth="sm"
     >
       <DialogTitle sx={{fontWeight: "400"}}>
-        Прикрепить фильм к жанру {genre?.genre_name}
+        Add movie to genre {genre?.genre_name}
       </DialogTitle>
       <DialogContent>
         <form style={{marginTop: "1rem"}} onSubmit={handleSubmit(onSubmit)}>
@@ -72,8 +72,8 @@ const AttachMovie = ({isOpen, handleClose, genre, fetchInfoAgain}) => {
                   onChange={(_, data) => onChange(data.id)}
                   options={movies}
                   getOptionLabel={option => option.title}
-                  noOptionsText="Нет подходящих фильмов"
-                  renderInput={(params) => <TextField {...params} name="movie_id" label="Выберите фильм" />}
+                  noOptionsText="No available movies"
+                  renderInput={(params) => <TextField {...params} name="movie_id" label="Choose movie" />}
                 />
               )}
             />
@@ -85,14 +85,14 @@ const AttachMovie = ({isOpen, handleClose, genre, fetchInfoAgain}) => {
               variant="contained"
               type="submit"
             >
-              Добавить
+              Add
             </Button>
           </FormGroup>
         </form>
         <div>
           {attachedMovies.length === 0 && (
             <div className={s.emptyAttached}>
-              К данному жанру пока не прикреплен ни один фильм!
+             No movie is attached to current genre!
             </div>
           )}
           {attachedMovies.length > 0 && (
@@ -105,7 +105,7 @@ const AttachMovie = ({isOpen, handleClose, genre, fetchInfoAgain}) => {
                     startIcon={<Delete/>}
                     color="error"
                   >
-                    Удалить
+                    Delete
                   </Button>
                 </div>
               ))}
@@ -117,7 +117,7 @@ const AttachMovie = ({isOpen, handleClose, genre, fetchInfoAgain}) => {
         <Button
           color="error"
           onClick={handleClose}>
-          Закрыть
+          Close
         </Button>
       </DialogActions>
     </Dialog>

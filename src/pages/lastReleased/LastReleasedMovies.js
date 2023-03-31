@@ -25,12 +25,12 @@ const LastReleasedMovies = () => {
       <div className={s.root}>
         <Breadcrumbs sx={{paddingTop: "2rem", color: "rgb(223, 223, 223)"}} aria-label="breadcrumb">
           <Link underline="hover" color="inherit" href="/">
-            Домой
+            Home
           </Link>
-          <Typography sx={{color: "rgb(223, 223, 223)"}} color="text.primary">Новинки современного кино</Typography>
+          <Typography sx={{color: "rgb(223, 223, 223)"}} color="text.primary">Recent popular movies</Typography>
         </Breadcrumbs>
 
-        <h2 className={s.heading}>Новинки современного кино</h2>
+        <h2 className={s.heading}>Recent new movies</h2>
 
         <div className={s.results}>
           {movies?.map((item, index) => (

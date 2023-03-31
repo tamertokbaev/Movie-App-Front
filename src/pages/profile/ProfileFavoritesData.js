@@ -8,10 +8,10 @@ const ProfileFavoritesData = () => {
 
   return (
     <div className={s.content}>
-      <h2>Избранные фильмы</h2>
+      <h2>Favorite movies</h2>
       {favorites.length === 0 && (
         <div className={s.empty}>
-          <h3>Пока еще не добавлен ни один фильм в избранное!</h3>
+          <h3>There are no movies saved in favorites!</h3>
         </div>
       )}
       <div className={s.favoritesData}>

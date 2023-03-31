@@ -47,7 +47,7 @@ const SignUp = () => {
 
           <div className={s.form}>
             <img className={s.logo} src="/var1.svg" alt=""/>
-            <h1 className={s.heading}>Войдите или зарегистрируйтесь</h1>
+            <h1 className={s.heading}>Login or Register</h1>
             <form onSubmit={handleSubmit(onSubmit)}>
               <Form.Group controlId="controlEmail" className="mb-3">
                 <Controller
@@ -56,7 +56,7 @@ const SignUp = () => {
                   render={({field: {onChange, value}}) => (
                     <Form.Control
                       type="email"
-                      placeholder="Электронная почта"
+                      placeholder="Email"
                       value={value}
                       onChange={onChange}
                       isInvalid={errors?.email?.message}
@@ -75,7 +75,7 @@ const SignUp = () => {
                   render={({field: {onChange, value}}) => (
                     <Form.Control
                       type="password"
-                      placeholder="Пароль"
+                      placeholder="Password"
                       value={value}
                       onChange={onChange}
                       isInvalid={errors?.password?.message}
@@ -94,7 +94,7 @@ const SignUp = () => {
                   disabled={isSubmitting}
                   type="submit"
                 >
-                  {isSubmitting ? "Загрузка..." : "Войти"}
+                  {isSubmitting ? "Loading..." : "Sign In"}
                 </Button>
                 <Link className="w-100" to='/sign_up'>
                   <Button
@@ -102,7 +102,7 @@ const SignUp = () => {
                     variant="outline-secondary"
                     disabled={isSubmitting}
                   >
-                    Зарегистрироваться
+                    Sign in
                   </Button>
                 </Link>
               </div>

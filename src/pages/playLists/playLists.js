@@ -31,19 +31,19 @@ const PlayListsPage = () => {
           <div className={clsx(s.hero, "container")}>
 
             <div className={s.left}>
-              <h3 className={s.title}>Делитесь со всем миром своей подборкой фильмов</h3>
+              <h3 className={s.title}>Share your selection of films with the world</h3>
 
-              <p className={s.description}>Вы можете подписаться на других авторов либо же создать свою подборку</p>
+              <p className={s.description}>You can subscribe to other authors or create your own collection</p>
 
               <div className={s.actions}>
-                <button onClick={openModal} className={s.subscribe}>Создать плейлист</button>
+                <button onClick={openModal} className={s.subscribe}>Create playlist</button>
                 <button onClick={() => {
                   ref.current.scrollIntoView({
                     behavior: "smooth",
                     block: "center",
                     align: "center"
                   })
-                }} className={s.subscribe}>Посмотреть популярные плейлисты</button>
+                }} className={s.subscribe}>View popular playlists</button>
               </div>
             </div>
 
@@ -55,7 +55,7 @@ const PlayListsPage = () => {
 
         <section className="container">
           <div className={s.popular}>
-            <h2 ref={ref}>Популярные плейлисты</h2>
+            <h2 ref={ref}>Popular playlists</h2>
 
             <div>
               {popularPlaylists.map((item => (

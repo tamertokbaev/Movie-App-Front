@@ -32,12 +32,12 @@ const SignUp = () => {
       .then(response => {
         updateUserInfo(response.data.user)
         localStorage.setItem('auth_token', response.data.token.access_token)
-        Toast.displaySuccessMessage("Вы успешно зарегистрировались в системе!")
+        Toast.displaySuccessMessage("Registration made successful!")
         navigate('/')
       })
       .catch(err => {
         if (err.response.status === 401) {
-          setErrorText("Данный пользователь уже существует в системе!")
+          setErrorText("This user already exists in the system!")
         }
       })
   }
@@ -48,7 +48,7 @@ const SignUp = () => {
         <div className={clsx("container", s.main)}>
           <div className={s.form}>
             <img className={s.logo} src="/var1.svg" alt=""/>
-            <h1 className={s.heading}>Регистрация</h1>
+            <h1 className={s.heading}>Sign Up</h1>
             <form onSubmit={handleSubmit(onSubmit)}>
               <Form.Group controlId="controlName" className="mb-3">
                 <Controller
@@ -60,7 +60,7 @@ const SignUp = () => {
                       name="name"
                       value={value}
                       onChange={onChange}
-                      placeholder="Полное имя"
+                      placeholder="Full name"
                     />
                   )}
                 />
@@ -79,7 +79,7 @@ const SignUp = () => {
                       type="email"
                       value={value}
                       onChange={onChange}
-                      placeholder="Электронная почта"
+                      placeholder="Email"
                       isInvalid={errors.email?.message}
                     />
                   )}
@@ -99,7 +99,7 @@ const SignUp = () => {
                       name="password"
                       value={value}
                       onChange={onChange}
-                      placeholder="Пароль"
+                      placeholder="Password"
                       isInvalid={errors.password?.message}
                     />
                   )}
@@ -119,7 +119,7 @@ const SignUp = () => {
                       name="confirmPassword"
                       value={value}
                       onChange={onChange}
-                      placeholder="Подтверждение пароля"
+                      placeholder="Confirm password"
                       isInvalid={errors.confirmPassword?.message}
                     />
                   )}
@@ -130,15 +130,15 @@ const SignUp = () => {
               </Form.Group>
 
               <Form.Group className="mb-3">
-                <h6>Выберите подписку</h6>
+                <h6>Choose subscription</h6>
 
                 <div className={clsx(s.subscriptionItem, {[s.active]: activeSubscription === 1})} onClick={() => setActiveSubscription(1)}>
                   <div>
                     <MdOutlineMovie size={48}/>
                   </div>
                   <div className={s.content}>
-                    Бесплатная
-                    <small>Премиум фильмы и плейлисты будут недоступны</small>
+                    Free
+                    <small>Premium movies and playlists will not be available</small>
                   </div>
                 </div>
 
@@ -147,8 +147,8 @@ const SignUp = () => {
                     <MdOutlineWorkspacePremium size={48}/>
                   </div>
                   <div className={s.content}>
-                    Личная
-                    <small>Доступ ко всем платным функциям</small>
+                    Personal
+                    <small>Access to all paid features</small>
                   </div>
                 </div>
 
@@ -157,8 +157,8 @@ const SignUp = () => {
                     <MdOutlineFamilyRestroom size={48}/>
                   </div>
                   <div className={s.content}>
-                    Семейная
-                    <small>Можете подключить до 5-ти человек в подписку</small>
+                    Family
+                    <small>You can connect up to 5 people per subscription</small>
                   </div>
                 </div>
               </Form.Group>
@@ -171,7 +171,7 @@ const SignUp = () => {
                   variant="warning"
                   disabled={isSubmitting}
                   type="submit"
-                >Зарегистрироваться
+                >Sign Up
                 </Button>
                 <Link className="w-100" to='/sign_in'>
                   <Button
@@ -179,7 +179,7 @@ const SignUp = () => {
                     variant="outline-secondary"
                     disabled={isSubmitting}
                   >
-                    Войти в аккаунт
+                    Sign In
                   </Button>
                 </Link>
               </div>

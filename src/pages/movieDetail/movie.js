@@ -32,7 +32,7 @@ const Movie = () => {
         }
       })
       .catch(err => {
-        Toast.displayErrorMessage("Не удалось получить информацию о фильме!")
+        Toast.displayErrorMessage("Error during fetching information about movie!")
       })
   }
 
@@ -76,7 +76,7 @@ const Movie = () => {
             <div className={clsx(s.addToFavs, {[s.added]: checkIsMovieInFavorite(currentMovieDetail?.id)})}>
               <button onClick={() => handleAddOrRemoveFavorites(currentMovieDetail?.id)}>
                 <HeartIcon size={24}/>
-                {checkIsMovieInFavorite(currentMovieDetail?.id) ? "Удалить из избранного" : "Добавить в избранное"}
+                {checkIsMovieInFavorite(currentMovieDetail?.id) ? "Remove from favorites" : "Add to favorites"}
               </button>
               <div style={{width: "520px", marginTop: "0.5rem"}}>
                 {currentMovieDetail?.is_premium ? (
@@ -85,24 +85,24 @@ const Movie = () => {
               </div>
             </div>
             <div className={s.movie__detailRightBottom}>
-              <div className={s.synopsisText}>Описание</div>
+              <div className={s.synopsisText}>Description</div>
               <div>{currentMovieDetail ? currentMovieDetail.description : ""}</div>
             </div>
 
             <div className={s.details}>
-              <h4>Подробная информация</h4>
+              <h4>Detailed information</h4>
 
               <div className={s.item}>
-                Страна: <span>США</span>
+                Country: <span>USA</span>
               </div>
               <div className={s.item}>
-                Жанр: <span>драма, фэнтези, криминал</span>
+                Genre: <span>drama, fantasy, criminal</span>
               </div>
               <div className={s.item}>
-                Режиссер: <span>Квентин Тарантино</span>
+                Director: <span>Tarantino</span>
               </div>
               <div className={s.item}>
-                Возраст: <span>16+</span>
+                Age: <span>16+</span>
               </div>
             </div>
           </div>
@@ -111,7 +111,7 @@ const Movie = () => {
 
       {currentMovieDetail?.preview_url && (
         <div className={clsx("container", s.preview)}>
-          <h4>Трейлер</h4>
+          <h4>Trailer</h4>
           <iframe
             id="ytplayer" type="text/html" width="100%" height="460"
             src={currentMovieDetail.preview_url}

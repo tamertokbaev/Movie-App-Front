@@ -36,13 +36,13 @@ const ProfilePersonalData = () => {
 
       <div className={s.personalData}>
         <div className={s.item}>
-          Имя: <span>{userInfo.name}</span>
+          Full name: <span>{userInfo.name}</span>
         </div>
         <div className={s.item}>
-          Электронная почта: <span>{userInfo.email}</span>
+          Email: <span>{userInfo.email}</span>
         </div>
         <div className={s.item}>
-          Подписка: <span>{userInfo.subscription === 1 ? "Бесплатная" : userInfo.subscription === 2 ? "Личная" : "Семейная"}</span>
+          Subscribe level: <span>{userInfo.subscription === 1 ? "Free" : userInfo.subscription === 2 ? "Personal" : "Family"}</span>
         </div>
         <div>
           <Button
@@ -51,7 +51,7 @@ const ProfilePersonalData = () => {
             onClick={openModal}
             variant="outlined"
             className={s.editButton}>
-            Изменить данные аккаунта
+            Updating account information
           </Button>
         </div>
         <ProfileChangeProfileDataModal
@@ -80,11 +80,11 @@ const ProfileChangeProfileDataModal = ({isOpen, handleClose}) => {
         if (res.data.message === "success") {
           updateUserInfo(res.data.user)
           handleClose()
-          Toast.displaySuccessMessage("Вы успешно обновили личные данные!")
+          Toast.displaySuccessMessage("Successfully updating personal information!")
         }
       })
       .catch(err => {
-        Toast.displayErrorMessage("Не удалось обновить информацию о пользователе!")
+        Toast.displayErrorMessage("Error during fetching information about user!")
       })
   }
 
@@ -96,7 +96,7 @@ const ProfileChangeProfileDataModal = ({isOpen, handleClose}) => {
       maxWidth="sm"
     >
       <DialogTitle sx={{fontWeight: "400"}}>
-        Изменение данных аккаунта
+        Updating personal information
       </DialogTitle>
       <form style={{marginTop: "1rem"}} onSubmit={handleSubmit(onSubmit)}>
         <DialogContent>
@@ -106,7 +106,7 @@ const ProfileChangeProfileDataModal = ({isOpen, handleClose}) => {
               name="name"
               render={({field: {onChange, value}}) => (
                 <Form.Control
-                  placeholder="Полное имя"
+                  placeholder="Full name"
                   value={value}
                   onChange={onChange}
                   isInvalid={errors?.name?.message}
@@ -125,7 +125,7 @@ const ProfileChangeProfileDataModal = ({isOpen, handleClose}) => {
               name="email"
               render={({field: {onChange, value}}) => (
                 <Form.Control
-                  placeholder="Электронная почта"
+                  placeholder="Email"
                   value={value}
                   onChange={onChange}
                   isInvalid={errors?.email?.message}
@@ -144,7 +144,7 @@ const ProfileChangeProfileDataModal = ({isOpen, handleClose}) => {
               render={({field: {onChange, value}}) => (
                 <Form.Control
                   type="password"
-                  placeholder="Пароль"
+                  placeholder="Password"
                   value={value}
                   onChange={onChange}
                   isInvalid={errors?.password?.message}
@@ -166,7 +166,7 @@ const ProfileChangeProfileDataModal = ({isOpen, handleClose}) => {
                   name="confirmPassword"
                   value={value}
                   onChange={onChange}
-                  placeholder="Подтверждение пароля"
+                  placeholder="Confirm password"
                   isInvalid={errors.confirmPassword?.message}
                 />
               )}
@@ -186,12 +186,12 @@ const ProfileChangeProfileDataModal = ({isOpen, handleClose}) => {
             disabled={isSubmitting}
             startIcon={<SaveAsOutlined/>}
             color="inherit">
-            Сохранить изменения
+            Apply changes
           </Button>
           <Button
             color="error"
             onClick={handleClose}>
-            Отмена
+            Cancel
           </Button>
         </DialogActions>
       </form>

@@ -22,7 +22,7 @@ const Home = () => {
         }
       })
       .catch(err => {
-        Toast.displayErrorMessage("Не удалось получить список фильмов!")
+        Toast.displayErrorMessage("Error during fetching movies!")
       })
       .finally(() => {
       })

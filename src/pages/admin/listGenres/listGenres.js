@@ -31,7 +31,7 @@ const AdminGenresList = () => {
         }
       })
       .catch(err => {
-        Toast.displayErrorMessage("Произошла ошибка при загрузке списка жанров!")
+        Toast.displayErrorMessage("Error during fetching movies!")
       })
   }
 
@@ -39,12 +39,12 @@ const AdminGenresList = () => {
     AdminService.deleteGenre(movieId)
       .then(response => {
         if (response.data.message === 'success') {
-          Toast.displaySuccessMessage("Жанр успешно удален!")
+          Toast.displaySuccessMessage("Genre is deleted!")
           fetchMoviesList()
         }
       })
       .catch(err => {
-        Toast.displayErrorMessage("Произошла ошибка при удалении жанра!")
+        Toast.displayErrorMessage("Error during deleting genre!")
       })
   }
 
@@ -55,13 +55,13 @@ const AdminGenresList = () => {
   return (
     <Layout hasAppBar>
       <div className={s.root}>
-        <h2 className={s.title}>Список жанров</h2>
+        <h2 className={s.title}>List of genres</h2>
         <Table>
           <TableHead>
             <TableRow>
               <TableCell>#</TableCell>
-              <TableCell>Название жанра</TableCell>
-              <TableCell>Прикрепить фильм</TableCell>
+              <TableCell>Genre name</TableCell>
+              <TableCell>Attach movies</TableCell>
               <TableCell></TableCell>
             </TableRow>
           </TableHead>
@@ -77,7 +77,7 @@ const AdminGenresList = () => {
                     variant="outlined"
                     startIcon={<Attachment/>}
                     color="info">
-                    Прикрепить фильм
+                    Attach movie
                   </Button>
                 </TableCell>
                 <TableCell align="right">
@@ -85,14 +85,14 @@ const AdminGenresList = () => {
                     <Button
                       startIcon={<Edit/>}
                       color="info">
-                      Редактировать
+                      Update
                     </Button>
                   </Link>
                   <Button
                     onClick={() => removeMovie(item.id)}
                     startIcon={<Delete/>}
                     color="error">
-                    Удалить
+                    Delete
                   </Button>
                 </TableCell>
               </TableRow>

@@ -21,19 +21,19 @@ const AddGenre = () => {
       .createGenre(data)
       .then(response => {
         if (response.data.message === "success") {
-          Toast.displaySuccessMessage("Новый жанр успешно добавлен!")
+          Toast.displaySuccessMessage("New genre successfully added!")
           reset()
         }
       })
       .catch(err => {
-        Toast.displayErrorMessage("Произошла ошибка при создании жанра!")
+        Toast.displayErrorMessage("Error during creating genre!")
       })
   }
 
   return (
     <Layout hasAppBar>
       <div className={s.root}>
-        <h2 className={s.title}>Добавить новый жанр</h2>
+        <h2 className={s.title}>Add new genre</h2>
         <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
           <Grid spacing={1} container>
             <Grid item md={8}>
@@ -47,7 +47,7 @@ const AddGenre = () => {
                       value={value}
                       onChange={onChange}
                       isInvalid={errors.genre_name?.message}
-                      placeholder="Название жанра"
+                      placeholder="Genre name"
                     />
                   )}
                 />
@@ -64,7 +64,7 @@ const AddGenre = () => {
             disabled={isSubmitting}
             type="submit"
           >
-            Добавить новый жанр
+            Add new genre
           </Button>
         </form>
       </div>

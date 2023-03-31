@@ -41,16 +41,16 @@ const PlaylistPage = () => {
         setPlaylist(response.data.playlist)
         setSubscribers(response.data.subscribers)
       })
-      .catch(err => Toast.displayErrorMessage("Произошла ошибка при получении информации о плейлисте!"))
+      .catch(err => Toast.displayErrorMessage("Error during fetching information about playlist!"))
   }
 
   const togglePlaylist = () => {
     PlaylistService.togglePlaylistSubscription(id)
       .then(response => {
-        Toast.displaySuccessMessage("Плейлист успешно добавлен/удален из подписок")
+        Toast.displaySuccessMessage("Playlist successfully created/removed from playlist")
         getPlaylistDetails()
       })
-      .catch(err => Toast.displayErrorMessage("Произошла ошибка при добавлении/удалении из подписок"))
+      .catch(err => Toast.displayErrorMessage("Error during adding/removing movie from playlist"))
   }
 
   const checkIfPlaylistIsMine = async () => {
@@ -87,7 +87,7 @@ const PlaylistPage = () => {
               Автор: {playlist?.author?.name}
             </p>
 
-            <span>{subscribers} подписчиков</span>
+            <span>{subscribers} subscribers</span>
 
             {!isMine && (
               <div className={s.actions}>
@@ -108,7 +108,7 @@ const PlaylistPage = () => {
                   onClick={togglePlaylist}
                 >
                   {playlist?.subscribers.find(subscriber => subscriber.email === userInfo?.email) ?
-                    "Удалить из сохраненных" : "Добавить к себе"
+                    "Remove from saved" : "Save playlist"
                   }
                 </Button>
               </div>
@@ -123,13 +123,13 @@ const PlaylistPage = () => {
               variant="secondary"
               onClick={() => setOpenAddModal(true)}
             >
-              Добавить фильм
+              Add movie
             </BootstrapButton>
           </div>
         )}
 
         <div className={s.content}>
-          <h4>Список фильмов</h4>
+          <h4>List of movies</h4>
 
           <div className={s.movieList}>
             {playlist?.get_related_movies?.map(item => (
@@ -146,11 +146,11 @@ const PlaylistPage = () => {
 
           {playlist?.get_related_movies?.length === 0 && (
             <div className={s.emptyMovies}>
-              Фильмов в плейлисте нет!
+              There are no movies in playlist!
             </div>
           )}
 
-          <h4 style={{marginTop: "1rem"}}>Вам также может понравится</h4>
+          <h4 style={{marginTop: "1rem"}}>You may also like</h4>
 
           <div className={s.recommendationList}>
             {popularPlaylists.map(item => (

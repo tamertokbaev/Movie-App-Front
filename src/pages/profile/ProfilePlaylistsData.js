@@ -15,10 +15,10 @@ const ProfilePlaylistsData = () => {
 
   return (
     <div className={s.content}>
-      <h2>Добавленные плейлисты</h2>
+      <h2>Added playlists</h2>
       {playlists.length === 0 && (
         <div className={s.empty}>
-          <h3>Пока еще не добавлен ни один фильм в сохраненное!</h3>
+          <h3>There are no playlists saved in favorites!</h3>
         </div>
       )}
       {playlists.map(item => (
