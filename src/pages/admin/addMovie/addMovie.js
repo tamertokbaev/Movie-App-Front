@@ -18,7 +18,7 @@ const AddMovie = () => {
 
   const onSubmit = async (data) => {
     AdminService
-      .createMovie(data)
+      .createMovie({...data, is_premium: data.is_premium ? data.is_premium : false})
       .then(response => {
         if (response.data.message === "success") {
           Toast.displaySuccessMessage("New movie successfully created!")

@@ -32,7 +32,7 @@ export default function AppBarLeft() {
         anchor="left"
       >
         <div className={s.root}>
-          <h3>Панель администратора</h3>
+          <h3>Admin panel</h3>
         </div>
         <Divider sx={{background: "#fafafa"}}/>
         <List>
@@ -42,7 +42,7 @@ export default function AppBarLeft() {
                 <Add/>
               </ListItemIcon>
               <ListItemText>
-                Добавить фильм
+                Add movie
               </ListItemText>
             </ListItemButton>
           </ListItem>
@@ -53,7 +53,7 @@ export default function AppBarLeft() {
                 <Movie/>
               </ListItemIcon>
               <ListItemText>
-                Список фильмов
+                List of movies
               </ListItemText>
             </ListItemButton>
           </ListItem>
@@ -64,7 +64,7 @@ export default function AppBarLeft() {
                 <Add/>
               </ListItemIcon>
               <ListItemText>
-                Добавить жанр
+                Add genre
               </ListItemText>
             </ListItemButton>
           </ListItem>
@@ -75,7 +75,7 @@ export default function AppBarLeft() {
                 <FormatAlignLeft/>
               </ListItemIcon>
               <ListItemText>
-                Список жанров
+                List of genres
               </ListItemText>
             </ListItemButton>
           </ListItem>

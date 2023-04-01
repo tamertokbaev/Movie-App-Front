@@ -32,7 +32,7 @@ const ProfilePersonalData = () => {
 
   return (
     <div className={s.content}>
-      <h2>Личные данные</h2>
+      <h2>Personal information</h2>
 
       <div className={s.personalData}>
         <div className={s.item}>
