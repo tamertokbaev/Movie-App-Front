@@ -102,7 +102,7 @@ const SignUp = () => {
                     variant="outline-secondary"
                     disabled={isSubmitting}
                   >
-                    Sign in
+                    Sign up
                   </Button>
                 </Link>
               </div>
