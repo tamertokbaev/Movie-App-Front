@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react"
-import "./movieList.css"
+import "./movieList.scss"
 import Cards from "../card/card"
 import {MainService} from "../../app/services/MainService";
 import {Toast} from "../../app/utils/toast";

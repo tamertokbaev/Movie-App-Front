@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react"
-import "./home.css"
+import "./home.scss"
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import {Carousel} from 'react-responsive-carousel';
 import {Link} from "react-router-dom";
@@ -8,10 +8,12 @@ import Layout from "../../components/Layout/Layout";
 import {MainService} from "../../app/services/MainService";
 import {Toast} from "../../app/utils/toast";
 import Skeleton, {SkeletonTheme} from "react-loading-skeleton";
+import useMediaQuery from "../../app/hooks/useMediaQuery";
 
 const Home = () => {
   const [popularMovies, setPopularMovies] = useState([])
   const [isLoading, setIsLoading] = useState(true)
+  const isBiggerThanTablet = useMediaQuery("(min-width: 768px)")
 
   useEffect(() => {
     MainService
@@ -32,7 +34,7 @@ const Home = () => {
   }, [])
 
   return (
-    <Layout disableContainerStyles headerFluid>
+    <Layout disableHeader={!isBiggerThanTablet} disableContainerStyles headerFluid>
       <div className="poster" style={{marginTop: "-5px"}}>
         {isLoading ? <div style={{height: 600}}>
           <SkeletonTheme color="#202020" highlightColor="#444">

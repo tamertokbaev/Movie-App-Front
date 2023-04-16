@@ -31,7 +31,7 @@ const SignUp = () => {
         navigate('/')
       })
       .catch(err => {
-        if (err.response.status === 401) {
+        if (err && err.response && err.response.status === 401) {
           setErrorText("Неверное имя пользователя либо пароль!")
         } else {
           setErrorText("Ошибка на сервере!")
