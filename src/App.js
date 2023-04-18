@@ -24,6 +24,7 @@ import LastReleasedMovies from "./pages/lastReleased/LastReleasedMovies";
 import PopularMovies from "./pages/popularMovies/PopularMovies";
 import PlayListsPage from "./pages/playLists/playLists";
 import {PlaylistPage} from "./pages/playLists/playlistPage";
+import {useEffect} from "react";
 
 const MuiTheme = createTheme({
   palette: {
@@ -45,8 +46,8 @@ const MuiTheme = createTheme({
 function App() {
   const {userInfo, updateUserInfo} = useFetchUserInfo()
   const isAdmin = userInfo?.is_superuser
-  console.log(userInfo)
-  if (userInfo === undefined) return false
+
+  // if (userInfo === undefined) return false
   return (
     <>
       <UserContext.Provider value={{userInfo, updateUserInfo}}>

@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {AuthService} from "../services/AuthService";
+import {Android} from "@mui/icons-material";
 
 const useFetchUserInfo = () => {
   const [user, setUser] = useState(undefined)
@@ -9,10 +10,16 @@ const useFetchUserInfo = () => {
   }
 
   useEffect(() => {
-    const accessToken = localStorage.getItem('auth_token')
-    if (accessToken) {
-      fetchUserInfo()
-    } else setUser(null)
+    if (window.Android) {
+      const token = window.Android.getToken()
+      localStorage.setItem('auth_token', token)
+      if (token) fetchUserInfo()
+    } else {
+      const accessToken = localStorage.getItem('auth_token')
+      if (accessToken) {
+        fetchUserInfo()
+      } else setUser(null)
+    }
   }, [])
 
   const fetchUserInfo = async (authToken) => {
@@ -21,7 +28,7 @@ const useFetchUserInfo = () => {
       .then(response => {
         updateUserInfo(response.data.user)
       })
-      .catch(() => {
+      .catch((error) => {
         localStorage.removeItem('auth_token')
         updateUserInfo(null)
       })

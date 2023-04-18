@@ -1,5 +1,5 @@
 import http from "../utils/http";
-const BASE_URL = `http://localhost:8000/api/auth`
+const BASE_URL = `http://10.0.2.2:8000/api/auth`
 
 const signUp = (data) => {
   return http.post(`${BASE_URL}/register`, data)
