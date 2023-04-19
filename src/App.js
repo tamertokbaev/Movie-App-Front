@@ -47,7 +47,7 @@ function App() {
   const {userInfo, updateUserInfo} = useFetchUserInfo()
   const isAdmin = userInfo?.is_superuser
 
-  // if (userInfo === undefined) return false
+  if (userInfo === undefined) return false
   return (
     <>
       <UserContext.Provider value={{userInfo, updateUserInfo}}>
@@ -72,6 +72,7 @@ function App() {
                   <Route path="playlists" element={<PlayListsPage/>}></Route>
                   <Route path="playlists/:id" element={<PlaylistPage/>}></Route>
                   <Route path="profile" element={<Profile/>}></Route>
+                  <Route path="/sign_in" element={<Navigate to="/" replace />}></Route>
                 </>
               )}
               {userInfo && isAdmin && (

@@ -1,5 +1,5 @@
 import http from "../utils/http";
-const BASE_URL = `http://localhost:8000/api/movie`
+const BASE_URL = window.Android ? `http://10.0.2.2:8000/api/movie` : `http://localhost:8000/api/movie`
 
 const getFeaturedMovies = () => {
   return http.get(`${BASE_URL}/featured`)

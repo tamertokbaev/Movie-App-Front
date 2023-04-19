@@ -10,6 +10,12 @@
   height: 300px;
   z-index: 0;
   border: 1px solid rgb(99, 99, 99);
+
+  @media (max-width: 768px) {
+    height: 230px;
+    min-width: 120px;
+    max-width: 120px;
+  }
 }
 
 .cards:hover {
@@ -23,6 +29,14 @@
   width: 200px;
   object-fit: cover;
   position: relative;
+
+  @media (max-width: 768px) {
+    height: 230px;
+  }
+
+  @media (max-width: 375px) {
+
+  }
 }
 
 .cards__img img {
