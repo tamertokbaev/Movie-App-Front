@@ -6,7 +6,7 @@ import {PlaylistService} from "../../app/services/PlaylistService";
 import {Toast} from "../../app/utils/toast";
 import {MainService} from "../../app/services/MainService";
 
-const PlaylistPageAddMoviesModal = ({isOpen, handleClose, playlistId}) => {
+const PlaylistPageAddMoviesModal = ({isOpen, handleClose, playlistId, refresh}) => {
   const [movies, setMovies] = useState([])
   const [addedMovies, setAddedMovies] = useState([])
 
@@ -27,6 +27,7 @@ const PlaylistPageAddMoviesModal = ({isOpen, handleClose, playlistId}) => {
       .getAddedMoviesInPlaylist(playlistId)
       .then(response => {
         setAddedMovies(response.data.movies)
+        if (refresh) refresh()
       })
       .catch(err => Toast.displayErrorMessage("Error during fetching movie"))
   }

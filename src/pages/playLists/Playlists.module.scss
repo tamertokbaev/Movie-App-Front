@@ -191,6 +191,13 @@
     &:hover {
       background: rgba(255, 255, 255, 0.8);
     }
+
+    @media (max-width: 768px) {
+      margin-left: 0;
+      width: 100%;
+      min-width: auto;
+      padding: 8px calc(var(--bs-gutter-x) * 0.5);;
+    }
   }
 
   .add {
@@ -250,5 +257,9 @@
         scrollbar-width: none;  /* Firefox */
       }
     }
+  }
+
+  @media (max-width: 768px) {
+    width: 90%;
   }
 }

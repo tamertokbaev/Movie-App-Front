@@ -167,6 +167,7 @@ const PlaylistPage = () => {
         isOpen={openAddModal}
         handleClose={() => setOpenAddModal(false)}
         playlistId={id}
+        refresh={getPlaylistDetails}
       />
     </Layout>
   )
