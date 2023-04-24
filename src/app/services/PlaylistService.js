@@ -1,6 +1,5 @@
 import http from "../utils/http";
-const BASE_URL = `http://localhost:8000/api/playlists`
-
+const BASE_URL = window.Android ? `http://10.0.2.2:8000/api/playlists` : `http://localhost:8000/api/playlists`
 
 const getListOfPlaylists = () => {
   return http.get(`${BASE_URL}`)
