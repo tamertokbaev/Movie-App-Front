@@ -127,7 +127,7 @@ const Movie = () => {
               key={item.id}
               movie={item}
               onFavoritesClick={handleAddOrRemoveFavorites}
-              isInFavorite={() => checkIsMovieInFavorite(item.id)}
+              isInFavorite={checkIsMovieInFavorite(item.id)}
             />
           ))}
         </div>

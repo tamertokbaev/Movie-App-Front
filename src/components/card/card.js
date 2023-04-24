@@ -29,7 +29,10 @@ const Cards = ({movie, isInFavorite, onFavoritesClick}) => {
         <Link to={`/movie/${movie.id}`} style={{textDecoration: "none", color: "white"}}>
           <div className="cards">
             <div className={clsx("cards__img", {["fav"]: isInFavorite})}>
-              <img src={movie.image_url}/>
+              <img
+                src={movie.image_url}
+                onError={(e) => {e.target.onerror = null; e.target.src = "/var1.svg"}}
+              />
               {userInfo && (
                 <button onClick={event => {
                   event.preventDefault()

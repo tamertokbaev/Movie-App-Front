@@ -14,16 +14,14 @@ const ProfileFavoritesData = () => {
           <h3>There are no movies saved in favorites!</h3>
         </div>
       )}
-      <div className={s.favoritesData}>
-        {favorites.length > 0 && favorites.map((item, index) => (
-          <Cards
-            onFavoritesClick={handleAddOrRemoveFavorites}
-            isInFavorite={true}
-            key={index}
-            movie={item}
-          />
-        ))}
-      </div>
+      {favorites.length > 0 && favorites.map((item, index) => (
+        <Cards
+          onFavoritesClick={handleAddOrRemoveFavorites}
+          isInFavorite={true}
+          key={index}
+          movie={item}
+        />
+      ))}
     </div>
   )
 }

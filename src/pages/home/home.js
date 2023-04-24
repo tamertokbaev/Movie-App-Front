@@ -52,7 +52,10 @@ const Home = () => {
               popularMovies.map(movie => (
                 <Link style={{textDecoration: "none", color: "white"}} to={`/movie/${movie.id}`}>
                   <div className="posterImage">
-                    <img src={movie.banner_url}/>
+                    <img
+                      src={movie.banner_url}
+                      onError={(e) => {e.target.onerror = null; e.target.src = "/var1.svg"}}
+                    />
                   </div>
                   <div className="posterImage__overlay">
                     <div className="posterImage__title">{movie.title}</div>

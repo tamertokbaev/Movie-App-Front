@@ -34,7 +34,7 @@ const Search = () => {
       <div className={s.root}>
         <Breadcrumbs sx={{paddingTop: "2rem", color: "rgb(223, 223, 223)"}} aria-label="breadcrumb">
           <Link underline="hover" color="inherit" href="/">
-            Домой
+            Home
           </Link>
           <Typography sx={{color: "rgb(223, 223, 223)"}} color="text.primary">Search results by keyword "{searchParams.get('slug')}"</Typography>
         </Breadcrumbs>
