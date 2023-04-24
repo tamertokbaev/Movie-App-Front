@@ -60,7 +60,7 @@ const Movie = () => {
                 {/*  className="movie__voteCount">{currentMovieDetail ? "(" + currentMovieDetail.vote_count + ") votes" : ""}</span>*/}
               </div>
               {/*<div className="movie__runtime">{currentMovieDetail ? currentMovieDetail.runtime + " mins" : ""}</div>*/}
-              <div>{currentMovieDetail ? "Дата выпуска: " + currentMovieDetail.release_date : ""}</div>
+              <div>{currentMovieDetail ? "Release date: " + currentMovieDetail.release_date : ""}</div>
               <div className={s.movie__genres}>
                 {
                   currentMovieDetail && currentMovieDetail.genres
@@ -120,7 +120,7 @@ const Movie = () => {
       )}
 
       <div className={clsx("container", s.similar)}>
-        <h4>Вам также может понравиться</h4>
+        <h4>You may also like</h4>
         <div className={s.list}>
           {similarMovies.map((item, index) => (
             <Card
