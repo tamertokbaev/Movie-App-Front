@@ -6,7 +6,7 @@ const PremiumOnly = () => {
 
   return (
     <div className={s.premiumOnly}>
-      <TbPremiumRights size="36"/> Данный контент доступен только по премиум подписке
+      <TbPremiumRights size="36"/> This content is available only for premium users
     </div>
   )
 }

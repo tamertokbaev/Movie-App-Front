@@ -84,7 +84,7 @@ const PlaylistPage = () => {
             <p className={s.description}>{playlist?.description}</p>
 
             <p className={s.description}>
-              Автор: {playlist?.author?.name}
+              Author: {playlist?.author?.name}
             </p>
 
             <span>{subscribers} subscribers</span>

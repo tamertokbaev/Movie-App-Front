@@ -29,7 +29,10 @@ const PlaylistCard = ({playlist}) => {
         <Link to={`/playlists/${playlist.id}`} style={{textDecoration: "none", color: "white"}}>
           <div className="cards">
             <div className={clsx("cards__img")}>
-              <img src={playlist.preview_url}/>
+              <img
+                src={playlist.preview_url}
+                onError={(e) => {e.target.onerror = null; e.target.src = "/var1.svg"}}
+              />
             </div>
             <div className="cards__overlay">
               {playlist.is_premium ? (
