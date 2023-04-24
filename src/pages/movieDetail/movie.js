@@ -12,10 +12,10 @@ import Card from "../../components/card/card";
 import PremiumOnly from "../../components/PremiumOnly/PremiumOnly";
 
 const Movie = () => {
-  const {checkIsMovieInFavorite, handleAddOrRemoveFavorites} = useFavoriteMovies()
-  const {similarMovies} = useSimilar()
-  const [currentMovieDetail, setMovie] = useState()
   const {id} = useParams()
+  const {checkIsMovieInFavorite, handleAddOrRemoveFavorites} = useFavoriteMovies()
+  const {similarMovies} = useSimilar(id)
+  const [currentMovieDetail, setMovie] = useState()
 
   useEffect(() => {
     window.scrollTo({top: 0, behavior: 'smooth'});
