@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import s from "./Profile.module.scss"
 import {useUserContext} from "../../app/context/userContext";
 import {
@@ -19,16 +19,23 @@ import {yupResolver} from "@hookform/resolvers/yup/dist/yup";
 import {SignUpCompleteRegistrationSchema} from "../../app/validation/userValidation";
 import {AuthService} from "../../app/services/AuthService";
 import {Toast} from "../../app/utils/toast";
-import FormHelperMessage from "../../components/Form/FormHelperMessage";
-import FormGroup from "../../components/Form/FormGroup";
-import {Form} from "react-bootstrap";
+import {Form, Table} from "react-bootstrap";
+import {UserService} from "../../app/services/UserService";
 
 const ProfilePersonalData = () => {
   const {userInfo} = useUserContext()
   const [editProfileModalOpen, setEditProfileModalOpen] = useState(false)
+  const [familyMembers, setFamilyMembers] = useState([])
 
   const openModal = () => setEditProfileModalOpen(true)
   const closeModal = () => setEditProfileModalOpen(false)
+
+  useEffect(() => {
+    UserService.getUserFamilySubscribers(userInfo.id)
+      .then(response => {
+        setFamilyMembers(response.data.users)
+      })
+  }, [])
 
   return (
     <div className={s.content}>
@@ -42,8 +49,39 @@ const ProfilePersonalData = () => {
           Email: <span>{userInfo.email}</span>
         </div>
         <div className={s.item}>
-          Subscribe level: <span>{userInfo.subscription === 1 ? "Free" : userInfo.subscription === 2 ? "Personal" : "Family"}</span>
+          Subscribe
+          level: <span>{userInfo.subscription === 1 ? "Free" : userInfo.subscription === 2 ? "Personal" : "Family"}</span>
         </div>
+        {userInfo.subscription === 3 ? (
+          <>
+            <div className={s.item}>
+              Family members in subscription:
+            </div>
+
+            <div className={s.item}>
+              <Table variant="dark" striped bordered hover>
+                <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Full name</th>
+                  <th>Email</th>
+                </tr>
+                </thead>
+                <tbody>
+                {familyMembers.map((item, key) => (
+                  <tr key={key}>
+                    <td>{key + 1}</td>
+                    <td>{item.name}</td>
+                    <td>{item.email}</td>
+                  </tr>
+                ))}
+                </tbody>
+              </Table>
+            </div>
+          </>
+
+        ) : null}
+
         <div>
           <Button
             startIcon={<Edit/>}
