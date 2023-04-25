@@ -5,6 +5,7 @@ import {Link} from "react-router-dom"
 import HeartIcon from "../../app/icons/HeartIcon";
 import clsx from "clsx";
 import {useUserContext} from "../../app/context/userContext";
+import PremiumOnlyBackdrop from "../PremiumOnlyBackdrop/premiumOnlyBackdrop";
 
 const PlaylistCard = ({playlist}) => {
   const [isLoading, setIsLoading] = useState(true)
@@ -27,6 +28,9 @@ const PlaylistCard = ({playlist}) => {
         </div>
         :
         <Link to={`/playlists/${playlist.id}`} style={{textDecoration: "none", color: "white"}}>
+          {userInfo.subscription === 1 && (
+            <PremiumOnlyBackdrop/>
+          )}
           <div className="cards">
             <div className={clsx("cards__img")}>
               <img

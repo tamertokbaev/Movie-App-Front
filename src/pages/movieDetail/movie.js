@@ -10,12 +10,15 @@ import useFavoriteMovies from "../../app/hooks/useFavoriteMovies";
 import useSimilar from "../../app/hooks/useSimilar";
 import Card from "../../components/card/card";
 import PremiumOnly from "../../components/PremiumOnly/PremiumOnly";
+import {useUserContext} from "../../app/context/userContext";
+import PremiumOnlyBackdrop from "../../components/PremiumOnlyBackdrop/premiumOnlyBackdrop";
 
 const Movie = () => {
   const {id} = useParams()
   const {checkIsMovieInFavorite, handleAddOrRemoveFavorites} = useFavoriteMovies()
   const {similarMovies} = useSimilar(id)
   const [currentMovieDetail, setMovie] = useState()
+  const {userInfo} = useUserContext()
 
   useEffect(() => {
     window.scrollTo({top: 0, behavior: 'smooth'});
@@ -38,16 +41,23 @@ const Movie = () => {
 
   return (
     <Layout disableContainerStyles>
+      {userInfo.subscription === 1 && (
+        <PremiumOnlyBackdrop/>
+      )}
       <div className={s.movie}>
         <div className={s.movie__intro}>
           <img className={s.movie__backdrop}
-               src={currentMovieDetail?.banner_url}/>
+               src={currentMovieDetail?.banner_url}
+               onError={(e) => {e.target.onerror = null; e.target.src = "/var1.svg"}}
+          />
         </div>
         <div className={s.movie__detail}>
           <div className={s.movie__detailLeft}>
             <div>
               <img className={s.movie__poster}
-                   src={currentMovieDetail?.image_url}/>
+                   src={currentMovieDetail?.image_url}
+                   onError={(e) => {e.target.onerror = null; e.target.src = "/var1.svg"}}
+              />
             </div>
           </div>
           <div className={s.movie__detailRight}>
@@ -78,7 +88,7 @@ const Movie = () => {
                 <HeartIcon size={24}/>
                 {checkIsMovieInFavorite(currentMovieDetail?.id) ? "Remove from favorites" : "Add to favorites"}
               </button>
-              <div style={{width: "520px", marginTop: "0.5rem"}}>
+              <div className={s.premium}>
                 {currentMovieDetail?.is_premium ? (
                   <PremiumOnly/>
                 ) : null}
