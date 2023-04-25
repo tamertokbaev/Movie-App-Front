@@ -64,9 +64,11 @@ const ProfilePersonalData = () => {
               Family members in subscription:
             </div>
 
-            <div style={{minHeight: "100px", display: "flex", alignItems: "center", justifyContent: "center"}}>
-              No one is attached currently to your family subscription
-            </div>
+            {familyMembers.length === 0 && (
+              <div style={{minHeight: "100px", display: "flex", alignItems: "center", justifyContent: "center"}}>
+                No one is attached currently to your family subscription
+              </div>
+            )}
 
             {familyMembers.length > 0 && (
               <div className={s.item}>
