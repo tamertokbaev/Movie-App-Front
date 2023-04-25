@@ -3,15 +3,11 @@ import s from "./Profile.module.scss"
 import {useUserContext} from "../../app/context/userContext";
 import {
   Alert,
-  Backdrop,
   Button,
   Dialog,
   DialogActions,
   DialogContent,
-  DialogTitle,
-  Fade,
-  Modal,
-  TextField
+  DialogTitle
 } from "@mui/material";
 import {Edit, SaveAsOutlined} from "@mui/icons-material";
 import {Controller, useForm} from "react-hook-form";
@@ -21,21 +17,31 @@ import {AuthService} from "../../app/services/AuthService";
 import {Toast} from "../../app/utils/toast";
 import {Form, Table} from "react-bootstrap";
 import {UserService} from "../../app/services/UserService";
+import {Button as BootstrapButton} from "react-bootstrap"
+import AddNewFamilyMemberModal from "./AddNewFamilyMemberModal";
 
 const ProfilePersonalData = () => {
   const {userInfo} = useUserContext()
   const [editProfileModalOpen, setEditProfileModalOpen] = useState(false)
   const [familyMembers, setFamilyMembers] = useState([])
+  const [isFamilyMemberAddModalOpen, setIsFamilyMemberAddModalOpen] = useState(false)
 
   const openModal = () => setEditProfileModalOpen(true)
   const closeModal = () => setEditProfileModalOpen(false)
 
+  const openFamilyModal = () => setIsFamilyMemberAddModalOpen(true)
+  const closeFamilyModal = () => setIsFamilyMemberAddModalOpen(false)
+
   useEffect(() => {
+    refreshMembers()
+  }, [])
+
+  const refreshMembers = () => {
     UserService.getUserFamilySubscribers(userInfo.id)
       .then(response => {
         setFamilyMembers(response.data.users)
       })
-  }, [])
+  }
 
   return (
     <div className={s.content}>
@@ -58,26 +64,42 @@ const ProfilePersonalData = () => {
               Family members in subscription:
             </div>
 
-            <div className={s.item}>
-              <Table variant="dark" striped bordered hover>
-                <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Full name</th>
-                  <th>Email</th>
-                </tr>
-                </thead>
-                <tbody>
-                {familyMembers.map((item, key) => (
-                  <tr key={key}>
-                    <td>{key + 1}</td>
-                    <td>{item.name}</td>
-                    <td>{item.email}</td>
-                  </tr>
-                ))}
-                </tbody>
-              </Table>
+            <div style={{minHeight: "100px", display: "flex", alignItems: "center", justifyContent: "center"}}>
+              No one is attached currently to your family subscription
             </div>
+
+            {familyMembers.length > 0 && (
+              <div className={s.item}>
+                <Table variant="dark" striped bordered hover>
+                  <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Full name</th>
+                    <th>Email</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  {familyMembers.map((item, key) => (
+                    <tr key={key}>
+                      <td>{key + 1}</td>
+                      <td>{item.name}</td>
+                      <td>{item.email}</td>
+                    </tr>
+                  ))}
+                  </tbody>
+                </Table>
+              </div>
+            )}
+            {familyMembers.length < 4 && (
+              <div className={s.item}>
+                <BootstrapButton
+                  variant="secondary"
+                  onClick={openFamilyModal}
+                >
+                  Add new family members
+                </BootstrapButton>
+              </div>
+            )}
           </>
 
         ) : null}
@@ -95,6 +117,11 @@ const ProfilePersonalData = () => {
         <ProfileChangeProfileDataModal
           isOpen={editProfileModalOpen}
           handleClose={closeModal}
+        />
+        <AddNewFamilyMemberModal
+          isOpen={isFamilyMemberAddModalOpen}
+          handleClose={closeFamilyModal}
+          refresh={refreshMembers}
         />
       </div>
     </div>

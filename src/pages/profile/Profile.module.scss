@@ -101,3 +101,9 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
 }
+
+
+.modal {
+  padding: 1rem;
+  color: var(--color-primary);
+}

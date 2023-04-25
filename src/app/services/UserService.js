@@ -9,6 +9,11 @@ const getUserFamilySubscribers = (userId) => {
   })
 }
 
+const addNewUserIntoSubscription = (email) => {
+  return http.post(`${BASE_URL}/family_add`, {email})
+}
+
 export const UserService = {
   getUserFamilySubscribers,
+  addNewUserIntoSubscription
 }
