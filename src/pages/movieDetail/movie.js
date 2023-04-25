@@ -41,9 +41,9 @@ const Movie = () => {
 
   return (
     <Layout disableContainerStyles>
-      {userInfo.subscription === 1 && (
+      {(userInfo.subscription === 1 && currentMovieDetail?.is_premium) ? (
         <PremiumOnlyBackdrop/>
-      )}
+      ) : null}
       <div className={s.movie}>
         <div className={s.movie__intro}>
           <img className={s.movie__backdrop}

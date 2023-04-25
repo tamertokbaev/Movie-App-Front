@@ -28,9 +28,9 @@ const PlaylistCard = ({playlist}) => {
         </div>
         :
         <Link to={`/playlists/${playlist.id}`} style={{textDecoration: "none", color: "white"}}>
-          {userInfo.subscription === 1 && (
+          {(userInfo.subscription === 1 && playlist.is_premium) ? (
             <PremiumOnlyBackdrop/>
-          )}
+          ) : undefined}
           <div className="cards">
             <div className={clsx("cards__img")}>
               <img
