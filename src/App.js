@@ -25,6 +25,7 @@ import PopularMovies from "./pages/popularMovies/PopularMovies";
 import PlayListsPage from "./pages/playLists/playLists";
 import {PlaylistPage} from "./pages/playLists/playlistPage";
 import {useEffect} from "react";
+import Catalog from "./pages/catalog/catalog";
 
 const MuiTheme = createTheme({
   palette: {
@@ -67,6 +68,7 @@ function App() {
                   <Route index element={<Home/>}></Route>
                   <Route path="movie/:id" element={<Movie/>}></Route>
                   <Route path="last-released" element={<LastReleasedMovies/>}></Route>
+                  <Route path="catalog" element={<Catalog/>}></Route>
                   <Route path="popular" element={<PopularMovies/>}></Route>
                   <Route path="search" element={<Search/>}></Route>
                   <Route path="playlists" element={<PlayListsPage/>}></Route>

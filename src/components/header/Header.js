@@ -34,6 +34,9 @@ const Header = ({fluid}) => {
         <Link to="/">
           <img className={s.logo} src={"/var1.svg"}/>
         </Link>
+        <Link to="/catalog">
+          Catalog
+        </Link>
         <Link to="/popular">
           Popular
         </Link>

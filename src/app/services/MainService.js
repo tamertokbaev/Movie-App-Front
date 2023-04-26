@@ -13,6 +13,18 @@ const getLastReleasedMovies = () => {
   return http.get(`${BASE_URL}/last-released`)
 }
 
+const getGenres = () => {
+  return http.get(`${BASE_URL}/genres`)
+}
+
+const getMoviesByGenre = (genreId) => {
+  return http.get(`${BASE_URL}/by_genre`, {
+    params: {
+      genreId
+    }
+  })
+}
+
 const getMovieInfo = (movieId) => {
   return http.get(`${BASE_URL}/info`, {
     params: {
@@ -48,6 +60,8 @@ export const MainService = {
   getPopularMovies,
   getLastReleasedMovies,
   getSimilarMovies,
+  getGenres,
+  getMoviesByGenre,
   getMovieInfo,
   getFavoriteMovies,
   addOrRemoveFavorites,

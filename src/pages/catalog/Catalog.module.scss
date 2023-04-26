@@ -1,5 +1,42 @@
 .root {
-  h1 {
+  .heading {
+    margin-top: 1rem;
+    font-size: 36px;
+  }
 
+  .genres {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0.5rem;
+    width: 100%;
+    overflow: auto;
+    margin-top: 0.5rem;
+
+    &::-webkit-scrollbar {
+      display: none;
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;  /* Firefox */
+    }
+
+    .genre {
+      padding: 0.25rem 0.5rem;
+      border-radius: 1.5rem;
+      border: 1px solid var(--text-color);
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: var(--transition-timeout);
+
+      &:hover {
+        background: var(--text-color);
+        color: var(--color-primary);
+      }
+
+      &.active {
+        background: var(--text-color);
+        color: var(--color-primary);
+      }
+    }
   }
 }
